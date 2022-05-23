@@ -1,0 +1,49 @@
+﻿Code,Code Type,Description,Type
+E1100,ICD10CM,Type 2 diabetes mellitus with hyperosmolarity without nonketotic hyperglycemic-hyperosmolar coma (NKHHC),Type 2 diabetes
+E1101,ICD10CM,Type 2 diabetes mellitus with hyperosmolarity with coma,Type 2 diabetes
+E1121,ICD10CM,Type 2 diabetes mellitus with diabetic nephropathy,Type 2 diabetes
+E1122,ICD10CM,Type 2 diabetes mellitus with diabetic chronic kidney disease,Type 2 diabetes
+E1129,ICD10CM,Type 2 diabetes mellitus with other diabetic kidney complication,Type 2 diabetes
+E11311,ICD10CM,Type 2 diabetes mellitus with unspecified diabetic retinopathy with macular edema,Type 2 diabetes
+E11319,ICD10CM,Type 2 diabetes mellitus with unspecified diabetic retinopathy without macular edema,Type 2 diabetes
+E11321,ICD10CM,Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema,Type 2 diabetes
+E11329,ICD10CM,Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema,Type 2 diabetes
+E11331,ICD10CM,Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema,Type 2 diabetes
+E11339,ICD10CM,Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema,Type 2 diabetes
+E11341,ICD10CM,Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema,Type 2 diabetes
+E11349,ICD10CM,Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema,Type 2 diabetes
+E11351,ICD10CM,Type 2 diabetes mellitus with proliferative diabetic retinopathy with macular edema,Type 2 diabetes
+E11359,ICD10CM,Type 2 diabetes mellitus with proliferative diabetic retinopathy without macular edema,Type 2 diabetes
+E1136,ICD10CM,Type 2 diabetes mellitus with diabetic cataract,Type 2 diabetes
+E1139,ICD10CM,Type 2 diabetes mellitus with other diabetic ophthalmic complication,Type 2 diabetes
+E1140,ICD10CM,"Type 2 diabetes mellitus with diabetic neuropathy, unspecified",Type 2 diabetes
+E1141,ICD10CM,Type 2 diabetes mellitus with diabetic mononeuropathy,Type 2 diabetes
+E1142,ICD10CM,Type 2 diabetes mellitus with diabetic polyneuropathy,Type 2 diabetes
+E1143,ICD10CM,Type 2 diabetes mellitus with diabetic autonomic (poly)neuropathy,Type 2 diabetes
+E1144,ICD10CM,Type 2 diabetes mellitus with diabetic amyotrophy,Type 2 diabetes
+E1149,ICD10CM,Type 2 diabetes mellitus with other diabetic neurological complication,Type 2 diabetes
+E1151,ICD10CM,Type 2 diabetes mellitus with diabetic peripheral angiopathy without gangrene,Type 2 diabetes
+E1152,ICD10CM,Type 2 diabetes mellitus with diabetic peripheral angiopathy with gangrene,Type 2 diabetes
+E1159,ICD10CM,Type 2 diabetes mellitus with other circulatory complications,Type 2 diabetes
+E11610,ICD10CM,Type 2 diabetes mellitus with diabetic neuropathic arthropathy,Type 2 diabetes
+E11618,ICD10CM,Type 2 diabetes mellitus with other diabetic arthropathy,Type 2 diabetes
+E11620,ICD10CM,Type 2 diabetes mellitus with diabetic dermatitis,Type 2 diabetes
+E11621,ICD10CM,Type 2 diabetes mellitus with foot ulcer,Type 2 diabetes
+E11622,ICD10CM,Type 2 diabetes mellitus with other skin ulcer,Type 2 diabetes
+E11628,ICD10CM,Type 2 diabetes mellitus with other skin complications,Type 2 diabetes
+E11630,ICD10CM,Type 2 diabetes mellitus with periodontal disease,Type 2 diabetes
+E11638,ICD10CM,Type 2 diabetes mellitus with other oral complications,Type 2 diabetes
+E1165,ICD10CM,Type 2 diabetes mellitus with hyperglycemia,Type 2 diabetes
+E1169,ICD10CM,Type 2 diabetes mellitus with other specified complication,Type 2 diabetes
+E118,ICD10CM,Type 2 diabetes mellitus with unspecified complications,Type 2 diabetes
+E119,ICD10CM,Type 2 diabetes mellitus without complications,Type 2 diabetes
+E11641,ICD10CM,Type 2 diabetes mellitus with hypoglycemia with coma,Type 2 diabetes + hypoglycemia
+E11649,ICD10CM,Type 2 diabetes mellitus with hypoglycemia without coma,Type 2 diabetes + hypoglycemia
+E160,ICD10CM,Drug-induced hypoglycemia without coma,Hypoglycemia
+E161,ICD10CM,Other hypoglycemia,Hypoglycemia
+E162,ICD10CM,"Hypoglycemia, unspecified",Hypoglycemia
+6809,IN RxCUI,metformin,Metformin
+1368001,IN RxCUI,alogliptin,DPP4 Inhibitor
+1100699,IN RxCUI,linagliptin,DPP4 Inhibitor
+593411,IN RxCUI,sitagliptin,DPP4 Inhibitor
+857974,IN RxCUI,saxagliptin,DPP4 Inhibitor

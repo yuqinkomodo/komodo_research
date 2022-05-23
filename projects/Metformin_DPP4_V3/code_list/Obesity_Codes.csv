@@ -1,0 +1,14 @@
+Code,CodeType,CodeDescription,Billable
+E66,ICD10CM,Overweight and obesity,FALSE
+E660,ICD10CM,Obesity due to excess calories,FALSE
+E6601,ICD10CM,Morbid (severe) obesity due to excess calories,TRUE
+E6609,ICD10CM,Other obesity due to excess calories,TRUE
+E661,ICD10CM,Drug-induced obesity,TRUE
+E662,ICD10CM,Morbid (severe) obesity with alveolar hypoventilation,TRUE
+E663,ICD10CM,Overweight,TRUE
+E668,ICD10CM,Other obesity,TRUE
+E669,ICD10CM,"Obesity, unspecified",TRUE
+27800,ICD9CM,"Obesity, unspecified",TRUE
+27801,ICD9CM,Morbid obesity,TRUE
+27802,ICD9CM,Overweight,TRUE
+27803,ICD9CM,Obesity hypoventilation syndrome,TRUE
