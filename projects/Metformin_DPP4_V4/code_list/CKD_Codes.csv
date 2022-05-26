@@ -1,0 +1,87 @@
+Code,CodeType,CodeDescription,Type,Billable
+N18,ICD10CM,Chronic kidney disease (CKD),CKD,FALSE
+N181,ICD10CM,"Chronic kidney disease, stage 1",CKD,TRUE
+N182,ICD10CM,"Chronic kidney disease, stage 2 (mild)",CKD,TRUE
+N183,ICD10CM,"Chronic kidney disease, stage 3 (moderate)",CKD,FALSE
+N183,ICD10CM,"Chronic kidney disease, stage 3 (moderate)",CKD,TRUE
+N1830,ICD10CM,"Chronic kidney disease, stage 3 unspecified",CKD,TRUE
+N1831,ICD10CM,"Chronic kidney disease, stage 3a",CKD,TRUE
+N1832,ICD10CM,"Chronic kidney disease, stage 3b",CKD,TRUE
+N184,ICD10CM,"Chronic kidney disease, stage 4 (severe)",CKD,TRUE
+N185,ICD10CM,"Chronic kidney disease, stage 5",CKD,TRUE
+N186,ICD10CM,End stage renal disease,ESRD,TRUE
+N189,ICD10CM,"Chronic kidney disease, unspecified",CKD,TRUE
+D631,ICD10CM,Anemia in chronic kidney disease,Anemic CKD,TRUE
+E0822,ICD10CM,Diabetes mellitus due to underlying condition with diabetic chronic kidney disease,Diabetic CKD,TRUE
+E0922,ICD10CM,Drug or chemical induced diabetes mellitus with diabetic chronic kidney disease,Diabetic CKD,TRUE
+E1022,ICD10CM,Type 1 diabetes mellitus with diabetic chronic kidney disease,Diabetic CKD,TRUE
+E1122,ICD10CM,Type 2 diabetes mellitus with diabetic chronic kidney disease,Diabetic CKD,TRUE
+E1322,ICD10CM,Other specified diabetes mellitus with diabetic chronic kidney disease,Diabetic CKD,TRUE
+I12,ICD10CM,Hypertensive chronic kidney disease,Hypertensive CKD,FALSE
+I120,ICD10CM,Hypertensive chronic kidney disease with stage 5 chronic kidney disease or end stage renal disease,Hypertensive CKD,TRUE
+I129,ICD10CM,"Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease",Hypertensive CKD,TRUE
+I13,ICD10CM,Hypertensive heart and chronic kidney disease,Hypertensive Heart CKD,FALSE
+I130,ICD10CM,"Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease",Hypertensive Heart CKD,TRUE
+I131,ICD10CM,Hypertensive heart and chronic kidney disease without heart failure,Hypertensive Heart CKD,FALSE
+I1310,ICD10CM,"Hypertensive heart and chronic kidney disease without heart failure, with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease",Hypertensive Heart CKD,TRUE
+I1311,ICD10CM,"Hypertensive heart and chronic kidney disease without heart failure, with stage 5 chronic kidney disease, or end stage renal disease",Hypertensive Heart CKD,TRUE
+I132,ICD10CM,"Hypertensive heart and chronic kidney disease with heart failure and with stage 5 chronic kidney disease, or end stage renal disease",Hypertensive Heart CKD,TRUE
+O102,ICD10CM,"Pre-existing hypertensive chronic kidney disease complicating pregnancy, childbirth and the puerperium",Pregnant With Pre-existing CKD,FALSE
+O1021,ICD10CM,Pre-existing hypertensive chronic kidney disease complicating pregnancy,Pregnant With Pre-existing CKD,FALSE
+O10211,ICD10CM,"Pre-existing hypertensive chronic kidney disease complicating pregnancy, first trimester",Pregnant With Pre-existing CKD,TRUE
+O10212,ICD10CM,"Pre-existing hypertensive chronic kidney disease complicating pregnancy, second trimester",Pregnant With Pre-existing CKD,TRUE
+O10213,ICD10CM,"Pre-existing hypertensive chronic kidney disease complicating pregnancy, third trimester",Pregnant With Pre-existing CKD,TRUE
+O10219,ICD10CM,"Pre-existing hypertensive chronic kidney disease complicating pregnancy, unspecified trimester",Pregnant With Pre-existing CKD,TRUE
+O1022,ICD10CM,Pre-existing hypertensive chronic kidney disease complicating childbirth,Pregnant With Pre-existing CKD,TRUE
+O1023,ICD10CM,Pre-existing hypertensive chronic kidney disease complicating the puerperium,Pregnant With Pre-existing CKD,TRUE
+O103,ICD10CM,"Pre-existing hypertensive heart and chronic kidney disease complicating pregnancy, childbirth and the puerperium",Pregnant With Pre-existing CKD,FALSE
+O1031,ICD10CM,Pre-existing hypertensive heart and chronic kidney disease complicating pregnancy,Pregnant With Pre-existing CKD,FALSE
+O10311,ICD10CM,"Pre-existing hypertensive heart and chronic kidney disease complicating pregnancy, first trimester",Pregnant With Pre-existing CKD,TRUE
+O10312,ICD10CM,"Pre-existing hypertensive heart and chronic kidney disease complicating pregnancy, second trimester",Pregnant With Pre-existing CKD,TRUE
+O10313,ICD10CM,"Pre-existing hypertensive heart and chronic kidney disease complicating pregnancy, third trimester",Pregnant With Pre-existing CKD,TRUE
+O10319,ICD10CM,"Pre-existing hypertensive heart and chronic kidney disease complicating pregnancy, unspecified trimester",Pregnant With Pre-existing CKD,TRUE
+O1032,ICD10CM,Pre-existing hypertensive heart and chronic kidney disease complicating childbirth,Pregnant With Pre-existing CKD,TRUE
+O1033,ICD10CM,Pre-existing hypertensive heart and chronic kidney disease complicating the puerperium,Pregnant With Pre-existing CKD,TRUE
+585,ICD9CM,Chronic kidney disease (CKD),CKD,FALSE
+5851,ICD9CM,"Chronic kidney disease, Stage I",CKD,TRUE
+5852,ICD9CM,"Chronic kidney disease, Stage II (mild)",CKD,TRUE
+5853,ICD9CM,"Chronic kidney disease, Stage III (moderate)",CKD,TRUE
+5854,ICD9CM,"Chronic kidney disease, Stage IV (severe)",CKD,TRUE
+5855,ICD9CM,"Chronic kidney disease, Stage V",CKD,TRUE
+5856,ICD9CM,End stage renal disease,ESRD,TRUE
+5859,ICD9CM,"Chronic kidney disease, unspecified",CKD,TRUE
+28521,ICD9CM,Anemia in chronic kidney disease,Anemic CKD,TRUE
+2494,ICD9CM,Secondary diabetes mellitus with renal manifestations,Diabetic CKD,FALSE
+24940,ICD9CM,"Secondary diabetes mellitus with renal manifestations, not stated as uncontrolled, or unspecified",Diabetic CKD,TRUE
+24941,ICD9CM,"Secondary diabetes mellitus with renal manifestations, uncontrolled",Diabetic CKD,TRUE
+2504,ICD9CM,Diabetes with renal manifestations,Diabetic CKD,FALSE
+25040,ICD9CM,"Diabetes with renal manifestations, type II or unspecified type, not stated as uncontrolled",Diabetic CKD,TRUE
+25041,ICD9CM,"Diabetes with renal manifestations, type I [juvenile type], not stated as uncontrolled",Diabetic CKD,TRUE
+25042,ICD9CM,"Diabetes with renal manifestations, type II or unspecified type, uncontrolled",Diabetic CKD,TRUE
+25043,ICD9CM,"Diabetes with renal manifestations, type I [juvenile type], uncontrolled",Diabetic CKD,TRUE
+403,ICD9CM,Hypertensive chronic kidney disease,Hypertensive CKD,FALSE
+4030,ICD9CM,"Hypertensive chronic kidney disease, malignant",Hypertensive CKD,FALSE
+40300,ICD9CM,"Hypertensive chronic kidney disease, malignant, with chronic kidney disease stage I through stage IV, or unspecified",Hypertensive CKD,TRUE
+40301,ICD9CM,"Hypertensive chronic kidney disease, malignant, with chronic kidney disease stage V or end stage renal disease",Hypertensive CKD,TRUE
+4031,ICD9CM,"Hypertensive renal disease, benign",Hypertensive CKD,FALSE
+40310,ICD9CM,"Hypertensive chronic kidney disease, benign, with chronic kidney disease stage I through stage IV, or unspecified",Hypertensive CKD,TRUE
+40311,ICD9CM,"Hypertensive chronic kidney disease, benign, with chronic kidney disease stage V or end stage renal disease",Hypertensive CKD,TRUE
+4039,ICD9CM,"Hypertensive renal disease, unspecified",Hypertensive CKD,FALSE
+40390,ICD9CM,"Hypertensive chronic kidney disease, unspecified, with chronic kidney disease stage I through stage IV, or unspecified",Hypertensive CKD,TRUE
+40391,ICD9CM,"Hypertensive chronic kidney disease, unspecified, with chronic kidney disease stage V or end stage renal disease",Hypertensive CKD,TRUE
+404,ICD9CM,Hypertensive heart and chronic kidney disease,Hypertensive CKD,FALSE
+4040,ICD9CM,"Hypertensive heart and chronic kidney disease, malignant",Hypertensive CKD,FALSE
+40400,ICD9CM,"Hypertensive heart and chronic kidney disease, malignant, without heart failure and with chronic kidney disease stage I through stage IV, or unspecified",Hypertensive Heart CKD,TRUE
+40401,ICD9CM,"Hypertensive heart and chronic kidney disease, malignant, with heart failure and with chronic kidney disease stage I through stage IV, or unspecified",Hypertensive Heart CKD,TRUE
+40402,ICD9CM,"Hypertensive heart and chronic kidney disease, malignant, without heart failure and with chronic kidney disease stage V or end stage renal disease",Hypertensive Heart CKD,TRUE
+40403,ICD9CM,"Hypertensive heart and chronic kidney disease, malignant, with heart failure and with chronic kidney disease stage V or end stage renal disease",Hypertensive Heart CKD,TRUE
+4041,ICD9CM,"Hypertensive heart and renal disease, benign",Hypertensive Heart CKD,FALSE
+40410,ICD9CM,"Hypertensive heart and chronic kidney disease, benign, without heart failure and with chronic kidney disease stage I through stage IV, or unspecified",Hypertensive Heart CKD,TRUE
+40411,ICD9CM,"Hypertensive heart and chronic kidney disease, benign, with heart failure and with chronic kidney disease stage I through stage IV, or unspecified",Hypertensive Heart CKD,TRUE
+40412,ICD9CM,"Hypertensive heart and chronic kidney disease, benign, without heart failure and with chronic kidney disease stage V or end stage renal disease",Hypertensive Heart CKD,TRUE
+40413,ICD9CM,"Hypertensive heart and chronic kidney disease, benign, with heart failure and chronic kidney disease stage V or end stage renal disease",Hypertensive Heart CKD,TRUE
+4049,ICD9CM,"Hypertensive heart and renal disease, unspecified",Hypertensive Heart CKD,FALSE
+40490,ICD9CM,"Hypertensive heart and chronic kidney disease, unspecified, without heart failure and with chronic kidney disease stage I through stage IV, or unspecified",Hypertensive Heart CKD,TRUE
+40491,ICD9CM,"Hypertensive heart and chronic kidney disease, unspecified, with heart failure and with chronic kidney disease stage I through stage IV, or unspecified",Hypertensive Heart CKD,TRUE
+40492,ICD9CM,"Hypertensive heart and chronic kidney disease, unspecified, without heart failure and with chronic kidney disease stage V or end stage renal disease",Hypertensive Heart CKD,TRUE
+40493,ICD9CM,"Hypertensive heart and chronic kidney disease, unspecified, with heart failure and chronic kidney disease stage V or end stage renal disease",Hypertensive Heart CKD,TRUE

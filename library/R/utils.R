@@ -69,26 +69,26 @@ bulk_upload <- function(
   return(invisible(NULL))
 }
 # caller
-con_odbc <- DBI::dbConnect(
-  odbc::odbc(), "snowflake", 
-  role = "ANALYST", 
-  warehouse = "MEDIUM_WH"
-)
-
-bulk_upload(
-  conn = con_odbc,
-  dir = '/Users/yuqin.wei/Projects/Research/DPP4_vs_Metformin',
-  filename = 'diabetes_type1.csv', 
-  stage_name = 'test_stage',
-  table_full_name = 'SANDBOX_KOMODO.YWEI.METDPP4_DEF2',
-  create_stage = TRUE,
-  database = 'SANDBOX_KOMODO',
-  role = 'ANALYST',
-  warehouse = 'LARGE_WH',
-  save_sql = TRUE,
-  run_sql = TRUE,
-  snowsql_profile = 'ywei'
-)
+# con_odbc <- DBI::dbConnect(
+#   odbc::odbc(), "snowflake", 
+#   role = "ANALYST", 
+#   warehouse = "MEDIUM_WH"
+# )
+# 
+# bulk_upload(
+#   conn = con_odbc,
+#   dir = '/Users/yuqin.wei/Projects/Research/DPP4_vs_Metformin',
+#   filename = 'diabetes_type1.csv', 
+#   stage_name = 'test_stage',
+#   table_full_name = 'SANDBOX_KOMODO.YWEI.METDPP4_DEF2',
+#   create_stage = TRUE,
+#   database = 'SANDBOX_KOMODO',
+#   role = 'ANALYST',
+#   warehouse = 'LARGE_WH',
+#   save_sql = TRUE,
+#   run_sql = TRUE,
+#   snowsql_profile = 'ywei'
+# )
 
 
   

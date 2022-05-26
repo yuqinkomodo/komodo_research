@@ -1,0 +1,122 @@
+Code,CodeType,CodeDescription,Billable,VALID_FROM_DATE,VALID_TO_DATE,EVENT_TYPE
+E10,ICD10CM,Type 1 diabetes mellitus,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E101,ICD10CM,Type 1 diabetes mellitus with ketoacidosis,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E1010,ICD10CM,Type 1 diabetes mellitus with ketoacidosis without coma,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1011,ICD10CM,Type 1 diabetes mellitus with ketoacidosis with coma,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E102,ICD10CM,Type 1 diabetes mellitus with kidney complications,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E1021,ICD10CM,Type 1 diabetes mellitus with diabetic nephropathy,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1022,ICD10CM,Type 1 diabetes mellitus with diabetic chronic kidney disease,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1029,ICD10CM,Type 1 diabetes mellitus with other diabetic kidney complication,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E103,ICD10CM,Type 1 diabetes mellitus with ophthalmic complications,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E1031,ICD10CM,Type 1 diabetes mellitus with unspecified diabetic retinopathy,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E10311,ICD10CM,Type 1 diabetes mellitus with unspecified diabetic retinopathy with macular edema,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E10319,ICD10CM,Type 1 diabetes mellitus with unspecified diabetic retinopathy without macular edema,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1032,ICD10CM,Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E10321,ICD10CM,Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E10321,ICD10CM,Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema,TRUE,10/1/15,9/30/16,Type 1 diabetes
+E103211,ICD10CM,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103212,ICD10CM,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103213,ICD10CM,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103219,ICD10CM,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E10329,ICD10CM,Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema,TRUE,10/1/15,9/30/16,Type 1 diabetes
+E10329,ICD10CM,Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E103291,ICD10CM,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103292,ICD10CM,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103293,ICD10CM,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103299,ICD10CM,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E1033,ICD10CM,Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E10331,ICD10CM,Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E10331,ICD10CM,Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema,TRUE,10/1/15,9/30/16,Type 1 diabetes
+E103311,ICD10CM,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103312,ICD10CM,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103313,ICD10CM,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103319,ICD10CM,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E10339,ICD10CM,Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E10339,ICD10CM,Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema,TRUE,10/1/15,9/30/16,Type 1 diabetes
+E103391,ICD10CM,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103392,ICD10CM,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103393,ICD10CM,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103399,ICD10CM,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E1034,ICD10CM,Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E10341,ICD10CM,Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E10341,ICD10CM,Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema,TRUE,10/1/15,9/30/16,Type 1 diabetes
+E103411,ICD10CM,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103412,ICD10CM,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103413,ICD10CM,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103419,ICD10CM,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E10349,ICD10CM,Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema,TRUE,10/1/15,9/30/16,Type 1 diabetes
+E10349,ICD10CM,Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E103491,ICD10CM,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103492,ICD10CM,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103493,ICD10CM,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103499,ICD10CM,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E1035,ICD10CM,Type 1 diabetes mellitus with proliferative diabetic retinopathy,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E10351,ICD10CM,Type 1 diabetes mellitus with proliferative diabetic retinopathy with macular edema,TRUE,10/1/15,9/30/16,Type 1 diabetes
+E10351,ICD10CM,Type 1 diabetes mellitus with proliferative diabetic retinopathy with macular edema,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E103511,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with macular edema, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103512,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with macular edema, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103513,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with macular edema, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103519,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with macular edema, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E10352,ICD10CM,Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E103521,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103522,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103523,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103529,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E10353,ICD10CM,Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E103531,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103532,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103533,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103539,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E10354,ICD10CM,Type 1 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E103541,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103542,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103543,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103549,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E10355,ICD10CM,Type 1 diabetes mellitus with stable proliferative diabetic retinopathy,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E103551,ICD10CM,"Type 1 diabetes mellitus with stable proliferative diabetic retinopathy, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103552,ICD10CM,"Type 1 diabetes mellitus with stable proliferative diabetic retinopathy, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103553,ICD10CM,"Type 1 diabetes mellitus with stable proliferative diabetic retinopathy, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103559,ICD10CM,"Type 1 diabetes mellitus with stable proliferative diabetic retinopathy, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E10359,ICD10CM,Type 1 diabetes mellitus with proliferative diabetic retinopathy without macular edema,FALSE,10/1/16,9/30/99,Type 1 diabetes
+E10359,ICD10CM,Type 1 diabetes mellitus with proliferative diabetic retinopathy without macular edema,TRUE,10/1/15,9/30/16,Type 1 diabetes
+E103591,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy without macular edema, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103592,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy without macular edema, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103593,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy without macular edema, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E103599,ICD10CM,"Type 1 diabetes mellitus with proliferative diabetic retinopathy without macular edema, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E1036,ICD10CM,Type 1 diabetes mellitus with diabetic cataract,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1037,ICD10CM,"Type 1 diabetes mellitus with diabetic macular edema, resolved following treatment",FALSE,10/1/16,9/30/99,Type 1 diabetes
+E1037X1,ICD10CM,"Type 1 diabetes mellitus with diabetic macular edema, resolved following treatment, right eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E1037X2,ICD10CM,"Type 1 diabetes mellitus with diabetic macular edema, resolved following treatment, left eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E1037X3,ICD10CM,"Type 1 diabetes mellitus with diabetic macular edema, resolved following treatment, bilateral",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E1037X9,ICD10CM,"Type 1 diabetes mellitus with diabetic macular edema, resolved following treatment, unspecified eye",TRUE,10/1/16,9/30/99,Type 1 diabetes
+E1039,ICD10CM,Type 1 diabetes mellitus with other diabetic ophthalmic complication,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E104,ICD10CM,Type 1 diabetes mellitus with neurological complications,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E1040,ICD10CM,"Type 1 diabetes mellitus with diabetic neuropathy, unspecified",TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1041,ICD10CM,Type 1 diabetes mellitus with diabetic mononeuropathy,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1042,ICD10CM,Type 1 diabetes mellitus with diabetic polyneuropathy,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1043,ICD10CM,Type 1 diabetes mellitus with diabetic autonomic (poly)neuropathy,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1044,ICD10CM,Type 1 diabetes mellitus with diabetic amyotrophy,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1049,ICD10CM,Type 1 diabetes mellitus with other diabetic neurological complication,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E105,ICD10CM,Type 1 diabetes mellitus with circulatory complications,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E1051,ICD10CM,Type 1 diabetes mellitus with diabetic peripheral angiopathy without gangrene,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1052,ICD10CM,Type 1 diabetes mellitus with diabetic peripheral angiopathy with gangrene,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1059,ICD10CM,Type 1 diabetes mellitus with other circulatory complications,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E106,ICD10CM,Type 1 diabetes mellitus with other specified complications,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E1061,ICD10CM,Type 1 diabetes mellitus with diabetic arthropathy,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E10610,ICD10CM,Type 1 diabetes mellitus with diabetic neuropathic arthropathy,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E10618,ICD10CM,Type 1 diabetes mellitus with other diabetic arthropathy,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1062,ICD10CM,Type 1 diabetes mellitus with skin complications,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E10620,ICD10CM,Type 1 diabetes mellitus with diabetic dermatitis,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E10621,ICD10CM,Type 1 diabetes mellitus with foot ulcer,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E10622,ICD10CM,Type 1 diabetes mellitus with other skin ulcer,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E10628,ICD10CM,Type 1 diabetes mellitus with other skin complications,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1063,ICD10CM,Type 1 diabetes mellitus with oral complications,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E10630,ICD10CM,Type 1 diabetes mellitus with periodontal disease,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E10638,ICD10CM,Type 1 diabetes mellitus with other oral complications,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1064,ICD10CM,Type 1 diabetes mellitus with hypoglycemia,FALSE,10/1/15,9/30/99,Type 1 diabetes
+E1065,ICD10CM,Type 1 diabetes mellitus with hyperglycemia,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E1069,ICD10CM,Type 1 diabetes mellitus with other specified complication,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E108,ICD10CM,Type 1 diabetes mellitus with unspecified complications,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E109,ICD10CM,Type 1 diabetes mellitus without complications,TRUE,10/1/15,9/30/99,Type 1 diabetes
+E10641,ICD10CM,Type 1 diabetes mellitus with hypoglycemia with coma,TRUE,10/1/15,9/30/99,Type 1 diabetes + Hypoglycemia
+E10649,ICD10CM,Type 1 diabetes mellitus with hypoglycemia without coma,TRUE,10/1/15,9/30/99,Type 1 diabetes + Hypoglycemia
