@@ -4,6 +4,7 @@ bulk_upload <- function(
   conn = DBI::ANSI(),
   dir,
   filename, 
+  colClasses = NA,
   stage_name,
   table_full_name,
   create_stage = TRUE,
@@ -29,16 +30,22 @@ bulk_upload <- function(
 
   # load file to get colnames and types
   # don't need all rows to guess types
-  f <- data.table::fread(file.path(dir, filename), nrows=10000)
+  f <- data.table::fread(file.path(dir, filename), nrows=10000, colClasses = colClasses)
+  print(str(f))
+  
   # forget there might be a story for integer64, fix later if see anything weird
   # col_classes <- sapply(data.table::fread(file.path(dir, filename), nrows=10000, integer64="character"), class)
   # col_classes[which(col_classes == "integer64")] <- "character"
   # f2 <- data.table::fread(file.path(dir, filename), integer64="character", colClasses = col_classes)
   create_table_str <- paste0(DBI::sqlCreateTable(conn, DBI::SQL(paste0(table_full_name)), f)@.Data, ";")
   
+  # remove quotes to create unquote identifier for snowflake
+  # may encounter bugs for special chars!
+  create_table_str <- stringr::str_remove_all(create_table_str, "\"")
+  
   sql <-
     paste(sql,
-          paste("PUT", paste0("file://", file.path(dir, filename)), paste0('@', stage_name), 'auto_compress=true;'),
+          paste("PUT", paste0("file://", file.path(dir, filename)), paste0('@', stage_name), 'auto_compress=true overwrite=true;'),
           paste("DROP TABLE IF EXISTS", table_full_name, ";"),
           create_table_str,
           paste("COPY INTO", table_full_name, "FROM", paste0("@", stage_name, "/", filename, ".gz;")),
@@ -66,7 +73,7 @@ bulk_upload <- function(
   if (run_sql) {
     system(snowsql_cmd, input = snowsql_input)
   }
-  return(invisible(NULL))
+  return(invisible(f))
 }
 # caller
 # con_odbc <- DBI::dbConnect(

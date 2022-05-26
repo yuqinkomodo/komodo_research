@@ -23,22 +23,22 @@ con_odbc <- DBI::dbConnect(
 )
 
 cohort_183 <- tbl(con_odbc, 
-                Id(database = "SANDBOX_KOMODO", schema = "YWEI", table = "METDPP4_V3_FINAL_W_COV_183")
+                Id(database = "SANDBOX_KOMODO", schema = "YWEI", table = "METDPP4_V4_FINAL_W_COV_183")
 ) %>% collect()
 colnames(cohort_183) <- tolower(colnames(cohort_183))
 
 cohort_funnel_183 <- tbl(con_odbc, 
-                  Id(database = "SANDBOX_KOMODO", schema = "YWEI", table = "METDPP4_V3_COHORT_FUNNEL_183")
+                  Id(database = "SANDBOX_KOMODO", schema = "YWEI", table = "METDPP4_V4_COHORT_FUNNEL_183")
 ) %>% collect()
 colnames(cohort_funnel_183) <- tolower(colnames(cohort_funnel_183))
 
 cohort_funnel_by_year_183 <- tbl(con_odbc, 
-                     Id(database = "SANDBOX_KOMODO", schema = "YWEI", table = "METDPP4_V3_COHORT_FUNNEL_183_BY_YEAR")
+                     Id(database = "SANDBOX_KOMODO", schema = "YWEI", table = "METDPP4_V4_COHORT_FUNNEL_183_BY_YEAR")
 ) %>% collect()
 colnames(cohort_funnel_by_year_183) <- tolower(colnames(cohort_funnel_by_year_183))
 
 outcome_183 <- tbl(con_odbc, 
-                  Id(database = "SANDBOX_KOMODO", schema = "YWEI", table = "METDPP4_V3_OUTCOME_183")
+                  Id(database = "SANDBOX_KOMODO", schema = "YWEI", table = "METDPP4_V4_OUTCOME_183")
 ) %>% collect()
 colnames(outcome_183) <- tolower(colnames(outcome_183))
 
@@ -184,7 +184,7 @@ write_clip(cohort_by_time_wo_pdc)
 get_outcome <- function(cohort_table, outcome_table, outcome, window, ylim = c(0.99, 1)) {
   # cohort_table <- cohort_183
   # outcome_table <- outcome_183
-  # outcome <- 'hypoglycemia'
+  # outcome <- 'er'
   # window <- 183
   # ylim = c(0.99, 1)
   
@@ -197,7 +197,7 @@ get_outcome <- function(cohort_table, outcome_table, outcome, window, ylim = c(0
       outcome = !is.na(event_date) & (event_date - claim_date) <= window,
       time = as.numeric(pmin(event_date - claim_date, window, na.rm = T))
     ) %>%
-    select(upk_key2, claim_date, cohort, outcome, time)
+    select(upk_key2, pdc2, claim_date, cohort, outcome, time)
   
   inci_table <-
     cohort_table %>%
@@ -236,10 +236,6 @@ outcome_summ_183_hypo <- get_outcome(cohort_183, outcome_183, "hypoglycemia", 18
 outcome_summ_183_hypo$summ_table %>%  write_clip()
 outcome_summ_183_hypo$plot
 
-outcome_summ_183_hypo2 <- get_outcome(cohort_183, outcome_183, "hypoglycemia2", 183, ylim = c(0.98, 1))
-outcome_summ_183_hypo2$summ_table %>%  write_clip()
-outcome_summ_183_hypo2$plot
-
 outcome_summ_183_er <- get_outcome(cohort_183, outcome_183, "er", 183, ylim = c(0.85, 1))
 outcome_summ_183_er$summ_table %>%  write_clip()
 outcome_summ_183_er$plot
@@ -247,10 +243,6 @@ outcome_summ_183_er$plot
 outcome_summ_183_pdc_hypo <- get_outcome(cohort_183 %>% filter(pdc2 > 0.8), outcome_183, "hypoglycemia", 183, ylim = c(0.99, 1))
 outcome_summ_183_pdc_hypo$summ_table %>%  write_clip()
 outcome_summ_183_pdc_hypo$plot
-
-outcome_summ_183_pdc_hypo2 <- get_outcome(cohort_183 %>% filter(pdc2 > 0.8), outcome_183, "hypoglycemia2", 183, ylim = c(0.98, 1))
-outcome_summ_183_pdc_hypo2$summ_table %>%  write_clip()
-outcome_summ_183_pdc_hypo2$plot
 
 outcome_summ_183_pdc_er <- get_outcome(cohort_183 %>% filter(pdc2 > 0.8), outcome_183, "er", 183, ylim = c(0.85, 1))
 outcome_summ_183_pdc_er$summ_table %>%  write_clip()
