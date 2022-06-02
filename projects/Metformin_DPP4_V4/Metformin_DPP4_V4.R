@@ -120,6 +120,18 @@ saveRDS(matching_model_w_pdc_2, file.path(path, paste0("matching_w_pdc_2.Rds")))
 matching_model_wo_pdc_2 <- run_matching(seed = 1234, pre_matching_wo_pdc, pdc_restriction = FALSE, ratio = 2)
 saveRDS(matching_model_wo_pdc_2, file.path(path, paste0("matching_wo_pdc_2.Rds")))
 
+matching_model_w_pdc_1$bal_nn %>% write_clip()
+matching_model_w_pdc_1$bal_tbl %>% write_clip()
+
+matching_model_wo_pdc_1$bal_nn %>% write_clip()
+matching_model_wo_pdc_1$bal_tbl %>% write_clip()
+
+matching_model_w_pdc_2$bal_nn %>% write_clip()
+matching_model_w_pdc_2$bal_tbl %>% write_clip()
+
+matching_model_wo_pdc_2$bal_nn %>% write_clip()
+matching_model_wo_pdc_2$bal_tbl %>% write_clip()
+
 # --- summarize study outcomes (post-matching) --- #
 if (!exists("matching_model_w_pdc_1"))
   matching_model_w_pdc_1 <- readRDS(file.path(path, paste0("matching_w_pdc_1.Rds")))
@@ -151,16 +163,49 @@ outcome_summ_post_w_pdc_er_1 <- get_outcome(cohort_post_w_pdc_1, outcome_183, "e
 outcome_summ_post_w_pdc_er_1$summ_table %>% write_clip()
 outcome_summ_post_w_pdc_er_1$plot
 
+# 1:2
+
+cohort_post_w_pdc_2 <- match.data(matching_model_w_pdc_2$matching_model) %>%
+  left_join(cohort_183 %>% select(upk_key2, claim_date))
+cohort_post_wo_pdc_2 <- match.data(matching_model_wo_pdc_2$matching_model) %>%
+  left_join(cohort_183 %>% select(upk_key2, claim_date))
+
+outcome_summ_post_wo_pdc_hypo_2 <- get_outcome(cohort_post_wo_pdc_2, outcome_183, "hypoglycemia", 183, ylim = c(0.98, 1))
+outcome_summ_post_wo_pdc_hypo_2$summ_table %>% write_clip()
+outcome_summ_post_wo_pdc_hypo_2$plot
+
+outcome_summ_post_wo_pdc_er_2 <- get_outcome(cohort_post_wo_pdc_2, outcome_183, "er", 183, ylim = c(0.85, 1))
+outcome_summ_post_wo_pdc_er_2$summ_table %>% write_clip()
+outcome_summ_post_wo_pdc_er_2$plot
+
+outcome_summ_post_w_pdc_hypo_2 <- get_outcome(cohort_post_w_pdc_2, outcome_183, "hypoglycemia", 183, ylim = c(0.99, 1))
+outcome_summ_post_w_pdc_hypo_2$summ_table %>% write_clip()
+outcome_summ_post_w_pdc_hypo_2$plot
+
+outcome_summ_post_w_pdc_er_2 <- get_outcome(cohort_post_w_pdc_2, outcome_183, "er", 183, ylim = c(0.85, 1))
+outcome_summ_post_w_pdc_er_2$summ_table %>% write_clip()
+outcome_summ_post_w_pdc_er_2$plot
+
 # --- Hypothesis testing --- #
 test_wo_odc_hypo_1 <- run_test(outcome_summ_post_wo_pdc_hypo_1, pdc_restriction = FALSE)
 test_wo_odc_er_1 <- run_test(outcome_summ_post_wo_pdc_er_1, pdc_restriction = FALSE)
 test_w_odc_hypo_1 <- run_test(outcome_summ_post_w_pdc_hypo_1, pdc_restriction = TRUE)
 test_w_odc_er_1 <- run_test(outcome_summ_post_w_pdc_er_1, pdc_restriction = TRUE)
 
-test_wo_odc_hypo %>% write_clip()
-test_wo_odc_er %>% write_clip()
-test_w_odc_hypo %>% write_clip()
-test_w_odc_er %>% write_clip()
+test_wo_odc_hypo_2 <- run_test(outcome_summ_post_wo_pdc_hypo_2, pdc_restriction = FALSE)
+test_wo_odc_er_2 <- run_test(outcome_summ_post_wo_pdc_er_2, pdc_restriction = FALSE)
+test_w_odc_hypo_2 <- run_test(outcome_summ_post_w_pdc_hypo_2, pdc_restriction = TRUE)
+test_w_odc_er_2 <- run_test(outcome_summ_post_w_pdc_er_2, pdc_restriction = TRUE)
+
+test_wo_odc_hypo_1 %>% write_clip()
+test_wo_odc_er_1 %>% write_clip()
+test_w_odc_hypo_1 %>% write_clip()
+test_w_odc_er_1 %>% write_clip()
+
+test_wo_odc_hypo_2 %>% write_clip()
+test_wo_odc_er_2 %>% write_clip()
+test_w_odc_hypo_2 %>% write_clip()
+test_w_odc_er_2 %>% write_clip()
 
 ### power analysis - experimental
 # epi.sscohortt(irexp1 = outcome_summ_183_er$summ_table$ir[2]/1000, 
