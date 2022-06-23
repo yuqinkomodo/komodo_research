@@ -1,0 +1,496 @@
+﻿Code,CodeType,Description,Type
+22532,CPT,"Arthrodesis, lateral extracavitary technique, including minimal discectomy to prepare interspace (other than for decompression); thoracic",Spine Surgery
+22533,CPT,"Arthrodesis, lateral extracavitary technique, including minimal discectomy to prepare interspace (other than for decompression); lumbar",Spine Surgery
+22548,CPT,"Arthrodesis, anterior transoral or extraoral technique, clivus-C1-C2 (atlas-axis), with or without excision of odontoid process",Spine Surgery
+22551,CPT,"Arthrodesis, anterior interbody, including disc space preparation, discectomy, osteophytectomy and decompression of spinal cord and/or nerve roots; cervical below C2",Spine Surgery
+22554,CPT,"Arthrodesis, anterior interbody technique, including minimal discectomy to prepare interspace (other than for decompression); cervical below C2",Spine Surgery
+22556,CPT,"Arthrodesis, anterior interbody technique, including minimal discectomy to prepare interspace (other than for decompression); thoracic",Spine Surgery
+22558,CPT,"Arthrodesis, anterior interbody technique, including minimal discectomy to prepare interspace (other than for decompression); lumbar",Spine Surgery
+22586,CPT,"Arthrodesis, pre-sacral interbody technique, including disc space preparation, discectomy, with posterior instrumentation, with image guidance, includes bone graft when performed, L5-S1 interspace",Spine Surgery
+22590,CPT,"Arthrodesis, posterior technique, craniocervical (occiput-C2)",Spine Surgery
+22595,CPT,"Arthrodesis, posterior technique, atlas-axis (C1-C2)",Spine Surgery
+22600,CPT,"Arthrodesis, posterior or posterolateral technique, single level; cervical below C2 segment",Spine Surgery
+22610,CPT,"Arthrodesis, posterior or posterolateral technique, single level; thoracic (with lateral transverse technique, when performed)",Spine Surgery
+22612,CPT,"Arthrodesis, posterior or posterolateral technique, single level; lumbar (with lateral transverse technique, when performed)",Spine Surgery
+22630,CPT,"Arthrodesis, posterior interbody technique, including laminectomy and/or discectomy to prepare interspace (other than for decompression), single interspace; lumbar",Spine Surgery
+22633,CPT,"Arthrodesis, combined posterior or posterolateral technique with posterior interbody technique including laminectomy and/or discectomy sufficient to prepare interspace (other than for decompression), single interspace and segment; lumbar",Spine Surgery
+22800,CPT,"Arthrodesis, posterior, for spinal deformity, with or without cast; up to 6 vertebral segments",Spine Surgery
+22802,CPT,"Arthrodesis, posterior, for spinal deformity, with or without cast; 7 to 12 vertebral segments",Spine Surgery
+22804,CPT,"Arthrodesis, posterior, for spinal deformity, with or without cast; 13 or more vertebral segments",Spine Surgery
+22808,CPT,"Arthrodesis, anterior, for spinal deformity, with or without cast; 2 to 3 vertebral segments",Spine Surgery
+22810,CPT,"Arthrodesis, anterior, for spinal deformity, with or without cast; 4 to 7 vertebral segments",Spine Surgery
+22812,CPT,"Arthrodesis, anterior, for spinal deformity, with or without cast; 8 or more vertebral segments",Spine Surgery
+27280,CPT,"Arthrodesis, open, sacroiliac joint, including obtaining bone graft, including instrumentation, when performed",Spine Surgery
+22220,CPT,"Osteotomy of spine, including discectomy, anterior approach, single vertebral segment; cervical",Spine Surgery
+22222,CPT,"Osteotomy of spine, including discectomy, anterior approach, single vertebral segment; thoracic",Spine Surgery
+22224,CPT,"Osteotomy of spine, including discectomy, anterior approach, single vertebral segment; lumbar",Spine Surgery
+22856,CPT,"Total disc arthroplasty (artificial disc), anterior approach, including discectomy with end plate preparation (includes osteophytectomy for nerve root or spinal cord decompression and microdissection); single interspace, cervical",Spine Surgery
+22857,CPT,"Total disc arthroplasty (artificial disc), anterior approach, including discectomy to prepare interspace (other than for decompression), single interspace, lumbar",Spine Surgery
+22861,CPT,"Revision including replacement of total disc arthroplasty (artificial disc), anterior approach, single interspace; cervical",Spine Surgery
+22862,CPT,"Revision including replacement of total disc arthroplasty (artificial disc), anterior approach, single interspace; lumbar",Spine Surgery
+22867,CPT,"Insertion of interlaminar/interspinous process stabilization/distraction device, without fusion, including image guidance when performed, with open decompression, lumbar; single level",Spine Surgery
+62287,CPT,"Decompression procedure, percutaneous, of nucleus pulposus of intervertebral disc, any method utilizing needle based technique to remove disc material under fluoroscopic imaging or other form of indirect visualization, with the use of an endoscope, with d",Spine Surgery
+62351,CPT,"Implantation, revision or repositioning of tunneled intrathecal or epidural catheter, for long-term medication administration via an external pump or implantable reservoir/infusion pump; with laminectomy",Spine Surgery
+62380,CPT,"Endoscopic decompression of spinal cord, nerve root(s), including laminectomy, partial facetectomy, foraminotomy, discectomy and/or excision of herniated intervertebral disc, 1 interpace, lumbar",Spine Surgery
+63001,CPT,"Laminectomy with exploration and/or decompression of spinal cord and/or cauda equina, without facetectomy, foraminotomy or discectomy (eg, spinal stenosis), 1 or 2 vertebral segments; cervical",Spine Surgery
+63003,CPT,"Laminectomy with exploration and/or decompression of spinal cord and/or cauda equina, without facetectomy, foraminotomy or discectomy (eg, spinal stenosis), 1 or 2 vertebral segments; thoracic",Spine Surgery
+63005,CPT,"Laminectomy with exploration and/or decompression of spinal cord and/or cauda equina, without facetectomy, foraminotomy or discectomy (eg, spinal stenosis), 1 or 2 vertebral segments; lumbar, except for spondylolisthesis",Spine Surgery
+63011,CPT,"Laminectomy with exploration and/or decompression of spinal cord and/or cauda equina, without facetectomy, foraminotomy or discectomy (eg, spinal stenosis), 1 or 2 vertebral segments; sacral",Spine Surgery
+63012,CPT,"Laminectomy with removal of abnormal facets and/or pars inter-articularis with decompression of cauda equina and nerve roots for spondylolisthesis, lumbar (Gill type procedure)",Spine Surgery
+63015,CPT,"Laminectomy with exploration and/or decompression of spinal cord and/or cauda equina, without facetectomy, foraminotomy or discectomy (eg, spinal stenosis), more than 2 vertebral segments; cervical",Spine Surgery
+63016,CPT,"Laminectomy with exploration and/or decompression of spinal cord and/or cauda equina, without facetectomy, foraminotomy or discectomy (eg, spinal stenosis), more than 2 vertebral segments; thoracic",Spine Surgery
+63017,CPT,"Laminectomy with exploration and/or decompression of spinal cord and/or cauda equina, without facetectomy, foraminotomy or discectomy (eg, spinal stenosis), more than 2 vertebral segments; lumbar",Spine Surgery
+63020,CPT,"Laminotomy (hemilaminectomy), with decompression of nerve root(s), including partial facetectomy, foraminotomy and/or excision of herniated intervertebral disc; 1 interspace, cervical",Spine Surgery
+63030,CPT,"Laminotomy (hemilaminectomy), with decompression of nerve root(s), including partial facetectomy, foraminotomy and/or excision of herniated intervertebral disc; 1 interspace, lumbar",Spine Surgery
+63035,CPT,"Laminotomy (hemilaminectomy), with decompression of nerve root(s), including partial facetectomy, foraminotomy and/or excision of herniated intervertebral disc; each No changeitional interspace, cervical or lumbar (List separately in No changeition to cod",Spine Surgery
+63040,CPT,"Laminotomy (hemilaminectomy), with decompression of nerve root(s), including partial facetectomy, foraminotomy and/or excision of herniated intervertebral disc, reexploration, single interspace; cervical",Spine Surgery
+63042,CPT,"Laminotomy (hemilaminectomy), with decompression of nerve root(s), including partial facetectomy, foraminotomy and/or excision of herniated intervertebral disc, reexploration, single interspace; lumbar",Spine Surgery
+63045,CPT,"Laminectomy, facetectomy and foraminotomy (unilateral or bilateral with decompression of spinal cord, cauda equina and/or nerve root[s], [eg, spinal or lateral recess stenosis]), single vertebral segment; cervical",Spine Surgery
+63046,CPT,"Laminectomy, facetectomy and foraminotomy (unilateral or bilateral with decompression of spinal cord, cauda equina and/or nerve root[s], [eg, spinal or lateral recess stenosis]), single vertebral segment; thoracic",Spine Surgery
+63047,CPT,"Laminectomy, facetectomy and foraminotomy (unilateral or bilateral with decompression of spinal cord, cauda equina and/or nerve root[s], [eg, spinal or lateral recess stenosis]), single vertebral segment; lumbar",Spine Surgery
+63048,CPT,"Laminectomy, facetectomy and foraminotomy (unilateral or bilateral with decompression of spinal cord, cauda equina and/or nerve root[s], [eg, spinal or lateral recess stenosis]), single vertebral segment; each No changeitional segment, cervical, thoracic,",Spine Surgery
+63050,CPT,"Laminoplasty, cervical, with decompression of the spinal cord, 2 or more vertebral segments;",Spine Surgery
+63051,CPT,"Laminoplasty, cervical, with decompression of the spinal cord, 2 or more vertebral segments; with reconstruction of the posterior bony elements (including the application of bridging bone graft and non-segmental fixation devices [eg, wire, suture, mini-pl",Spine Surgery
+63055,CPT,"Transpedicular approach with decompression of spinal cord, equina and/or nerve root(s) (eg, herniated intervertebral disc), single segment; thoracic",Spine Surgery
+63056,CPT,"lumbar (including transfacet, or lateral extraforaminal approach) (eg, far lateral herniated intervertebral disc",Spine Surgery
+63064,CPT,"Costovertebral approach with decompression of spinal cord or nerve root(s), (eg, herniated intervertebral disc), thoracic; single segment",Spine Surgery
+63075,CPT,"Discectomy, anterior, with decompression of spinal cord and/or nerve root(s), including osteophytectomy; cervical, single interspace",Spine Surgery
+63077,CPT,"Discectomy, anterior, with decompression of spinal cord and/or nerve root(s), including osteophytectomy; thoracic, single interspace",Spine Surgery
+63081,CPT,"Vertebral corpectomy (vertebral body resection), partial or complete, anterior approach with decompression of spinal cord and/or nerve root(s); cervical, single segment",Spine Surgery
+63082,CPT,"Vertebral corpectomy (vertebral body resection), partial or complete, anterior approach with decompression of spinal cord and/or nerve root(s); cervical, each No changeitional segment (List separately in No changeition to code for primary procedure)",Spine Surgery
+63085,CPT,"Vertebral corpectomy (vertebral body resection), partial or complete, transthoracic approach with decompression of spinal cord and/or nerve root(s); thoracic, single segment",Spine Surgery
+63086,CPT,"Vertebral corpectomy (vertebral body resection), partial or complete, transthoracic approach with decompression of spinal cord and/or nerve root(s); thoracic, each No changeitional segment (List separately in No changeition to code for primary procedure)",Spine Surgery
+63087,CPT,"Vertebral corpectomy (vertebral body resection), partial or complete, combined thoracolumbar approach with decompression of spinal cord, cauda equina or nerve root(s), lower thoracic or lumbar; single segment",Spine Surgery
+63088,CPT,"Vertebral corpectomy (vertebral body resection), partial or complete, combined thoracolumbar approach with decompression of spinal cord, cauda equina or nerve root(s), lower thoracic or lumbar; each No changeitional segment (List separately in No changeit",Spine Surgery
+63090,CPT,"Vertebral corpectomy (vertebral body resection), partial or complete, transperitoneal or retroperitoneal approach with decompression of spinal cord, cauda equina or nerve root(s), lower thoracic, lumbar, or sacral; single segment",Spine Surgery
+63091,CPT,"Vertebral corpectomy (vertebral body resection), partial or complete, transperitoneal or retroperitoneal approach with decompression of spinal cord, cauda equina or nerve root(s), lower thoracic, lumbar, or sacral; each No changeitional segment (List sepa",Spine Surgery
+63101,CPT,"Vertebral corpectomy (vertebral body resection), partial or complete, lateral extracavitary approach with decompression of spinal cord and/or nerve root(s) (eg, for tumor or retropulsed bone fragments); thoracic, single segment",Spine Surgery
+63102,CPT,"Vertebral corpectomy (vertebral body resection), partial or complete, lateral extracavitary approach with decompression of spinal cord and/or nerve root(s) (eg, for tumor or retropulsed bone fragments); lumbar, single segment",Spine Surgery
+63103,CPT,"Vertebral corpectomy (vertebral body resection), partial or complete, lateral extracavitary approach with decompression of spinal cord and/or nerve root(s) (eg, for tumor or retropulsed bone fragments); thoracic or lumbar, each No changeitional segment (L",Spine Surgery
+63170,CPT,"Laminectomy with myelotomy (eg, Bischof or DREZ type), cervical, thoracic, or thoracolumbar",Spine Surgery
+63172,CPT,Laminectomy with drainage of intramedullary cyst/syrinx; to subarachnoid space,Spine Surgery
+63173,CPT,Laminectomy with drainage of intramedullary cyst/syrinx; to peritoneal or pleural space,Spine Surgery
+63180,CPT,"Laminectomy and section of dentate ligaments, with or without dural graft, cervical; 1 or 2 segments",Spine Surgery
+63182,CPT,"Laminectomy and section of dentate ligaments, with or without dural graft, cervical; more than 2 segments",Spine Surgery
+63185,CPT,Laminectomy with rhizotomy; 1 or 2 segments,Spine Surgery
+63190,CPT,Laminectomy with rhizotomy; more than 2 segments,Spine Surgery
+63191,CPT,Laminectomy with section of spinal accessory nerve,Spine Surgery
+63194,CPT,"Laminectomy with cordotomy, with section of 1 spinothalamic tract, 1 stage; cervical",Spine Surgery
+63195,CPT,"Laminectomy with cordotomy, with section of 1 spinothalamic tract, 1 stage; thoracic",Spine Surgery
+63196,CPT,"Laminectomy with cordotomy, with section of both spinothalamic tracts, 1 stage; cervical",Spine Surgery
+63197,CPT,"Laminectomy with cordotomy, with section of both spinothalamic tracts, 1 stage; thoracic",Spine Surgery
+63198,CPT,"Laminectomy with cordotomy with section of both spinothalamic tracts, 2 stages within 14 days; cervical",Spine Surgery
+63199,CPT,"Laminectomy with cordotomy with section of both spinothalamic tracts, 2 stages within 14 days; thoracic",Spine Surgery
+63200,CPT,"Laminectomy, with release of tethered spinal cord, lumbar",Spine Surgery
+63250,CPT,Laminectomy for excision or occlusion of arteriovenous malformation of spinal cord; cervical,Spine Surgery
+63251,CPT,Laminectomy for excision or occlusion of arteriovenous malformation of spinal cord; thoracic,Spine Surgery
+63252,CPT,Laminectomy for excision or occlusion of arteriovenous malformation of spinal cord; thoracolumbar,Spine Surgery
+63265,CPT,"Laminectomy for excision or evacuation of intraspinal lesion other than neoplasm, extradural; cervical",Spine Surgery
+63266,CPT,"Laminectomy for excision or evacuation of intraspinal lesion other than neoplasm, extradural; thoracic",Spine Surgery
+63267,CPT,"Laminectomy for excision or evacuation of intraspinal lesion other than neoplasm, extradural; lumbar",Spine Surgery
+63268,CPT,"Laminectomy for excision or evacuation of intraspinal lesion other than neoplasm, extradural; sacral",Spine Surgery
+63270,CPT,"Laminectomy for excision of intraspinal lesion other than neoplasm, intradural; cervical",Spine Surgery
+63271,CPT,"Laminectomy for excision of intraspinal lesion other than neoplasm, intradural; thoracic",Spine Surgery
+63272,CPT,"Laminectomy for excision of intraspinal lesion other than neoplasm, intradural; lumbar",Spine Surgery
+63273,CPT,"Laminectomy for excision of intraspinal lesion other than neoplasm, intradural; sacral",Spine Surgery
+63275,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; extradural, cervical",Spine Surgery
+63276,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; extradural, thoracic",Spine Surgery
+63277,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; extradural, lumbar",Spine Surgery
+63278,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; extradural, sacral",Spine Surgery
+63280,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; intradural, extramedullary, cervical",Spine Surgery
+63281,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; intradural, extramedullary, thoracic",Spine Surgery
+63282,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; intradural, extramedullary, lumbar",Spine Surgery
+63283,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; intradural, sacral",Spine Surgery
+63285,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; intradural, intramedullary, cervical",Spine Surgery
+63286,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; intradural, intramedullary, thoracic",Spine Surgery
+63287,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; intradural, intramedullary, thoracolumbar",Spine Surgery
+63290,CPT,"Laminectomy for biopsy/excision of intraspinal neoplasm; combined extradural-intradural lesion, any level",Spine Surgery
+63709,CPT,"Repair of dural/cerebrospinal fluid leak or pseudomeningocele, with laminectomy",Spine Surgery
+63740,CPT,"Creation of shunt, lumbar, subarachnoid-peritoneal, -pleural, or other; including laminectomy",Spine Surgery
+0202T,CPT,"Posterior vertebral joint(s) arthroplasty (eg, facet joint[s] replacement), including facetectomy, laminectomy, foraminotomy, and vertebral column fixation, injection of bone cement, when performed, including fluoroscopy, single level, lumbar spine",Spine Surgery
+0219T,CPT,"Placement of a posterior intrafacet implant(s), unilateral or bilateral, including imaging and placement of bone graft(s) or synthetic device(s), single level; cervical",Spine Surgery
+0220T,CPT,"Placement of a posterior intrafacet implant(s), unilateral or bilateral, including imaging and placement of bone graft(s) or synthetic device(s), single level; thoracic",Spine Surgery
+0221T,CPT,"Placement of a posterior intrafacet implant(s), unilateral or bilateral, including imaging and placement of bone graft(s) or synthetic device(s), single level; lumbar",Spine Surgery
+0RG1070,ICD10PCS,"Fusion of Cervical Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG107J,ICD10PCS,"Fusion of Cervical Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG10A0,ICD10PCS,"Fusion of Cervical Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG10AJ,ICD10PCS,"Fusion of Cervical Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG10J0,ICD10PCS,"Fusion of Cervical Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG10JJ,ICD10PCS,"Fusion of Cervical Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG10K0,ICD10PCS,"Fusion of Cervical Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG10KJ,ICD10PCS,"Fusion of Cervical Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG1370,ICD10PCS,"Fusion of Cervical Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG137J,ICD10PCS,"Fusion of Cervical Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG13A0,ICD10PCS,"Fusion of Cervical Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG13AJ,ICD10PCS,"Fusion of Cervical Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG13J0,ICD10PCS,"Fusion of Cervical Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG13JJ,ICD10PCS,"Fusion of Cervical Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG13K0,ICD10PCS,"Fusion of Cervical Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG13KJ,ICD10PCS,"Fusion of Cervical Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG1470,ICD10PCS,"Fusion of Cervical Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG147J,ICD10PCS,"Fusion of Cervical Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG14A0,ICD10PCS,"Fusion of Cervical Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG14AJ,ICD10PCS,"Fusion of Cervical Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG14J0,ICD10PCS,"Fusion of Cervical Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG14JJ,ICD10PCS,"Fusion of Cervical Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG14K0,ICD10PCS,"Fusion of Cervical Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG14KJ,ICD10PCS,"Fusion of Cervical Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG2070,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG207J,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG20A0,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG20AJ,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG20J0,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG20JJ,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG20K0,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG20KJ,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG2370,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG237J,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG23A0,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG23AJ,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG23J0,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG23JJ,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG23K0,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG23KJ,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG2470,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG247J,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG24A0,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG24AJ,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG24J0,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG24JJ,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG24K0,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG24KJ,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscop",Spine Surgery
+0RG4070,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG407J,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG40A0,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG40AJ,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG40J0,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG40JJ,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG40K0,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG40KJ,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG4370,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG437J,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG43A0,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG43AJ,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG43J0,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG43JJ,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG43K0,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG43KJ,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG4470,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG447J,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG44A0,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG44AJ,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG44J0,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG44JJ,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG44K0,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG44KJ,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG6070,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG607J,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG60A0,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG60AJ,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG60J0,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG60JJ,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG60K0,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG60KJ,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG6370,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG637J,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG63A0,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG63AJ,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG63J0,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG63JJ,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG63K0,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG63KJ,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG6470,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG647J,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG64A0,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG64AJ,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG64J0,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG64JJ,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG64K0,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG64KJ,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG7070,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG707J,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG70A0,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG70AJ,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG70J0,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG70JJ,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG70K0,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG70KJ,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG7370,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG737J,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG73A0,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG73AJ,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG73J0,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG73JJ,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG73K0,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG73KJ,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG7470,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG747J,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG74A0,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG74AJ,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG74J0,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG74JJ,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG74K0,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG74KJ,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG8070,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG807J,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG80A0,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG80AJ,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG80J0,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG80JJ,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG80K0,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG80KJ,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG8370,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG837J,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG83A0,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG83AJ,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG83J0,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG83JJ,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG83K0,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG83KJ,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG8470,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG847J,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG84A0,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG84AJ,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG84J0,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG84JJ,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG84K0,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG84KJ,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscop",Spine Surgery
+0RGA070,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RGA07J,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RGA0A0,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RGA0AJ,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RGA0J0,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RGA0JJ,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RGA0K0,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RGA0KJ,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RGA370,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RGA37J,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RGA3A0,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RGA3AJ,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RGA3J0,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RGA3JJ,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RGA3K0,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RGA3KJ,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RGA470,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RGA47J,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RGA4A0,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RGA4AJ,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RGA4J0,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RGA4JJ,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RGA4K0,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RGA4KJ,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG0070,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG007J,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG00A0,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG00AJ,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG00J0,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG00JJ,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG00K0,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG00KJ,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG0370,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG037J,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG03A0,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG03AJ,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG03J0,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG03JJ,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG03K0,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG03KJ,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG0470,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG047J,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG04A0,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG04AJ,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG04J0,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG04JJ,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG04K0,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG04KJ,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG1070,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG107J,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG10A0,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG10AJ,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG10J0,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG10JJ,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG10K0,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG10KJ,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG1370,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG137J,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG13A0,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG13AJ,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG13J0,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG13JJ,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG13K0,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG13KJ,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG1470,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG147J,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG14A0,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG14AJ,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG14J0,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG14JJ,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG14K0,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG14KJ,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG3070,ICD10PCS,"Fusion of Lumbosacral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG307J,ICD10PCS,"Fusion of Lumbosacral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG30A0,ICD10PCS,"Fusion of Lumbosacral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG30AJ,ICD10PCS,"Fusion of Lumbosacral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG30J0,ICD10PCS,"Fusion of Lumbosacral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG30JJ,ICD10PCS,"Fusion of Lumbosacral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG30K0,ICD10PCS,"Fusion of Lumbosacral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG30KJ,ICD10PCS,"Fusion of Lumbosacral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0SG3370,ICD10PCS,"Fusion of Lumbosacral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG337J,ICD10PCS,"Fusion of Lumbosacral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG33A0,ICD10PCS,"Fusion of Lumbosacral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG33AJ,ICD10PCS,"Fusion of Lumbosacral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG33J0,ICD10PCS,"Fusion of Lumbosacral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG33JJ,ICD10PCS,"Fusion of Lumbosacral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG33K0,ICD10PCS,"Fusion of Lumbosacral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG33KJ,ICD10PCS,"Fusion of Lumbosacral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0SG3470,ICD10PCS,"Fusion of Lumbosacral Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG347J,ICD10PCS,"Fusion of Lumbosacral Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG34A0,ICD10PCS,"Fusion of Lumbosacral Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG34AJ,ICD10PCS,"Fusion of Lumbosacral Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG34J0,ICD10PCS,"Fusion of Lumbosacral Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG34JJ,ICD10PCS,"Fusion of Lumbosacral Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG34K0,ICD10PCS,"Fusion of Lumbosacral Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG34KJ,ICD10PCS,"Fusion of Lumbosacral Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+XRG1092,ICD10PCS,"Fusion of Cervical Vertebral Joint using Nanotextured Surface Interbody Fusion Device, Open Approach, New Technology Group 2",Spine Surgery
+XRG10F3,ICD10PCS,"Fusion of Cervical Vertebral Joint using Radiolucent Porous Interbody Fusion Device, Open Approach, New Technology Group 3",Spine Surgery
+XRG2092,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints using Nanotextured Surface Interbody Fusion Device, Open Approach, New Technology Group 2",Spine Surgery
+XRG20F3,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints using Radiolucent Porous Interbody Fusion Device, Open Approach, New Technology Group 3",Spine Surgery
+XRG4092,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint using Nanotextured Surface Interbody Fusion Device, Open Approach, New Technology Group 2",Spine Surgery
+XRG40F3,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint using Radiolucent Porous Interbody Fusion Device, Open Approach, New Technology Group 3",Spine Surgery
+XRG6092,ICD10PCS,"Fusion of Thoracic Vertebral Joint using Nanotextured Surface Interbody Fusion Device, Open Approach, New Technology Group 2",Spine Surgery
+XRG60F3,ICD10PCS,"Fusion of Thoracic Vertebral Joint using Radiolucent Porous Interbody Fusion Device, Open Approach, New Technology Group 3",Spine Surgery
+XRG7092,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints using Nanotextured Surface Interbody Fusion Device, Open Approach, New Technology Group 2",Spine Surgery
+XRG70F3,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints using Radiolucent Porous Interbody Fusion Device, Open Approach, New Technology Group 3",Spine Surgery
+XRG8092,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints using Nanotextured Surface Interbody Fusion Device, Open Approach, New Technology Group 2",Spine Surgery
+XRG80F3,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints using Radiolucent Porous Interbody Fusion Device, Open Approach, New Technology Group 3",Spine Surgery
+XRGA092,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint using Nanotextured Surface Interbody Fusion Device, Open Approach, New Technology Group 2",Spine Surgery
+XRGA0F3,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint using Radiolucent Porous Interbody Fusion Device, Open Approach, New Technology Group 3",Spine Surgery
+XRGB092,ICD10PCS,"Fusion of Lumbar Vertebral Joint using Nanotextured Surface Interbody Fusion Device, Open Approach, New Technology Group 2",Spine Surgery
+XRGB0F3,ICD10PCS,"Fusion of Lumbar Vertebral Joint using Radiolucent Porous Interbody Fusion Device, Open Approach, New Technology Group 3",Spine Surgery
+XRGC092,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints using Nanotextured Surface Interbody Fusion Device, Open Approach, New Technology Group 2",Spine Surgery
+XRGC0F3,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints using Radiolucent Porous Interbody Fusion Device, Open Approach, New Technology Group 3",Spine Surgery
+XRGD092,ICD10PCS,"Fusion of Lumbosacral Joint using Nanotextured Surface Interbody Fusion Device, Open Approach, New Technology Group 2",Spine Surgery
+XRGD0F3,ICD10PCS,"Fusion of Lumbosacral Joint using Radiolucent Porous Interbody Fusion Device, Open Approach, New Technology Group 3",Spine Surgery
+0RG1071,ICD10PCS,"Fusion of Cervical Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG10J1,ICD10PCS,"Fusion of Cervical Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG10K1,ICD10PCS,"Fusion of Cervical Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG1371,ICD10PCS,"Fusion of Cervical Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG13J1,ICD10PCS,"Fusion of Cervical Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG13K1,ICD10PCS,"Fusion of Cervical Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG1471,ICD10PCS,"Fusion of Cervical Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG14J1,ICD10PCS,"Fusion of Cervical Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG14K1,ICD10PCS,"Fusion of Cervical Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG2071,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG20J1,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG20K1,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG2371,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG23J1,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG23K1,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG2471,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG24J1,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG24K1,ICD10PCS,"Fusion of 2 or more Cervical Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscop",Spine Surgery
+0RG4071,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG40J1,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG40K1,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG4371,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG43J1,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG43K1,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG4471,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG44J1,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG44K1,ICD10PCS,"Fusion of Cervicothoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG6071,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG60J1,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG60K1,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG6371,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG63J1,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG63K1,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG6471,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG64J1,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG64K1,ICD10PCS,"Fusion of Thoracic Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG7071,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG70J1,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG70K1,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG7371,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG73J1,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG73K1,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG7471,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG74J1,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG74K1,ICD10PCS,"Fusion of 2 to 7 Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG8071,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG80J1,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG80K1,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG8371,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG83J1,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG83K1,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG8471,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG84J1,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG84K1,ICD10PCS,"Fusion of 8 or more Thoracic Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscop",Spine Surgery
+0RGA071,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RGA0J1,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RGA0K1,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RGA371,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RGA3J1,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RGA3K1,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RGA471,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RGA4J1,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RGA4K1,ICD10PCS,"Fusion of Thoracolumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG0071,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0SG00J1,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0SG00K1,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0SG0371,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0SG03J1,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0SG03K1,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0SG0471,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG04J1,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG04K1,ICD10PCS,"Fusion of Lumbar Vertebral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG1071,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0SG10J1,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0SG10K1,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0SG1371,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0SG13J1,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0SG13K1,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0SG1471,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG14J1,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG14K1,ICD10PCS,"Fusion of 2 or more Lumbar Vertebral Joints with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG3071,ICD10PCS,"Fusion of Lumbosacral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0SG30J1,ICD10PCS,"Fusion of Lumbosacral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0SG30K1,ICD10PCS,"Fusion of Lumbosacral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0SG3371,ICD10PCS,"Fusion of Lumbosacral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0SG33J1,ICD10PCS,"Fusion of Lumbosacral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0SG33K1,ICD10PCS,"Fusion of Lumbosacral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0SG3471,ICD10PCS,"Fusion of Lumbosacral Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG34J1,ICD10PCS,"Fusion of Lumbosacral Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0SG34K1,ICD10PCS,"Fusion of Lumbosacral Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG0070,ICD10PCS,"Fusion of Occipital-cervical Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG0071,ICD10PCS,"Fusion of Occipital-cervical Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG007J,ICD10PCS,"Fusion of Occipital-cervical Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG00A0,ICD10PCS,"Fusion of Occipital-cervical Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG00AJ,ICD10PCS,"Fusion of Occipital-cervical Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG00J0,ICD10PCS,"Fusion of Occipital-cervical Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG00J1,ICD10PCS,"Fusion of Occipital-cervical Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG00JJ,ICD10PCS,"Fusion of Occipital-cervical Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG00K0,ICD10PCS,"Fusion of Occipital-cervical Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG00K1,ICD10PCS,"Fusion of Occipital-cervical Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Open Approach",Spine Surgery
+0RG00KJ,ICD10PCS,"Fusion of Occipital-cervical Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Open Approach",Spine Surgery
+0RG0370,ICD10PCS,"Fusion of Occipital-cervical Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG0371,ICD10PCS,"Fusion of Occipital-cervical Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG037J,ICD10PCS,"Fusion of Occipital-cervical Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG03A0,ICD10PCS,"Fusion of Occipital-cervical Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG03AJ,ICD10PCS,"Fusion of Occipital-cervical Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG03J0,ICD10PCS,"Fusion of Occipital-cervical Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG03J1,ICD10PCS,"Fusion of Occipital-cervical Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG03JJ,ICD10PCS,"Fusion of Occipital-cervical Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG03K0,ICD10PCS,"Fusion of Occipital-cervical Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG03K1,ICD10PCS,"Fusion of Occipital-cervical Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Approach",Spine Surgery
+0RG03KJ,ICD10PCS,"Fusion of Occipital-cervical Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Approach",Spine Surgery
+0RG0470,ICD10PCS,"Fusion of Occipital-cervical Joint with Autologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG0471,ICD10PCS,"Fusion of Occipital-cervical Joint with Autologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG047J,ICD10PCS,"Fusion of Occipital-cervical Joint with Autologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG04A0,ICD10PCS,"Fusion of Occipital-cervical Joint with Interbody Fusion Device, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG04AJ,ICD10PCS,"Fusion of Occipital-cervical Joint with Interbody Fusion Device, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG04J0,ICD10PCS,"Fusion of Occipital-cervical Joint with Synthetic Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG04J1,ICD10PCS,"Fusion of Occipital-cervical Joint with Synthetic Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG04JJ,ICD10PCS,"Fusion of Occipital-cervical Joint with Synthetic Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG04K0,ICD10PCS,"Fusion of Occipital-cervical Joint with Nonautologous Tissue Substitute, Anterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG04K1,ICD10PCS,"Fusion of Occipital-cervical Joint with Nonautologous Tissue Substitute, Posterior Approach, Posterior Column, Percutaneous Endoscopic Approach",Spine Surgery
+0RG04KJ,ICD10PCS,"Fusion of Occipital-cervical Joint with Nonautologous Tissue Substitute, Posterior Approach, Anterior Column, Percutaneous Endoscopic Approach",Spine Surgery
