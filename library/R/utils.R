@@ -27,7 +27,17 @@ bulk_upload <- function(
     sql <- paste(sql, 
       paste("CREATE OR REPLACE STAGE", stage_name, "FILE_FORMAT = (TYPE = CSV FIELD_OPTIONALLY_ENCLOSED_BY=\'\"\' SKIP_HEADER = 1);"), 
       sep = "\n")
-
+  
+  # need to call this with token parameter
+  gs4_auth(
+    email = gargle::gargle_oauth_email(),
+    path = NULL,
+    scopes = "https://www.googleapis.com/auth/spreadsheets",
+    cache = gargle::gargle_oauth_cache(),
+    use_oob = gargle::gargle_oob_default(),
+    token = gargle::token_fetch("https://www.googleapis.com/auth/spreadsheets")
+  )
+  
   # load file to get colnames and types
   # don't need all rows to guess types
   f <- data.table::fread(file.path(dir, filename), nrows=10000, colClasses = colClasses)
@@ -97,5 +107,99 @@ bulk_upload <- function(
 #   snowsql_profile = 'ywei'
 # )
 
+# ss = '1PnYunOisk7FDR6v0o4asAFBD6vbi3ChtTliVl-sYmU8'
 
+bulk_upload_gs <- function(
+  conn = DBI::ANSI(),
+  url = NULL,
+  ss = NULL,
+  sheet = NULL,
+  range = NULL,
+  table_full_name,
+  stage_name,
+  create_stage = FALSE,
+  database = 'SANDBOX_KOMODO',
+  role = 'ANALYST',
+  warehouse = 'LARGE_WH',
+  save_sql = FALSE,
+  run_sql = FALSE,
+  snowsql_profile = 'ywei'
+) {
+  require(googlesheets4)
+  require(dplyr)
+  require(stringr)
   
+  sql <-
+    paste(
+      paste("USE", database, ";"),
+      paste("USE ROLE", role, ";"),
+      paste("USE WAREHOUSE", warehouse, ";"),
+      sep = "\n"
+    )
+  
+  if (create_stage)
+    sql <- paste(sql, 
+                 paste("CREATE OR REPLACE STAGE", stage_name, "FILE_FORMAT = (TYPE = CSV FIELD_OPTIONALLY_ENCLOSED_BY=\'\"\' SKIP_HEADER = 1);"), 
+                 sep = "\n")
+  
+  # load file to get colnames and types
+  # don't need all rows to guess types
+  
+  if (is.null(url) && is.null(ss)) stop("Needs either url or ss to continue.")
+  if (is.null(ss)) ss <- as_sheets_id(url)
+  
+  # f <- range_read(ss, sheet = sheet, range = range)
+  f <- range_speedread(ss, sheet = sheet, range = range, guess_max = 10000)
+  
+  # clean up the sheet, remove space, remove columns start with ..., truncate string > 255
+  f <- f %>% select(names(f)[!str_detect(names(f), "^[\\.]{3}")])
+  names(f) <- str_remove(names(f), " ")
+  for (col in names(f)) {
+    if (class(f[[col]]) == "character") {
+      f[[col]] <- str_trunc(f[[col]], 255)
+    }
+  }
+  
+  # save the file in tempdir()
+  readr::write_csv(f, file = file.path(tempdir(), paste0(table_full_name, ".csv")))
+  
+  create_table_str <- paste0(DBI::sqlCreateTable(conn, DBI::SQL(paste0(table_full_name)), f)@.Data, ";")
+  # remove quotes to create unquote identifier for snowflake
+  # may encounter bugs for special chars!
+  create_table_str <- stringr::str_remove_all(create_table_str, "\"")
+  
+  dir <- tempdir()
+  filename <- paste0(table_full_name, ".csv")
+  
+  sql <-
+    paste(sql,
+          paste("PUT", paste0("file://", file.path(dir, filename)), paste0('@', stage_name), 'auto_compress=true overwrite=true;'),
+          paste("DROP TABLE IF EXISTS", table_full_name, ";"),
+          create_table_str,
+          paste("COPY INTO", table_full_name, "FROM", paste0("@", stage_name, "/", filename, ".gz;")),
+          sep = "\n"
+    )
+  
+  # print sql commands
+  
+  cat("\n# bulk upload sql command\n")
+  cat(sql)
+  # save sql script
+  if (save_sql || run_sql) {
+    sql_file <- stringr::str_replace(filename, "csv$", "sql")
+    conn <- file(file.path(dir, sql_file))
+    writeLines(sql, conn)
+    close(conn)
+  }
+  # execute snowsql
+  snowsql_cmd <- paste("/Applications/SnowSQL.app/Contents/MacOS/snowsql -c", snowsql_profile)
+  snowsql_input <- paste("!source", file.path(dir, sql_file), "\n", "!exit")
+  cat("\n# invoke snowsql\n")
+  cat(snowsql_cmd)
+  cat("\n# snowsql session command\n")
+  cat(snowsql_input)
+  if (run_sql) {
+    system(snowsql_cmd, input = snowsql_input)
+  }
+  return(invisible(f))
+}

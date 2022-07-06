@@ -51,10 +51,10 @@ cohort_funnel_by_year <-
 colnames(cohort_funnel_by_year) <- tolower(colnames(cohort_funnel_by_year))
 
 # a table includes event date for all outcomes for this cohort
-# outcome_183 <- 
-#   tbl(con_odbc, Id(database = "SANDBOX_KOMODO", schema = "YWEI", table = "METDPP4_V4_OUTCOME_183")
-# ) %>% collect()
-# colnames(outcome_183) <- tolower(colnames(outcome_183))
+cost <-
+  tbl(con_odbc, Id(database = "SANDBOX_KOMODO", schema = "AYWEI", table = "LBP_COST_SUMM")
+) %>% collect()
+colnames(cost) <- tolower(colnames(cost))
 
 # --- print cohort funnel tables --- #
 cohort_funnel_reshape <-
@@ -77,30 +77,38 @@ covariates <- get_covariates(cohort)
 write_clip(covariates$tbl_bal)
 sheet_write(covariates$tbl_bal, ss = ss, sheet = 'covariates')
 
-# --- get patient counts by year-month --- #
-cohort_by_time_wo_pdc <-   
-  cohort_183 %>% 
-  mutate(year = year(claim_date), month = month(claim_date)) %>%
-  group_by(year, month, cohort) %>%
-  summarize(n_patient = n()) %>%
-  pivot_wider(id_cols = c("year", "month"), names_from = "cohort", values_from = "n_patient")
+# Cost
+cost_summ <- cost %>%
+  mutate(total_cost = mx_cost_pb + mx_cost_fac + rx_cost) %>%
+  pivot_longer(cols = c("mx_cost_pb", "mx_cost_fac", "rx_cost", "total_cost"),
+               names_to = "category", values_to = "cost") %>%
+  group_by(cohort, category) %>%
+  summarize(n = n(),
+            n_pos = sum(cost > 0), 
+            mean = mean(cost), 
+            sd = sd(cost),
+            min = min(cost),
+            p25 = quantile(cost, 0.25),
+            median = median(cost),
+            p75 = quantile(cost, 0.75),
+            max = max(cost))
+cost_summ %>% write_clip()
 
-cohort_by_time_w_pdc <-   
-  cohort_183 %>% 
-  filter(pdc2 > 0.8) %>%
-  mutate(year = year(claim_date), month = month(claim_date)) %>%
-  group_by(year, month, cohort) %>%
-  summarize(n_patient = n()) %>%
-  pivot_wider(id_cols = c("year", "month"), names_from = "cohort", values_from = "n_patient")
+cost_summ_lt_1m <- cost %>%
+  mutate(total_cost = mx_cost_pb + mx_cost_fac + rx_cost) %>%
+  filter(total_cost <= 5000000) %>%
+  pivot_longer(cols = c("mx_cost_pb", "mx_cost_fac", "rx_cost", "total_cost"),
+               names_to = "category", values_to = "cost") %>%
+  group_by(cohort, category) %>%
+  summarize(n = n(),
+            n_pos = sum(cost > 0), 
+            mean = mean(cost), 
+            sd = sd(cost),
+            min = min(cost),
+            p25 = quantile(cost, 0.25),
+            median = median(cost),
+            p75 = quantile(cost, 0.75),
+            max = max(cost))
+cost_summ_lt_1m %>% write_clip()
 
-write_clip(cohort_by_time_w_pdc)
-write_clip(cohort_by_time_wo_pdc)
-
-# --- summarize study outcomes (pre-matching) --- #
-outcome_summ_pre_wo_pdc_hypo <- get_outcome(cohort_183, outcome_183, "hypoglycemia", 183, ylim = c(0.99, 1))
-outcome_summ_pre_wo_pdc_hypo$summ_table %>% write_clip()
-outcome_summ_pre_wo_pdc_hypo$plot
-
-outcome_summ_pre_wo_pdc_er <- get_outcome(cohort_183, outcome_183, "er", 183, ylim = c(0.85, 1))
-outcome_summ_pre_wo_pdc_er$summ_table %>% write_clip()
-outcome_summ_pre_wo_pdc_er$plot
+cost %>% filter(rx_cost > 2000000)
