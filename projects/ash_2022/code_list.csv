@@ -1,0 +1,152 @@
+code,code_description,codetype,event
+D570,Hb-SS disease with crisis,ICD10CM,voc
+D5700,"Hb-SS disease with crisis, unspecified",ICD10CM,voc
+D5701,Hb-SS disease with acute chest syndrome,ICD10CM,voc
+D5702,Hb-SS disease with splenic sequestration,ICD10CM,voc
+D5703,Hb-SS disease with cerebral vascular involvement,ICD10CM,voc
+D5709,Hb-SS disease with crisis with other specified complication,ICD10CM,voc
+D5721,Sickle-cell/Hb-C disease with crisis,ICD10CM,voc
+D57211,Sickle-cell/Hb-C disease with acute chest syndrome,ICD10CM,voc
+D57212,Sickle-cell/Hb-C disease with splenic sequestration,ICD10CM,voc
+D57213,Sickle-cell/Hb-C disease with cerebral vascular involvement,ICD10CM,voc
+D57218,Sickle-cell/Hb-C disease with crisis with other specified complication,ICD10CM,voc
+D57219,"Sickle-cell/Hb-C disease with crisis, unspecified",ICD10CM,voc
+D5741,"Sickle-cell thalassemia, unspecified, with crisis",ICD10CM,voc
+D57411,"Sickle-cell thalassemia, unspecified, with acute chest syndrome",ICD10CM,voc
+D57412,"Sickle-cell thalassemia, unspecified, with splenic sequestration",ICD10CM,voc
+D57413,"Sickle-cell thalassemia, unspecified, with cerebral vascular involvement",ICD10CM,voc
+D57418,"Sickle-cell thalassemia, unspecified, with crisis with other specified complication",ICD10CM,voc
+D57419,"Sickle-cell thalassemia, unspecified, with crisis",ICD10CM,voc
+D5743,Sickle-cell thalassemia beta zero with crisis,ICD10CM,voc
+D57431,Sickle-cell thalassemia beta zero with acute chest syndrome,ICD10CM,voc
+D57432,Sickle-cell thalassemia beta zero with splenic sequestration,ICD10CM,voc
+D57433,Sickle-cell thalassemia beta zero with cerebral vascular involvement,ICD10CM,voc
+D57438,Sickle-cell thalassemia beta zero with crisis with other specified complication,ICD10CM,voc
+D57439,"Sickle-cell thalassemia beta zero with crisis, unspecified",ICD10CM,voc
+D5745,Sickle-cell thalassemia beta plus with crisis,ICD10CM,voc
+D57451,Sickle-cell thalassemia beta plus with acute chest syndrome,ICD10CM,voc
+D57452,Sickle-cell thalassemia beta plus with splenic sequestration,ICD10CM,voc
+D57453,Sickle-cell thalassemia beta plus with cerebral vascular involvement,ICD10CM,voc
+D57458,Sickle-cell thalassemia beta plus with crisis with other specified complication,ICD10CM,voc
+D57459,"Sickle-cell thalassemia beta plus with crisis, unspecified",ICD10CM,voc
+D5781,Other sickle-cell disorders with crisis,ICD10CM,voc
+D57811,Other sickle-cell disorders with acute chest syndrome,ICD10CM,voc
+D57812,Other sickle-cell disorders with splenic sequestration,ICD10CM,voc
+D57813,Other sickle-cell disorders with cerebral vascular involvement,ICD10CM,voc
+D57818,Other sickle-cell disorders with crisis with other specified complication,ICD10CM,voc
+D57819,"Other sickle-cell disorders with crisis, unspecified",ICD10CM,voc
+D570,Hb-SS disease with crisis,ICD10CM,scd
+D5700,"Hb-SS disease with crisis, unspecified",ICD10CM,scd
+D5701,Hb-SS disease with acute chest syndrome,ICD10CM,scd
+D5702,Hb-SS disease with splenic sequestration,ICD10CM,scd
+D5703,Hb-SS disease with cerebral vascular involvement,ICD10CM,scd
+D5709,Hb-SS disease with crisis with other specified complication,ICD10CM,scd
+D571,Sickle-cell disease without crisis,ICD10CM,scd
+D572,Sickle-cell/Hb-C disease,ICD10CM,scd
+D5720,Sickle-cell/Hb-C disease without crisis,ICD10CM,scd
+D5721,Sickle-cell/Hb-C disease with crisis,ICD10CM,scd
+D57211,Sickle-cell/Hb-C disease with acute chest syndrome,ICD10CM,scd
+D57212,Sickle-cell/Hb-C disease with splenic sequestration,ICD10CM,scd
+D57213,Sickle-cell/Hb-C disease with cerebral vascular involvement,ICD10CM,scd
+D57218,Sickle-cell/Hb-C disease with crisis with other specified complication,ICD10CM,scd
+D57219,"Sickle-cell/Hb-C disease with crisis, unspecified",ICD10CM,scd
+D574,Sickle-cell thalassemia,ICD10CM,scd
+D5740,Sickle-cell thalassemia without crisis,ICD10CM,scd
+D5741,"Sickle-cell thalassemia, unspecified, with crisis",ICD10CM,scd
+D57411,"Sickle-cell thalassemia, unspecified, with acute chest syndrome",ICD10CM,scd
+D57412,"Sickle-cell thalassemia, unspecified, with splenic sequestration",ICD10CM,scd
+D57413,"Sickle-cell thalassemia, unspecified, with cerebral vascular involvement",ICD10CM,scd
+D57418,"Sickle-cell thalassemia, unspecified, with crisis with other specified complication",ICD10CM,scd
+D57419,"Sickle-cell thalassemia, unspecified, with crisis",ICD10CM,scd
+D5742,Sickle-cell thalassemia beta zero without crisis,ICD10CM,scd
+D5743,Sickle-cell thalassemia beta zero with crisis,ICD10CM,scd
+D57431,Sickle-cell thalassemia beta zero with acute chest syndrome,ICD10CM,scd
+D57432,Sickle-cell thalassemia beta zero with splenic sequestration,ICD10CM,scd
+D57433,Sickle-cell thalassemia beta zero with cerebral vascular involvement,ICD10CM,scd
+D57438,Sickle-cell thalassemia beta zero with crisis with other specified complication,ICD10CM,scd
+D57439,"Sickle-cell thalassemia beta zero with crisis, unspecified",ICD10CM,scd
+D5744,Sickle-cell thalassemia beta plus without crisis,ICD10CM,scd
+D5745,Sickle-cell thalassemia beta plus with crisis,ICD10CM,scd
+D57451,Sickle-cell thalassemia beta plus with acute chest syndrome,ICD10CM,scd
+D57452,Sickle-cell thalassemia beta plus with splenic sequestration,ICD10CM,scd
+D57453,Sickle-cell thalassemia beta plus with cerebral vascular involvement,ICD10CM,scd
+D57458,Sickle-cell thalassemia beta plus with crisis with other specified complication,ICD10CM,scd
+D57459,"Sickle-cell thalassemia beta plus with crisis, unspecified",ICD10CM,scd
+D578,Other sickle-cell disorders,ICD10CM,scd
+D5780,Other sickle-cell disorders without crisis,ICD10CM,scd
+D5781,Other sickle-cell disorders with crisis,ICD10CM,scd
+D57811,Other sickle-cell disorders with acute chest syndrome,ICD10CM,scd
+D57812,Other sickle-cell disorders with splenic sequestration,ICD10CM,scd
+D57813,Other sickle-cell disorders with cerebral vascular involvement,ICD10CM,scd
+D57818,Other sickle-cell disorders with crisis with other specified complication,ICD10CM,scd
+D57819,"Other sickle-cell disorders with crisis, unspecified",ICD10CM,scd
+72786010101,voxelotor 500 mg oral tablet [oxbryta],NDC,oxbryta
+72786011102,voxelotor 300 mg tablet for oral suspension [oxbryta],NDC,oxbryta
+72786011103,voxelotor 300 mg tablet for oral suspension [oxbryta],NDC,oxbryta
+55154714300,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+51129379601,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+51129379602,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+51129436801,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+51129436802,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+42291032101,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+69315016401,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+58063097909,hydroxyurea 1000 mg oral tablet [mylocel],NDC,hydroxyurea
+54868136700,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+00003633517,hydroxyurea 200 mg oral capsule [droxia],NDC,hydroxyurea
+00003633617,hydroxyurea 300 mg oral capsule [droxia],NDC,hydroxyurea
+00003633717,hydroxyurea 400 mg oral capsule [droxia],NDC,hydroxyurea
+68084028401,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+68084028411,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+23629002801,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+17101083005,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+17101633507,hydroxyurea 200 mg oral capsule [droxia],NDC,hydroxyurea
+17101633607,hydroxyurea 300 mg oral capsule [droxia],NDC,hydroxyurea
+17101633707,hydroxyurea 400 mg oral capsule [droxia],NDC,hydroxyurea
+51129166101,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+49884072401,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00054224725,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00054824725,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+71770010060,hydroxyurea 100 mg oral tablet [siklos],NDC,hydroxyurea
+71770010560,hydroxyurea 100 mg oral tablet [siklos],NDC,hydroxyurea
+71770012030,hydroxyurea 1000 mg oral tablet [siklos],NDC,hydroxyurea
+54738054701,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00904693961,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+60429026501,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+54868477300,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+54868477301,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+54868477302,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+54868477303,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+54868477304,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00003083050,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+00440761310,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00440761320,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00440761330,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00440761360,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00179181670,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00179181671,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00179181672,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+55045301301,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00555088202,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00555097903,hydroxyurea 1000 mg oral tablet,NDC,hydroxyurea
+00555097909,hydroxyurea 1000 mg oral tablet,NDC,hydroxyurea
+00555097965,hydroxyurea 1000 mg oral tablet,NDC,hydroxyurea
+58406050101,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+00093088202,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+10135070201,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+57866443601,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+60491030230,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+60491030233,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+00904539460,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+70518091600,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+70518091601,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+70518091602,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+54569037800,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+54569037801,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+54569037802,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+00677168001,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+51285054802,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00603394621,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+54569571500,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00078088361,10 ml crizanlizumab-tmca 10 mg/ml injection [adakveo],NDC,adakveo
+42457042001,glutamine 5000 mg powder for oral solution [endari],NDC,endari
+42457042060,glutamine 5000 mg powder for oral solution [endari],NDC,endari

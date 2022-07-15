@@ -1,0 +1,729 @@
+---
+title: "Oxbryta Study"
+output: html_notebook
+---
+
+Code List:
+https://docs.google.com/spreadsheets/d/1lwGATVIUxa1RMtcfUmpZRoJLEcDadBboyTmTthN2U20/edit#gid=0
+
+Results:
+https://docs.google.com/spreadsheets/d/1Vs8wMBUndpKMF1jx_PVWZskhREAGYaJUudteNMNvviM/edit#gid=0
+
+```{r config}
+workdir <- "~/komodo_research/projects/ash_2022"
+library(tidyverse)
+library(glue)
+library(clipr)
+library(tictoc)
+library(DBI)
+library(googlesheets4)
+source("~/komodo_research/library/R/utils.R")
+source("~/komodo_research/library/R/sql_helper.R")
+source("~/komodo_research/library/R/sql_utils.R")
+```
+
+```{r connection}
+# create ODBC connection
+con_odbc <- DBI::dbConnect(
+  odbc::odbc(), "snowflake", 
+  role = "ANALYST", 
+  warehouse = "LARGE_WH"
+)
+
+execute_sql("USE DATABASE SANDBOX_KOMODO;")
+execute_sql("USE SCHEMA AYWEI;")
+execute_sql("USE ROLE ANALYST;")
+execute_sql("USE WAREHOUSE XLARGE_WH;")
+```
+
+```{r gsconnection}
+# google sheet auth
+gs4_auth(
+  email = gargle::gargle_oauth_email(),
+  path = NULL,
+  scopes = "https://www.googleapis.com/auth/spreadsheets",
+  cache = gargle::gargle_oauth_cache(),
+  use_oob = gargle::gargle_oob_default(),
+  token = gargle::token_fetch("https://www.googleapis.com/auth/spreadsheets")
+)
+code_list_ss = "1lwGATVIUxa1RMtcfUmpZRoJLEcDadBboyTmTthN2U20"
+output_ss = "1Vs8wMBUndpKMF1jx_PVWZskhREAGYaJUudteNMNvviM"
+```
+
+```{r project_spec}
+## Table reference
+rx_version = '20220613'
+mx_version = '20220605'
+code_version = '20220606'
+query_start_date = '2019-01-01'
+query_end_date = '2022-12-31'
+## Output table names
+prefix = 'SCD'
+cci_def = glue("MAP_VOCABULARY.RXNORM_{code_version}.CHARLSON_CODE")
+cci_score = glue("MAP_VOCABULARY.RXNORM_{code_version}.CHARLSON_SCORE")
+```
+
+## Prepare Code Definition
+
+```{r code_list}
+# create a code list for scd, voc
+voc_diag_sql = get_code(c('D570%', 'D5721%', 'D5741%', 'D5743%', 'D5745%', 'D5781%'), method = 'pattern', type = 'diag')
+scd_diag_sql = get_code(c('D570%', 'D571%', 'D572%', 'D574%', 'D578%'), method = 'pattern', type = 'diag')
+print(voc_diag <- read_query(voc_diag_sql))
+print(scd_diag <- read_query(scd_diag_sql))
+sheet_write(voc_diag, ss = code_list_ss, sheet = 'voc')
+sheet_write(scd_diag, ss = code_list_ss, sheet = 'scd')
+```
+
+```{r code_list2}
+# search all NDCs
+oxbryta_ndc_sql = get_code(c('oxbryta'), method = 'name', type = 'ndc')
+hydroxyurea_ndc_sql = get_code(c('hydroxyurea'), method = 'name', type = 'ndc')
+adakveo_ndc_sql = get_code(c('adakveo'), method = 'name', type = 'ndc')
+endari_ndc_sql = get_code(c('endari'), method = 'name', type = 'ndc')
+
+print(oxbryta_ndc <- read_query(oxbryta_ndc_sql))
+print(hydroxyurea_ndc <- read_query(hydroxyurea_ndc_sql))
+print(adakveo_ndc <- read_query(adakveo_ndc_sql))
+print(endari_ndc <- read_query(endari_ndc_sql))
+
+sheet_write(oxbryta_ndc, ss = code_list_ss, sheet = 'oxbryta')
+sheet_write(hydroxyurea_ndc, ss = code_list_ss, sheet = 'hydroxyurea')
+sheet_write(adakveo_ndc, ss = code_list_ss, sheet = 'adakveo')
+sheet_write(endari_ndc, ss = code_list_ss, sheet = 'endari')
+```
+```{r code_list3}
+cci = read_query(glue("SELECT * FROM {cci_def};"))
+sheet_write(cci, ss = code_list_ss, sheet = 'cci')
+cci2 = read_query(glue("SELECT * FROM {cci_score};"))
+sheet_write(cci2, ss = code_list_ss, sheet = 'cci_score')
+transfusion = range_speedread(code_list_ss, sheet = 'transfusion')
+colnames(transfusion) <- tolower(colnames(transfusion))
+print(cci)
+print(cci2)
+print(transfusion)
+```
+
+```{r code_list4}
+# create code lists:
+# code_list will be queried from the whole DB
+# subsample_code_list will be searched within a small list of patients
+code_list <- 
+  bind_rows(
+    voc_diag %>% select(code, code_description) %>% mutate(codetype = "ICD10CM", event = "voc"),
+    scd_diag %>% select(code, code_description) %>% mutate(codetype = "ICD10CM", event = "scd"),
+    oxbryta_ndc %>% select(ndc, cui_l1_name) 
+      %>% rename(code = ndc, code_description = cui_l1_name) 
+      %>% mutate(codetype = "NDC", event = "oxbryta"),
+    hydroxyurea_ndc %>% select(ndc, cui_l1_name) 
+      %>% rename(code = ndc, code_description = cui_l1_name) 
+      %>% mutate(codetype = "NDC", event = "hydroxyurea"),
+    adakveo_ndc %>% select(ndc, cui_l1_name) 
+      %>% rename(code = ndc, code_description = cui_l1_name) 
+      %>% mutate(codetype = "NDC", event = "adakveo"),
+    endari_ndc %>% select(ndc, cui_l1_name) 
+      %>% rename(code = ndc, code_description = cui_l1_name) 
+      %>% mutate(codetype = "NDC", event = "endari")
+  )
+
+sheet_write(code_list, ss = code_list_ss, sheet = 'code_list')
+
+subsample_code_list <-
+  bind_rows(
+    transfusion %>% select(code, codetype, code_description) %>% mutate(event = 'transfusion'),
+    cci %>% select(icd, charlson_category) %>%
+      rename(code = icd, code_description = charlson_category) %>%
+      mutate(codetype = 'ICD10CM', event = 'cci') %>%
+      select(code, codetype, code_description, event)
+  )
+sheet_write(subsample_code_list, ss = code_list_ss, sheet = 'subsample_code_list')
+
+write_csv(code_list, file = file.path(workdir, "code_list.csv"))
+write_csv(subsample_code_list, file = file.path(workdir, "subsample_code_list.csv"))
+```
+
+```{r upload_code_list}
+bulk_upload(
+  conn = con_odbc,
+  dir = workdir,
+  filename = "code_list.csv", 
+  stage_name = "stage_kr",
+  table_full_name = "SANDBOX_KOMODO.AYWEI.SCD_CODE_LIST",
+  create_stage = FALSE,
+  database = 'SANDBOX_KOMODO',
+  role = 'ANALYST',
+  warehouse = 'LARGE_WH',
+  save_sql = TRUE,
+  run_sql = TRUE,
+  snowsql_profile = 'ywei'
+)
+
+bulk_upload(
+  conn = con_odbc,
+  dir = workdir,
+  filename = "subsample_code_list.csv", 
+  stage_name = "stage_kr",
+  table_full_name = "SANDBOX_KOMODO.AYWEI.SCD_CODE_LIST_SUB",
+  create_stage = FALSE,
+  database = 'SANDBOX_KOMODO',
+  role = 'ANALYST',
+  warehouse = 'LARGE_WH',
+  save_sql = TRUE,
+  run_sql = TRUE,
+  snowsql_profile = 'ywei'
+)
+```
+
+## Create Study Eligible Cohort
+
+```{r step_0_get_ce}
+# build CE table for all patients
+# optional, use ce_{mx_version} file
+# sql_split_fun = get_sql_split_fun(grace_period = grace_period)
+# execute_sql(sql_split_fun)
+# tic("CE")
+# sql = glue("  
+#     create or replace table ce_{mx_version} as
+#     {get_ce(mx_version = mx_version, grace_period = 45)}
+#     ;
+# ")
+# execute_sql(sql)
+# toc()
+```
+
+```{r step_1_get_query}
+# build encounter tables for the study
+code_list_table = glue('{prefix}_code_list')
+code_list_sub_table = glue('{prefix}_code_list_sub')
+tic("Mx Encounter")
+sql_mx = glue("
+    create or replace table {prefix}_mx_encounter as
+    {query_event_mx(
+      code_list_table = code_list_table,
+      mx_version = mx_version,
+      start_date = query_start_date, end_date = query_end_date
+      )
+    }
+    ;
+")
+execute_sql(sql_mx)
+toc()
+
+tic("Rx Encounter")
+sql_rx = glue("
+    create or replace table {prefix}_rx_encounter as
+    {query_event_rx(
+      code_list_table = code_list_table,
+      rx_version = rx_version,
+      start_date = query_start_date, end_date = query_end_date
+      )
+    }
+    ;
+")
+execute_sql(sql_rx)
+toc()
+```
+
+
+```{r step_2_build_oxbryta_cohort}
+sql = glue("  
+    create or replace table {prefix}_oxbryta_cohort as
+    with query as (
+      select upk_key2, claim_date, code, codetype
+      from {prefix}_rx_encounter where event = 'oxbryta'
+    ),
+    add_row_number as(
+      select upk_key2, claim_date, code, codetype,
+        row_number() over(partition by upk_key2 order by claim_date) as n
+      from query
+    )
+    select upk_key2, claim_date as index_date, code, codetype
+    from add_row_number
+    where n = 1
+    ;
+")
+execute_sql(sql)
+
+print(read_query(glue("select year(index_date) as year, count(*) as n from {prefix}_oxbryta_cohort group by year order by year")))
+print(read_query(glue("select source, code, count(*) as n from {prefix}_oxbryta_cohort group by source, code")))
+print(read_query(glue("select min(index_date) from {prefix}_oxbryta_cohort")))
+```
+
+```{r step_3_build_control_cohort}
+seed = 1234
+sql = glue("
+  create or replace table {prefix}_control_cohort as
+  with query as (
+    select upk_key2, claim_date, code, codetype
+    from {prefix}_mx_encounter 
+    where event = 'scd' and upk_key2 not in (select upk_key2 from {prefix}_oxbryta_cohort)
+  ),
+  first_claim as(
+    select upk_key2, claim_date, code, codetype,
+      row_number() over(partition by upk_key2 order by claim_date) as n
+    from query
+    qualify n = 1
+  )
+  select c.upk_key2, c.claim_date, 
+    greatest(start_date + 365, c.claim_date + 1, to_date('2019-12-01')) as first_index_date,
+    e.end_date - 365 as last_index_date,
+    last_index_date - first_index_date as length,
+    uniform(0::float, 1::float, random({seed})) as rng,
+    first_index_date + (length * rng)::int as index_date
+  from first_claim c
+  inner join ce_{mx_version} e
+  on c.upk_key2 = e.upk_key2 and c.claim_date between e.start_date and e.end_date - 365
+  where e.end_date - e.start_date >= 730 and length > 0
+  ;
+")
+execute_sql(sql)
+```
+
+
+```{r step_4_combine_cohort_and_add_flag}
+sql = glue("
+  create or replace table {prefix}_combined_cohort as
+  with combined as (
+    select upk_key2, index_date, 'oxbryta' as cohort
+    from {prefix}_oxbryta_cohort
+    union
+    select upk_key2, index_date, 'control' as cohort
+    from {prefix}_control_cohort
+  ),
+  elig as (
+    select c.upk_key2, count(*) as elig
+    from combined c
+    inner join ce_{mx_version} e
+    on c.upk_key2 = e.upk_key2 
+      and c.index_date - 365 between e.start_date and e.end_date
+      and c.index_date + 365 between e.start_date and e.end_date
+    group by c.upk_key2
+  ),
+  scd as (
+    select c.upk_key2, count(*) as n_scd_before
+    from combined c
+    inner join {prefix}_mx_encounter m
+    on c.upk_key2 = m.upk_key2 
+      and m.event = 'scd'
+      and m.claim_date between c.index_date - 365 and c.index_date
+    group by c.upk_key2
+  ),
+  excl as (
+    select c.upk_key2, 
+      count_if(r.event = 'adakveo') as n_adakveo,
+      count_if(r.event = 'endari') as n_endari
+    from combined c
+    inner join {prefix}_rx_encounter r
+    on c.upk_key2 = r.upk_key2 and r.event in ('adakveo', 'endari')
+    group by c.upk_key2 
+  )
+  select c.upk_key2, cohort, index_date, 
+    coalesce(elig, 0) as elig, 
+    coalesce(n_scd_before, 0) as n_scd_before, 
+    coalesce(n_adakveo, 0) as n_adakveo, 
+    coalesce(n_endari, 0) as n_endari
+  from combined c
+  left join elig e
+  on c.upk_key2 = e.upk_key2 
+  left join scd m
+  on c.upk_key2 = m.upk_key2
+  left join excl r
+  on c.upk_key2 = r.upk_key2
+  ;
+")
+execute_sql(sql)
+```
+
+
+```{r step_5_final_cohort}
+bene_table = glue("MAP_ENCOUNTERS.MX_ENCOUNTERS_{mx_version}.BENEFICIARY_LS_GA")
+sql = glue("
+  create or replace table {prefix}_final_cohort as
+  select distinct *, year(index_date) - year(patient_dob) as age
+  from (
+      select distinct a.*,
+      first_value(patient_dob) over (partition by a.upk_key2 order by patient_dob nulls last) as patient_dob,
+      first_value(patient_gender) over (partition by a.upk_key2 order by patient_gender nulls last) as patient_gender,
+      first_value(patient_state) over (partition by a.upk_key2 order by patient_state nulls last) as patient_state,
+      first_value(patient_zip) over (partition by a.upk_key2 order by patient_zip nulls last) as patient_zip
+      from {prefix}_combined_cohort a
+      left join {bene_table} b
+      on a.upk_key2 = b.upk_key2 and a.index_date between b.closed_start_date and b.closed_end_date
+      where elig > 0 and n_scd_before > 0 and n_adakveo = 0 and n_endari = 0
+  )
+  where age >= 12
+  ;
+")
+execute_sql(sql)
+```
+
+```{r step_6_cohort_funnel}
+select_str = "cohort, count(distinct upk_key2) as n_bene"
+
+sql = glue("
+    select 'a. all users in study window' as criteria, 'oxbryta' as cohort, count(distinct upk_key2) as n_bene
+    from {prefix}_oxbryta_cohort
+    
+    union all
+    select 'a. all users in study window' as criteria, 'control' as cohort, count(distinct upk_key2) as n_bene  
+    from {prefix}_mx_encounter
+    where event = 'scd'
+    
+    union all
+    select 'b. continuous enrollment' as criteria, {select_str}
+    from {prefix}_combined_cohort
+    where elig > 0
+    group by cohort
+
+    union all
+    select 'c. w/ sickle-cell disease diagnosis' as criteria, {select_str}
+    from {prefix}_combined_cohort
+    where elig > 0 and n_scd_before > 0
+    group by cohort
+
+    union all
+    select 'd. no adakveo or endari usage' as criteria, {select_str}
+    from {prefix}_combined_cohort
+    where elig > 0 and n_scd_before > 0 and n_adakveo = 0 and n_endari = 0
+    group by cohort
+
+    union all
+    select 'e. age >= 12' as criteria, {select_str}
+    from {prefix}_final_cohort
+    group by cohort
+    
+    order by cohort, criteria
+  ;
+")
+print(cohort_funnel <- read_query(sql))
+```
+
+```{r step_7_more_encounters}
+# create encounter table for covariates and outcome
+code_list_table = glue('{prefix}_code_list')
+code_list_sub_table = glue('{prefix}_code_list_sub')
+patient_table = glue("{prefix}_final_cohort")
+tic("Mx Encounter")
+sql_mx = glue("
+    create or replace table {prefix}_mx_encounter_sub as
+    {query_event_mx(
+      code_list_table = code_list_sub_table,
+      patient_table = patient_table,
+      mx_version = mx_version,
+      start_date = query_start_date, end_date = query_end_date
+      )
+    }
+    ;
+")
+execute_sql(sql_mx)
+toc()
+```
+```{r step_8_get_covariates}
+sql = glue("
+    create or replace table {prefix}_final_cohort_w_cov as
+    with hydroxyurea as (
+      select distinct a.upk_key2, count(*) as n_hydroxyurea
+      from {prefix}_final_cohort a
+      inner join {prefix}_rx_encounter b
+      on a.upk_key2 = b.upk_key2 and b.claim_date between a.index_date - 365 and a.index_date
+      where event = 'hydroxyurea'
+      group by a.upk_key2
+    ),
+    cci_data as(
+      select distinct a.upk_key2, c.charlson_category
+      from {prefix}_final_cohort a
+      inner join {prefix}_mx_encounter_sub b
+      on a.upk_key2 = b.upk_key2 and b.claim_date between a.index_date - 365 and a.index_date
+      inner join {cci_def} c
+      on b.code = c.icd
+      where event = 'cci'
+      union
+      select upk_key2, case 
+          when age < 50 then '< 50'
+          when age < 60 then '50-59'
+          when age < 70 then '60-69'
+          when age < 80 then '70-79'
+          when age >= 80 then '80+'
+          else '< 50'
+      end as charlson_category
+      from {prefix}_final_cohort
+    ),
+    cci as(
+      select upk_key2, sum(charlson_score) as charlson_score
+      from cci_data a
+      inner join {cci_score} d
+      on a.charlson_category = d.charlson_category
+      group by upk_key2
+    )
+    select c.*,
+      coalesce(n_hydroxyurea, 0) as n_hydroxyurea,
+      coalesce(charlson_score, 0) as charlson_score,
+      case
+        when age < 30 then '1. 12-29'
+        when age < 40 then '2. 30-39'
+        when age < 50 then '3. 40-49'
+        when age < 60 then '4. 50-59'
+        when age < 70 then '5. 60-69'
+        when age < 80 then '6. 70-79'
+        when age >= 80 then '7. 80+'
+        else 'Missing'
+      end as age_cat,
+      case
+        when patient_gender = 'F' then 'Female'
+        when patient_gender = 'M' then 'Male'
+        else 'Missing'
+      end as gender,
+      case
+        when patient_state in ('CT', 'ME', 'MA', 'NH', 'RI', 
+                             'VT', 'NJ', 'NY', 'PA') then '1. Northeast'
+        when patient_state in ('IL', 'IN', 'MI', 'OH', 'WI', 
+                             'IA', 'KS', 'MO', 'MN', 'NE', 'ND',
+                             'SD') then '2. Midwest'
+        when patient_state in ('DE', 'FL', 'GA', 'MD', 'NC', 
+                             'SC', 'VA', 'DC', 'WV', 'AL',
+                             'KY', 'MS', 'TN', 'AR', 'LA',
+                             'OK', 'TX') then '3. South'
+        when patient_state in ('AZ', 'CO', 'ID', 'MT', 'NV', 
+                             'NM', 'UT', 'WY', 'AK', 'CA',
+                             'HI', 'OR', 'WA') then '4. West'
+        when patient_state in ('PR', 'VI') then '5. US Territories'
+        else 'Missing'
+      end as region,
+      year(index_date) as year,
+      coalesce(n_hydroxyurea, 0) > 0 as hydroxyurea,
+      case
+        when charlson_score < 5 then to_char(charlson_score)
+        when charlson_score >=5 then '5+'
+      end as cci
+    from {prefix}_final_cohort c
+    left join hydroxyurea h
+    on c.upk_key2 = h.upk_key2
+    left join cci i
+    on c.upk_key2 = i.upk_key2
+    ;
+")
+execute_sql(sql)
+
+```
+
+```{r step_9_get_outcomes}
+sql = glue("
+    create or replace table {prefix}_outcomes as
+    select distinct upk_key2, event, visit_id, visit_start_date, visit_end_date, visit_setting_of_care, admission_date, discharge_date
+    from {prefix}_mx_encounter
+    where event in ('voc', 'transfusion') and upk_key2 in (select upk_key2 from {prefix}_final_cohort)
+    union
+    select distinct upk_key2, event, visit_id, visit_start_date, visit_end_date, visit_setting_of_care, admission_date, discharge_date
+    from {prefix}_mx_encounter_sub
+    where event in ('voc', 'transfusion') and upk_key2 in (select upk_key2 from {prefix}_final_cohort)
+    ;
+")
+execute_sql(sql)
+```
+
+
+```{r step_10_download_to_local}
+cohort <- 
+  tbl(con_odbc, Id(database = "SANDBOX_KOMODO", schema = "AYWEI", table = "SCD_FINAL_COHORT_W_COV")
+) %>% collect()
+colnames(cohort) <- tolower(colnames(cohort))
+
+outcomes <-
+  tbl(con_odbc, Id(database = "SANDBOX_KOMODO", schema = "AYWEI", table = "SCD_OUTCOMES")
+) %>% collect()
+colnames(outcomes) <- tolower(colnames(outcomes))
+```
+
+```{r step_11_cohort_funnal_and_summary}
+cohort_funnel_reshape <-
+  cohort_funnel %>% 
+  arrange(criteria, cohort) %>% 
+  pivot_wider(id_cols = "criteria", names_from = c("cohort"), values_from = c("n_bene")) %>%
+  mutate(pct_oxbryta = oxbryta/max(oxbryta), pct_control = control/max(control)) %>%
+  select(criteria, oxbryta, pct_oxbryta, control, pct_control)
+
+sheet_write(cohort_funnel_reshape, ss = output_ss, sheet = 'cohort_funnel')
+
+cohort <- cohort %>% mutate(year_quarter = paste0(year, quarters(index_date)), cohort = factor(cohort, levels = c("oxbryta", "control")))
+covariates <- get_covariates(cohort, covariates = c('age_cat', 'gender', 'region', 'year_quarter', 'hydroxyurea', 'cci'))
+sheet_write(covariates$tbl_bal, ss = output_ss, sheet = 'covariates')
+```
+
+```{r step_12_matching}
+pre_matching <- covariates$tbl_clean %>% 
+  filter(age_cat != '7. 80+', !region %in% c('5. US Territories', 'Missing'))
+
+matching_model_1 <- run_matching(seed = 1234, pre_matching, ratio = 1,
+                                matching_vars = c('age_cat', 'gender', 'region', 'cci', 'year_quarter','hydroxyurea'),
+                                exact_matching_vars = NULL,
+                                summary_vars = NULL)
+saveRDS(matching_model_1, file.path(workdir, paste0("matching_model_1.Rds")))
+sheet_write(matching_model_1$bal_nn, ss = output_ss, sheet = 'matching_nn')
+sheet_write(matching_model_1$bal_tbl, ss = output_ss, sheet = 'matching_bal')
+print(matching_model_1$bal_nn)
+print(matching_model_1$bal_tbl)
+print(matching_model_1$bal_plot)
+print(matching_model_1$love_plot)
+
+post_matching <- match.data(matching_model_1$matching_model)
+```
+
+```{r step_13_summarize_outcomes}
+get_outcome <- function(data) {
+  data %>%
+    select(upk_key2, index_date, cohort) %>%
+    left_join(outcomes) %>%
+    mutate(
+      pre = (visit_end_date >= index_date - 365) & (index_date >= visit_end_date),
+      post = (visit_start_date <= index_date + 365) & (visit_start_date > index_date)) %>%
+    group_by(upk_key2, cohort) %>%
+    summarize(
+        pre_voc = sum(pre, na.rm = T), 
+        post_voc = sum(post, na.rm = T),
+        pre_ip = sum(pre & visit_setting_of_care == 'Inpatient Visit', na.rm = T),
+        post_ip = sum(post & visit_setting_of_care == 'Inpatient Visit', na.rm = T),
+        pre_er = sum(pre & visit_setting_of_care == 'Emergency Room Visit', na.rm = T),
+        post_er = sum(post & visit_setting_of_care == 'Emergency Room Visit', na.rm = T),
+        pre_iper = sum(pre & visit_setting_of_care %in% c('Inpatient Visit', 'Emergency Room Visit'), na.rm = T),
+        post_iper = sum(post & visit_setting_of_care %in% c('Inpatient Visit', 'Emergency Room Visit'), na.rm = T)
+        ) %>%
+    group_by(cohort) %>%
+    summarize(
+      n = n(), 
+      pre_voc = sum(pre_voc > 0, na.rm = T), post_voc = sum(post_voc > 0, na.rm = T), 
+      pre_ip = sum(pre_ip > 0, na.rm = T), post_ip = sum(post_ip > 0, na.rm = T), 
+      pre_er = sum(pre_er > 0, na.rm = T), post_er = sum(post_er > 0, na.rm = T), 
+      pre_iper = sum(pre_iper > 0, na.rm = T), post_iper = sum(post_iper > 0, na.rm = T)
+    )
+}
+outcome_summ <- get_outcome(post_matching)
+sheet_write(outcome_summ, ss = output_ss, sheet = 'outcome_summary')
+```
+
+
+```{r step_6_final_cohort2}
+sql = glue("
+  create or replace table {prefix}_final_cohort as
+  select c.upk_key2, cohort, index_date, 
+    count_if(m.claim_date between c.index_date - 365 and c.index_date and m.event = 'voc') as n_voc_b,
+    count_if(m.claim_date between c.index_date - 365 and c.index_date and m.event = 'voc' and visit_setting_of_care in ('Inpatient Visit')) as n_voc_b_ip,
+    count_if(m.claim_date between c.index_date - 365 and c.index_date and m.event = 'voc' and visit_setting_of_care in ('Emergency Room Visit')) as n_voc_b_er,
+    count_if(m.claim_date between c.index_date - 365 and c.index_date and m.event = 'voc' and visit_setting_of_care in ('Inpatient Visit', 'Emergency Room Visit')) as n_voc_b_iper,
+    count_if(m.claim_date between c.index_date + 1 and c.index_date + 365 and m.event = 'voc') as n_voc_f,
+    count_if(m.claim_date between c.index_date + 1 and c.index_date + 365 and m.event = 'voc' and visit_setting_of_care in ('Inpatient Visit')) as n_voc_f_ip,
+    count_if(m.claim_date between c.index_date + 1 and c.index_date + 365 and m.event = 'voc' and visit_setting_of_care in ('Emergency Room Visit')) as n_voc_f_er,
+    count_if(m.claim_date between c.index_date + 1 and c.index_date + 365 and m.event = 'voc' and visit_setting_of_care in ('Inpatient Visit', 'Emergency Room Visit')) as n_voc_f_iper
+  from {prefix}_combined_cohort c
+  left join {prefix}_mx_encounter m
+  on c.upk_key2 = m.upk_key2 and m.event = 'voc'
+  where elig > 0 and n_scd_before > 0 and n_adakveo = 0 and n_endari = 0
+  group by c.upk_key2, cohort, index_date
+  ;
+")
+# sql = glue("
+#   create or replace table {prefix}_final_cohort as
+#   select c.upk_key2, cohort, index_date, 
+#     count_if(m.claim_date between c.index_date - 365 and c.index_date and m.event = 'voc') as n_voc_b,
+#     count_if(m.claim_date between c.index_date - 365 and c.index_date and m.event = 'voc' and visit_setting_of_care in ('Inpatient Visit')) as n_voc_b_ip,
+#     count_if(m.claim_date between c.index_date - 365 and c.index_date and m.event = 'voc' and visit_setting_of_care in ('Emergency Room Visit')) as n_voc_b_er,
+#     count_if(m.claim_date between c.index_date - 365 and c.index_date and m.event = 'voc' and visit_setting_of_care in ('Inpatient Visit', 'Emergency Room Visit')) as n_voc_b_iper,
+#     count_if(m.claim_date between c.index_date + 1 and c.index_date + 365 and m.event = 'voc') as n_voc_f,
+#     count_if(m.claim_date between c.index_date + 1 and c.index_date + 365 and m.event = 'voc' and visit_setting_of_care in ('Inpatient Visit')) as n_voc_f_ip,
+#     count_if(m.claim_date between c.index_date + 1 and c.index_date + 365 and m.event = 'voc' and visit_setting_of_care in ('Emergency Room Visit')) as n_voc_f_er,
+#     count_if(m.claim_date between c.index_date + 1 and c.index_date + 365 and m.event = 'voc' and visit_setting_of_care in ('Inpatient Visit', 'Emergency Room Visit')) as n_voc_f_iper
+#   from {prefix}_combined_cohort c
+#   left join {prefix}_mx_encounter m
+#   on c.upk_key2 = m.upk_key2 and m.event = 'voc'
+#   where elig > 0 and n_scd_before > 0
+#   group by c.upk_key2, cohort, index_date
+#   ;
+# ")
+execute_sql(sql)
+```
+
+```{r step_7_cohort_summary}
+sql = glue("
+    select
+      cohort,
+      count(*) as n, 
+      count_if(n_voc_b > 0) as voc_1y_before, 
+      count_if(n_voc_b_ip > 0) as voc_ip_1y_before, 
+      count_if(n_voc_b_er > 0) as voc_er_1y_before, 
+      count_if(n_voc_b_iper > 0) as voc_ip_or_er_1y_before, 
+      count_if(n_voc_f > 0) as voc_1y_after,
+      count_if(n_voc_f_ip > 0) as voc_ip_1y_after,
+      count_if(n_voc_f_er > 0) as voc_er_1y_after,
+      count_if(n_voc_f_iper > 0) as voc_ip_or_er_1y_after
+    from {prefix}_final_cohort
+    group by cohort
+    ;
+")
+print(voc_scd_treated <- read_query(sql))
+sheet_write(voc_scd_treated, ss = ss, sheet = 'cohort_outcomes')
+```
+
+
+```{r step_7_cohort_summary2}
+sql = glue("
+    select
+      cohort, year(index_date) as year, 
+      count(*) as n, 
+      count_if(n_voc_b > 0) as voc_1y_before, 
+      count_if(n_voc_b_ip > 0) as voc_ip_1y_before, 
+      count_if(n_voc_b_er > 0) as voc_er_1y_before, 
+      count_if(n_voc_b_iper > 0) as voc_ip_or_er_1y_before, 
+      count_if(n_voc_f > 0) as voc_1y_after,
+      count_if(n_voc_f_ip > 0) as voc_ip_1y_after,
+      count_if(n_voc_f_er > 0) as voc_er_1y_after,
+      count_if(n_voc_f_iper > 0) as voc_ip_or_er_1y_after
+    from {prefix}_final_cohort
+    group by cohort, year
+    order by cohort, year
+    ;
+")
+print(voc_scd_treated <- read_query(sql))
+sheet_write(voc_scd_treated, ss = ss, sheet = 'cohort_outcomes_by_year')
+```
+
+```{r step_7_cohort_summary3}
+sql = glue("
+    select
+      cohort, year(index_date) as year, 
+      count(*) as n, 
+      count_if(n_voc_b > 0) as voc_1y_before, 
+      count_if(n_voc_b_ip > 0) as voc_ip_1y_before, 
+      count_if(n_voc_b_er > 0) as voc_er_1y_before, 
+      count_if(n_voc_b_iper > 0) as voc_ip_or_er_1y_before, 
+      count_if(n_voc_f > 0) as voc_1y_after,
+      count_if(n_voc_f_ip > 0) as voc_ip_1y_after,
+      count_if(n_voc_f_er > 0) as voc_er_1y_after,
+      count_if(n_voc_f_iper > 0) as voc_ip_or_er_1y_after
+    from {prefix}_final_cohort
+    group by cohort, year
+    order by cohort, year
+    ;
+")
+print(voc_scd_treated <- read_query(sql))
+sheet_write(voc_scd_treated, ss = ss, sheet = 'cohort_outcomes_by_year')
+```
+```{r step_8_demo_summary}
+sql = glue("
+    select
+      cohort, year(index_date) as year, 
+      count(*) as n, 
+      count_if(n_voc_b > 0) as voc_1y_before, 
+      count_if(n_voc_b_ip > 0) as voc_ip_1y_before, 
+      count_if(n_voc_b_er > 0) as voc_er_1y_before, 
+      count_if(n_voc_b_iper > 0) as voc_ip_or_er_1y_before, 
+      count_if(n_voc_f > 0) as voc_1y_after,
+      count_if(n_voc_f_ip > 0) as voc_ip_1y_after,
+      count_if(n_voc_f_er > 0) as voc_er_1y_after,
+      count_if(n_voc_f_iper > 0) as voc_ip_or_er_1y_after
+    from {prefix}_final_cohort
+    group by cohort, year
+    order by cohort, year
+    ;
+")
+print(voc_scd_treated <- read_query(sql))
+sheet_write(voc_scd_treated, ss = ss, sheet = 'cohort_outcomes_by_year')
+```

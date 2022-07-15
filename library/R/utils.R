@@ -28,16 +28,6 @@ bulk_upload <- function(
       paste("CREATE OR REPLACE STAGE", stage_name, "FILE_FORMAT = (TYPE = CSV FIELD_OPTIONALLY_ENCLOSED_BY=\'\"\' SKIP_HEADER = 1);"), 
       sep = "\n")
   
-  # need to call this with token parameter
-  gs4_auth(
-    email = gargle::gargle_oauth_email(),
-    path = NULL,
-    scopes = "https://www.googleapis.com/auth/spreadsheets",
-    cache = gargle::gargle_oauth_cache(),
-    use_oob = gargle::gargle_oob_default(),
-    token = gargle::token_fetch("https://www.googleapis.com/auth/spreadsheets")
-  )
-  
   # load file to get colnames and types
   # don't need all rows to guess types
   f <- data.table::fread(file.path(dir, filename), nrows=10000, colClasses = colClasses)
@@ -148,6 +138,15 @@ bulk_upload_gs <- function(
   if (is.null(url) && is.null(ss)) stop("Needs either url or ss to continue.")
   if (is.null(ss)) ss <- as_sheets_id(url)
   
+  # need to call this with token parameter
+  gs4_auth(
+    email = gargle::gargle_oauth_email(),
+    path = NULL,
+    scopes = "https://www.googleapis.com/auth/spreadsheets",
+    cache = gargle::gargle_oauth_cache(),
+    use_oob = gargle::gargle_oob_default(),
+    token = gargle::token_fetch("https://www.googleapis.com/auth/spreadsheets")
+  )
   # f <- range_read(ss, sheet = sheet, range = range)
   f <- range_speedread(ss, sheet = sheet, range = range, guess_max = 10000)
   
@@ -202,4 +201,78 @@ bulk_upload_gs <- function(
     system(snowsql_cmd, input = snowsql_input)
   }
   return(invisible(f))
+}
+
+
+
+
+
+# helper function pass to table1::table1()
+# input: x - a list of covariates for each cohort.
+smd <- function(x, ...) {
+  # print(names(x))
+  # grab vectors of covariate values for cohort 0 and 1
+  y0 <- unlist(x[1])
+  y1 <- unlist(x[2])
+  # for categorical variable, get all levels
+  lvls <- levels(unlist(x))
+  
+  if (is.null(lvls)) lvls <- c(TRUE, FALSE)
+  # print(lvls)
+  smd <- sapply(lvls, function(l) {
+    x0 <- as.numeric(y0 == l)
+    x1 <- as.numeric(y1 == l)
+    v0 <- var(x0, na.rm = T)
+    v1 <- var(x1, na.rm = T)
+    n0 <- length(x0)
+    n1 <- length(x1)
+    
+    diff <- mean(v1, na.rm = T) - mean(v0, na.rm = T)
+    s <- sqrt(((n0-1)*v0 + (n1-1)*v1)/(n0 + n1 - 2))
+    smd <- diff/s
+    # cat(diff, v0, v1, n0, n1, s, smd, "\n")
+    smd
+  })
+  c("", formatC(smd, digit = 3, format = "f"))
+}
+
+# clean and format covariates
+get_covariates <- function(cohort_table, covariates) {
+  tbl_clean <- cohort_table %>%
+    select(upk_key2, index_date, cohort, all_of(covariates))
+  formula <- as.formula(glue("~ {paste(covariates, collapse = '+')}|cohort"))
+  tbl_bal <- table1::table1(formula, data = tbl_clean, extra.col=list(`SMD`=smd))
+  return(list(tbl_clean = tbl_clean, tbl_bal = as.data.frame(tbl_bal)))
+}
+
+# run matching model and model summary
+
+run_matching <- function(
+  seed = 1234, pre_matching_data, ratio = 1, caliper = 0.2, 
+  matching_vars, exact_matching_vars, summary_vars = NULL) {
+  require(cobalt)
+  require(MatchIt)
+  set.seed(seed)
+  fml_matching <- as.formula(glue("cohort ~ {paste(matching_vars, collapse = '+')}"))
+  fml_exact <- NULL
+  if (!is.null(exact_matching_vars)) fml_exact <- as.formula(glue(" ~ {paste(exact_matching_vars, collapse = '+')}"))
+  fml_summary <- NULL
+  if (!is.null(summary_vars)) fml_summary <- as.formula(glue(" ~ {paste(summary_vars, collapse = '+')}"))
+  t_start <- proc.time()
+  matching_model <- matchit(
+    fml_matching,
+    data = pre_matching_data,
+    ratio = ratio,
+    caliper = caliper,
+    exact = fml_exact
+  )
+  t_end <- proc.time()
+  print(t_end - t_start)
+  bal_tbl <- bal.tab(matching_model, addl = fml_summary, m.threshold = 0.1, un = T, disp = "means", 
+                     s.d.denom = "pooled", binary = "std", continuous = "std")
+  bal_plot <- bal.plot(matching_model, "distance", which = 'both')
+  love_plot <- love.plot(bal_tbl)
+  
+  return(list(matching_model = matching_model, bal_nn = bal_tbl$Observations,
+              bal_tbl = bal_tbl$Balance, bal_plot = bal_plot, love_plot = love_plot))
 }
