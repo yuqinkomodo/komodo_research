@@ -52,6 +52,7 @@ query_event_mx <- function(
   if (!is.null(patient_table)) patient_where_str = glue("and upk_key2 in (select upk_key2 from {patient_table})")
   mx_enc_lite = glue("MAP_ENCOUNTERS.MX_ENCOUNTERS_{mx_version}.ENCOUNTERSMX_LITE_LS_GA")
   mx_enc = glue("MAP_ENCOUNTERS.MX_ENCOUNTERS_{mx_version}.ENCOUNTERSMX_LS_GA")
+  mx_line = glue("MAP_ENCOUNTERS.MX_ENCOUNTERS_{mx_version}.ENCOUNTERSMX_LS_GA_SERVICE_LINES")
   mx_visit = glue("MAP_ENCOUNTERS.MX_ENCOUNTERS_{mx_version}.VISITS_LS_GA")
   sql_query = glue(read_sql("query_event_mx"))
   sql_query

@@ -248,8 +248,8 @@ get_covariates <- function(cohort_table, covariates) {
 # run matching model and model summary
 
 run_matching <- function(
-  seed = 1234, pre_matching_data, ratio = 1, caliper = 0.2, 
-  matching_vars, exact_matching_vars, summary_vars = NULL) {
+  seed = 1234, pre_matching_data,
+  matching_vars, exact_matching_vars, summary_vars = NULL, ...) {
   require(cobalt)
   require(MatchIt)
   set.seed(seed)
@@ -262,9 +262,8 @@ run_matching <- function(
   matching_model <- matchit(
     fml_matching,
     data = pre_matching_data,
-    ratio = ratio,
-    caliper = caliper,
-    exact = fml_exact
+    exact = fml_exact,
+    ...
   )
   t_end <- proc.time()
   print(t_end - t_start)
@@ -273,6 +272,15 @@ run_matching <- function(
   bal_plot <- bal.plot(matching_model, "distance", which = 'both')
   love_plot <- love.plot(bal_tbl)
   
-  return(list(matching_model = matching_model, bal_nn = bal_tbl$Observations,
-              bal_tbl = bal_tbl$Balance, bal_plot = bal_plot, love_plot = love_plot))
+  bal_nn <- bal_tbl$Observations
+  bal_nn <- cbind(data.frame(Group = rownames(bal_nn)), bal_nn)
+  rownames(bal_nn) <- NULL
+  
+  bal_table <- bal_tbl$Balance
+  bal_table <- cbind(data.frame(Covariate = rownames(bal_table)), bal_table)
+  rownames(bal_table) <- NULL
+  
+  return(list(matching_model = matching_model, 
+              bal_nn = bal_nn, bal_tbl = bal_table, 
+              bal_plot = bal_plot, love_plot = love_plot))
 }
