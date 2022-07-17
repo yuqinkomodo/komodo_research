@@ -15,8 +15,10 @@ proj_dir <- file.path(repo_dir, 'projects', 'ash_2022')
 lib_dir <- file.path(repo_dir, 'library')
 code_dir <- file.path(proj_dir, 'code')
 model_dir <- file.path(proj_dir, 'model')
+plot_dir <- file.path(proj_dir, 'plot')
 dir.create(code_dir, showWarnings = F)
 dir.create(model_dir, showWarnings = F)
+dir.create(plot_dir, showWarnings = F)
 
 library(tidyverse)
 library(glue)
@@ -24,9 +26,12 @@ library(clipr)
 library(tictoc)
 library(DBI)
 library(googlesheets4)
+library(googledrive)
 library(MatchIt)
 library(table1)
 library(cobalt)
+library(boot)
+library(parallel)
 source(file.path(lib_dir, "R/utils.R"))
 source(file.path(lib_dir, "R/sql_helper.R"))
 source(file.path(lib_dir, "R/sql_utils.R"))
@@ -58,6 +63,11 @@ gs4_auth(
 )
 code_list_ss = "1lwGATVIUxa1RMtcfUmpZRoJLEcDadBboyTmTthN2U20"
 output_ss = "1Vs8wMBUndpKMF1jx_PVWZskhREAGYaJUudteNMNvviM"
+
+proj_drive_url = "https://drive.google.com/drive/folders/1Dfs8-sJUgx-5rfbLJIY2igNIpPJ4rsX-"
+proj_drive = drive_get(path = proj_drive_url)
+#drive_mkdir('plot', path = proj_drive, overwrite = FALSE)
+plot_drive = drive_ls(proj_drive, 'plot')
 ```
 
 ```{r project_spec}
@@ -65,7 +75,7 @@ output_ss = "1Vs8wMBUndpKMF1jx_PVWZskhREAGYaJUudteNMNvviM"
 rx_version = '20220613'
 mx_version = '20220605'
 code_version = '20220606'
-query_start_date = '2019-01-01'
+query_start_date = '2018-12-01'
 query_end_date = '2022-12-31'
 ## Output table names
 prefix = 'SCD'
@@ -241,15 +251,10 @@ sql = glue("
     with query as (
       select upk_key2, claim_date, code, codetype
       from {prefix}_rx_encounter where event = 'oxbryta'
-    ),
-    add_row_number as(
-      select upk_key2, claim_date, code, codetype,
-        row_number() over(partition by upk_key2 order by claim_date) as n
-      from query
     )
     select upk_key2, claim_date as index_date, code, codetype
-    from add_row_number
-    where n = 1
+    from query
+    qualify row_number() over(partition by upk_key2 order by claim_date) = 1
     ;
 ")
 execute_sql(sql)
@@ -263,34 +268,48 @@ execute_sql(sql)
 seed = 1234
 sql = glue("
   create or replace table {prefix}_control_cohort as
-  with query as (
-    select upk_key2, claim_date, code, codetype
-    from {prefix}_mx_encounter 
-    where event = 'scd' and upk_key2 not in (select upk_key2 from {prefix}_oxbryta_cohort)
-  ),
-  first_claim as(
-    select upk_key2, claim_date, code, codetype,
-      row_number() over(partition by upk_key2 order by claim_date) as n
-    from query
-    qualify n = 1
-  )
-  select c.upk_key2, c.claim_date, 
-    greatest(start_date + 365, c.claim_date + 1, to_date('2019-12-01')) as first_index_date,
+  select upk_key2, start_date, end_date, 
+    greatest(start_date + 365, to_date('2019-12-01')) as first_index_date,
     e.end_date - 365 as last_index_date,
     last_index_date - first_index_date as length,
     uniform(0::float, 1::float, random({seed})) as rng,
     first_index_date + (length * rng)::int as index_date
-  from first_claim c
-  inner join ce_{mx_version} e
-  on c.upk_key2 = e.upk_key2 and c.claim_date between e.start_date and e.end_date - 365
-  where e.end_date - e.start_date >= 730 and length > 0
+  from ce_{mx_version} e
+  where e.end_date - e.start_date >= 730 
+    and e.upk_key2 in (select upk_key2 from {prefix}_mx_encounter where event = 'scd')
+    and e.upk_key2 not in (select upk_key2 from {prefix}_oxbryta_cohort)
+    and e.end_date >= to_date('2018-12-01') + 730
+    and length > 0
   ;
 ")
 execute_sql(sql)
+# 
+#   with query as (
+#     select upk_key2, claim_date, code, codetype
+#     from {prefix}_mx_encounter 
+#     where event = 'scd' and upk_key2 not in (select upk_key2 from {prefix}_oxbryta_cohort)
+#   ),
+#   first_claim as(
+#     select upk_key2, claim_date, code, codetype,
+#       row_number() over(partition by upk_key2 order by claim_date) as n
+#     from query
+#     qualify row_number() over(partition by upk_key2 order by claim_date) = 1
+#   )
+#   select c.upk_key2, c.claim_date, 
+#     greatest(start_date + 365, c.claim_date + 1, to_date('2019-12-01')) as first_index_date,
+#     e.end_date - 365 as last_index_date,
+#     last_index_date - first_index_date as length,
+#     uniform(0::float, 1::float, random({seed})) as rng,
+#     first_index_date + (length * rng)::int as index_date
+#   from first_claim c
+#   inner join ce_{mx_version} e
+#   on c.upk_key2 = e.upk_key2 and c.claim_date between e.start_date and e.end_date - 365
+#   where e.end_date - e.start_date >= 730 and length > 0
 ```
 
 
 ```{r step_4_combine_cohort_and_add_flag}
+bene_table = glue("MAP_ENCOUNTERS.MX_ENCOUNTERS_{mx_version}.BENEFICIARY_LS_GA")
 sql = glue("
   create or replace table {prefix}_combined_cohort as
   with combined as (
@@ -326,11 +345,22 @@ sql = glue("
     inner join {prefix}_rx_encounter r
     on c.upk_key2 = r.upk_key2 and r.event in ('adakveo', 'endari')
     group by c.upk_key2 
+  ),
+  bene as (
+    select distinct c.upk_key2,
+      first_value(patient_dob) over (partition by c.upk_key2 order by patient_dob nulls last) as patient_dob,
+      first_value(patient_gender) over (partition by c.upk_key2 order by patient_gender nulls last) as patient_gender,
+      first_value(patient_state) over (partition by c.upk_key2 order by patient_state nulls last) as patient_state,
+      first_value(patient_zip) over (partition by c.upk_key2 order by patient_zip nulls last) as patient_zip
+    from combined c
+    left join {bene_table} b
+    on c.upk_key2 = b.upk_key2 and c.index_date between b.closed_start_date and b.closed_end_date
   )
-  select c.upk_key2, cohort, index_date, 
+  select distinct c.upk_key2, cohort, index_date, 
     coalesce(elig, 0) as elig, 
-    coalesce(n_scd_before, 0) as n_scd_before
-    --, 
+    coalesce(n_scd_before, 0) as n_scd_before,
+    patient_dob, patient_gender, patient_state, patient_zip,
+    year(index_date) - year(patient_dob) as age
     --coalesce(n_adakveo, 0) as n_adakveo, 
     --coalesce(n_endari, 0) as n_endari
   from combined c
@@ -340,6 +370,8 @@ sql = glue("
   on c.upk_key2 = m.upk_key2
   left join excl r
   on c.upk_key2 = r.upk_key2
+  left join bene b
+  on c.upk_key2 = b.upk_key2
   ;
 ")
 execute_sql(sql)
@@ -347,23 +379,11 @@ execute_sql(sql)
 
 
 ```{r step_5_final_cohort}
-bene_table = glue("MAP_ENCOUNTERS.MX_ENCOUNTERS_{mx_version}.BENEFICIARY_LS_GA")
 sql = glue("
   create or replace table {prefix}_final_cohort as
-  select distinct *, year(index_date) - year(patient_dob) as age
-  from (
-      select distinct a.*,
-      first_value(patient_dob) over (partition by a.upk_key2 order by patient_dob nulls last) as patient_dob,
-      first_value(patient_gender) over (partition by a.upk_key2 order by patient_gender nulls last) as patient_gender,
-      first_value(patient_state) over (partition by a.upk_key2 order by patient_state nulls last) as patient_state,
-      first_value(patient_zip) over (partition by a.upk_key2 order by patient_zip nulls last) as patient_zip
-      from {prefix}_combined_cohort a
-      left join {bene_table} b
-      on a.upk_key2 = b.upk_key2 and a.index_date between b.closed_start_date and b.closed_end_date
-      where elig > 0 and n_scd_before > 0
-      -- and n_adakveo = 0 and n_endari = 0
-  )
-  where age >= 12
+  select *
+  from {prefix}_combined_cohort
+  where elig > 0 and n_scd_before > 0 and age >= 12
   ;
 ")
 execute_sql(sql)
@@ -393,15 +413,10 @@ sql = glue("
     where elig > 0 and n_scd_before > 0
     group by cohort
 
-    --union all
-    --select 'd. no adakveo or endari usage' as criteria, {select_str}
-    --from {prefix}_combined_cohort
-    --where elig > 0 and n_scd_before > 0 and n_adakveo = 0 and n_endari = 0
-    --group by cohort
-
     union all
-    select 'd. age >= 12' as criteria, {select_str}
-    from {prefix}_final_cohort
+    select 'd. age >= 12 on index date' as criteria, {select_str}
+    from {prefix}_combined_cohort
+    where elig > 0 and n_scd_before > 0 and age >= 12
     group by cohort
     
     order by cohort, criteria
@@ -681,54 +696,41 @@ sql = glue("
 execute_sql(sql)
 ```
 
-```{r step_9_get_outcomes}
-sql = glue("
-    create or replace table {prefix}_outcomes as
-    select distinct upk_key2, event, visit_id, visit_start_date, visit_end_date, visit_setting_of_care
-    from {prefix}_mx_encounter
-    where event in ('voc', 'transfusion') and upk_key2 in (select upk_key2 from {prefix}_final_cohort)
-    union
-    select distinct upk_key2, event, visit_id, visit_start_date, visit_end_date, visit_setting_of_care
-    from {prefix}_mx_encounter_sub
-    where event in ('voc', 'transfusion') and upk_key2 in (select upk_key2 from {prefix}_final_cohort)
-    ;
-")
-execute_sql(sql)
-```
-
-
-```{r step_10_download_to_local}
+```{r step_9_download_to_local}
 cohort <- 
   tbl(con_odbc, Id(database = "SANDBOX_KOMODO", schema = "AYWEI", table = "SCD_FINAL_COHORT_W_COV")
 ) %>% collect()
 colnames(cohort) <- tolower(colnames(cohort))
-
-# outcomes <-
-#   tbl(con_odbc, Id(database = "SANDBOX_KOMODO", schema = "AYWEI", table = "SCD_OUTCOMES")
-# ) %>% collect()
-# colnames(outcomes) <- tolower(colnames(outcomes))
 ```
 
-```{r step_11_cohort_funnal_and_summary}
+```{r step_10_cohort_funnal}
 cohort_funnel_reshape <-
   cohort_funnel %>% 
   arrange(criteria, cohort) %>% 
   pivot_wider(id_cols = "criteria", names_from = c("cohort"), values_from = c("n_bene")) %>%
   mutate(pct_oxbryta = oxbryta/max(oxbryta), pct_control = control/max(control)) %>%
   select(criteria, oxbryta, pct_oxbryta, control, pct_control)
-
+print(cohort_funnel_reshape)
 sheet_write(cohort_funnel_reshape, ss = output_ss, sheet = 'cohort_funnel')
+```
 
+```{r step_11_cohort_summary}
 cohort <- cohort %>% 
   mutate(
     year_quarter = paste0(year, quarters(index_date)), 
     cohort = factor(cohort, levels = c("oxbryta", "control")),
     region = factor(region))
-covariates <- get_covariates(cohort, covariates = c('age_cat', 'gender', 'region', 'patient_state', 'year_quarter', 'voc_treatment', 'cci', 'transfusion', 'pre_voc', 'pre_voc_ip', 'pre_voc_er', 'pre_voc_iper', 'post_voc', 'post_voc_ip', 'post_voc_er', 'post_voc_iper'))
+covariates <- get_covariates(
+  cohort, 
+  covariates = 
+    c('age_cat', 'gender', 'region', 'patient_state', 'year_quarter', 'voc_treatment', 'cci', 'transfusion', 
+      'pre_voc', 'pre_voc_ip', 'pre_voc_er', 'pre_voc_iper', 
+      'post_voc', 'post_voc_ip', 'post_voc_er', 'post_voc_iper'))
+print(covariates$tbl_bal)
 sheet_write(covariates$tbl_bal, ss = output_ss, sheet = 'covariates')
 
 pre_matching <- cohort %>% 
-  filter(age < 70, !region %in% c('5. US Territories', 'Missing'), year_quarter != '2019Q4',  year_quarter != '2021Q3') %>%
+  filter(age < 70, !region %in% c('5. US Territories', 'Missing')) %>%
   mutate(
         cohort_name = cohort,
         cohort = as.numeric(cohort == 'oxbryta'),
@@ -736,7 +738,13 @@ pre_matching <- cohort %>%
          gender = factor(gender), year_quarter = factor(year_quarter),
          transfusion = factor(transfusion), cci = factor(cci), voc_treatment = factor(voc_treatment))
 
-covariates_pre_matching <- get_covariates(pre_matching, covariates = c('age_cat', 'gender', 'region', 'year_quarter', 'voc_treatment', 'cci', 'transfusion', 'pre_voc', 'pre_voc_ip', 'pre_voc_er', 'pre_voc_iper', 'post_voc', 'post_voc_ip', 'post_voc_er', 'post_voc_iper'))
+covariates_pre_matching <- get_covariates(
+  pre_matching, 
+  covariates = 
+    c('age_cat', 'gender', 'region', 'year_quarter', 'voc_treatment', 'cci', 'transfusion', 
+      'pre_voc', 'pre_voc_ip', 'pre_voc_er', 'pre_voc_iper', 
+      'post_voc', 'post_voc_ip', 'post_voc_er', 'post_voc_iper'))
+print(covariates_pre_matching$tbl_bal)
 sheet_write(covariates_pre_matching$tbl_bal, ss = output_ss, sheet = 'pre_matching')
 
 # cohort %>% group_by(cohort) %>% summarize(max(n_pre_voc_ip))
@@ -760,16 +768,124 @@ print(matching_model_1$bal_tbl)
 print(matching_model_1$bal_plot)
 print(matching_model_1$love_plot)
 
+ggsave(matching_model_1$bal_plot, filename = file.path(plot_dir, 'bal_plot_model_1.png'), width = 6, height = 4)
+ggsave(matching_model_1$love_plot, filename = file.path(plot_dir, 'love_plot_model_1.png'), width = 10, height = 20)
+drive_plot1 <- drive_upload(file.path(plot_dir, 'bal_plot_model_1.png'), path = plot_drive, overwrite = T)
+drive_plot2 <- drive_upload(file.path(plot_dir, 'love_plot_model_1.png'), path = plot_drive, overwrite = T)
+# add link to worksheet: not working
+# url_plot1 <- drive_link(drive_plot1)
+# url_plot2 <- drive_link(drive_plot2)
+# sheet_write(data.frame(gs4_formula(glue("=IMAGE(\"{url_plot1}\")"))), ss = output_ss, sheet = "ps_plot")
+# need to semi manually insert into worksheets.
+
 post_matching_1 <- match.data(matching_model_1$matching_model)
 ```
 
+
+```{r matching_design_1_summary}
+post_matching_1_long <- post_matching_1 %>% select(cohort_name, n_pre_voc_ip, n_post_voc_ip, n_pre_voc_er, n_post_voc_er) %>%
+  pivot_longer(cols = c("n_pre_voc_ip", "n_post_voc_ip", "n_pre_voc_er", "n_post_voc_er"), 
+               names_to = "variable", values_to = "count") %>%
+  mutate(treat = as.numeric(cohort_name == 'oxbryta'), 
+         post = as.numeric(variable %in% c('n_post_voc_ip', 'n_post_voc_er')),
+         outcome = stringr::str_extract(variable, '[a-z]*$'))
+hist <- ggplot(post_matching_1_long) + geom_histogram(aes(x = count, fill = variable), position = "dodge", binwidth = 1) + facet_grid(outcome~cohort_name) + coord_cartesian(xlim=c(0, 20))
+print(hist)
+ggsave(hist, filename = file.path(plot_dir, 'histogram_model_1.png'), width = 6, height = 5)
+drive_plot3 <- drive_upload(file.path(plot_dir, 'histogram_model_1.png'), path = plot_drive, overwrite = T)
+
+summ <- post_matching_1_long %>% group_by(outcome, treat, post) %>%
+  summarize(n = n(), mean = mean(count), voc1p = sum(count >= 1), voc2p = sum(count >= 2), voc3p = sum(count >= 3))
+
+sheet_write(summ, ss = output_ss, sheet = 'outcome_summary')
+
+```
+
+```{r matching_design_1_modeling}
+ip_model <- glm(count ~ treat*post, family = poisson(link = 'identity'), data = post_matching_1_long %>% filter(outcome == 'ip'))
+er_model <- glm(count ~ treat*post, family = poisson(link = 'identity'), data = post_matching_1_long %>% filter(outcome == 'er'))
+ip_model_1p <- lm(I(count>=1) ~ treat*post, data = post_matching_1_long %>% filter(outcome == 'ip'))
+er_model_1p <- lm(I(count>=1) ~ treat*post, data = post_matching_1_long %>% filter(outcome == 'er'))
+ip_model_2p <- lm(I(count>=2) ~ treat*post, data = post_matching_1_long %>% filter(outcome == 'ip'))
+er_model_2p <- lm(I(count>=2) ~ treat*post, data = post_matching_1_long %>% filter(outcome == 'er'))
+ip_model_3p <- lm(I(count>=3) ~ treat*post, data = post_matching_1_long %>% filter(outcome == 'ip'))
+er_model_3p <- lm(I(count>=3) ~ treat*post, data = post_matching_1_long %>% filter(outcome == 'er'))
+
+```
+
+```{r matching_design_1_boot_ci}
+fit_did <- function(data_wide, ind) {
+  data_long <- 
+    data_wide[ind,] %>% 
+    select(cohort_name, n_pre_voc_ip, n_post_voc_ip, n_pre_voc_er, n_post_voc_er) %>%
+    pivot_longer(cols = c("n_pre_voc_ip", "n_post_voc_ip", "n_pre_voc_er", "n_post_voc_er"), 
+                 names_to = "variable", values_to = "count") %>%
+    mutate(treat = as.numeric(cohort_name == 'oxbryta'), 
+           post = as.numeric(variable %in% c('n_post_voc_ip', 'n_post_voc_er')),
+           outcome = stringr::str_extract(variable, '[a-z]*$'))
+  
+  ip_model <- glm(count ~ treat*post, family = poisson(link = 'identity'), data = data_long %>% filter(outcome == 'ip'))
+  er_model <- glm(count ~ treat*post, family = poisson(link = 'identity'), data = data_long %>% filter(outcome == 'er'))
+  ip_model_1p <- lm(I(count>=1) ~ treat*post, data = data_long %>% filter(outcome == 'ip'))
+  er_model_1p <- lm(I(count>=1) ~ treat*post, data = data_long %>% filter(outcome == 'er'))
+  ip_model_2p <- lm(I(count>=2) ~ treat*post, data = data_long %>% filter(outcome == 'ip'))
+  er_model_2p <- lm(I(count>=2) ~ treat*post, data = data_long %>% filter(outcome == 'er'))
+  ip_model_3p <- lm(I(count>=3) ~ treat*post, data = data_long %>% filter(outcome == 'ip'))
+  er_model_3p <- lm(I(count>=3) ~ treat*post, data = data_long %>% filter(outcome == 'er'))
+
+  c(coef(ip_model)['treat:post'], coef(er_model)['treat:post'],
+    coef(ip_model_1p)['treat:post'], coef(er_model_1p)['treat:post'],
+    coef(ip_model_2p)['treat:post'], coef(er_model_2p)['treat:post'],
+    coef(ip_model_3p)['treat:post'], coef(er_model_3p)['treat:post'])
+}
+fit_did(post_matching_1)
+cl <- makeCluster(detectCores())
+res <- boot(post_matching_1, fit_did, R = 1000, parallel = "snow", cl = cl)
+stopCluster(cl)
+ci <- t(sapply(1:8, function(i) boot.ci(res, type = c('basic'), index = i)$basic[c(4,5)]))
+
+model_df <- data.frame(
+  model = rep(c('counts', 'voc>=1', 'voc>=2', 'voc>=3'), each = 2),
+  outcome = rep(c('ip', 'er'), 4), 
+  rbind(coef(ip_model), coef(er_model), coef(ip_model_1p), coef(er_model_1p), 
+        coef(ip_model_2p), coef(er_model_2p), coef(ip_model_3p), coef(er_model_3p)),
+  lower = ci[,1],
+  upper = ci[,2]
+  )
+
+# sheet_add(ss = output_ss, 'did_model')
+range_write(model_df, ss = output_ss, sheet = 'did_model', range = 'A1')
+```
+
 ```{r matching_design_2}
-matching_model_2 <- run_matching(seed = 1234, pre_matching,
-                                matching_vars = c('age', 'gender', 'region', 'cci', 'year_quarter', 'voc_treatment', 'transfusion'),
-                                exact_matching_vars = NULL,
+pre_matching_2 <- pre_matching %>%
+  mutate(pre_voc_ip2 = case_when(
+    n_pre_voc_ip == 0 ~ '0',
+    n_pre_voc_ip == 1 ~ '1',
+    n_pre_voc_ip == 2 ~ '2',
+    n_pre_voc_ip == 3 ~ '3',
+    n_pre_voc_ip == 4 ~ '4',
+    n_pre_voc_ip == 5 ~ '5',
+    n_pre_voc_ip <= 10 ~ '6-10',
+    TRUE ~ '11+'
+  ),
+  pre_voc_er2 = case_when(
+    n_pre_voc_er == 0 ~ '0',
+    n_pre_voc_er == 1 ~ '1',
+    n_pre_voc_er == 2 ~ '2',
+    n_pre_voc_er == 3 ~ '3',
+    n_pre_voc_er == 4 ~ '4',
+    n_pre_voc_er == 5 ~ '5',
+    n_pre_voc_er <= 10 ~ '6-10',
+    TRUE ~ '11+')
+  ) %>%
+  filter(!(year_quarter %in% c('2019Q4', '2021Q3')))
+
+matching_model_2 <- run_matching(seed = 1234, pre_matching_2,
+                                matching_vars = c('age_cat', 'gender', 'region', 'cci', 'year_quarter', 'transfusion', 'voc_treatment', 'pre_voc_er2', 'pre_voc_ip2'),
+                                exact_matching_vars = 'voc_treatment',
                                 summary_vars = NULL,
-                                caliper = 0.1,
-                                distance = "gbm")
+                                caliper = 0.1)
 saveRDS(matching_model_2, file.path(model_dir, paste0("matching_model_2.Rds")))
 matching_model_2 <- readRDS(file.path(model_dir, paste0("matching_model_2.Rds")))
 
@@ -780,13 +896,95 @@ print(matching_model_2$bal_tbl)
 print(matching_model_2$bal_plot)
 print(matching_model_2$love_plot)
 
+ggsave(matching_model_2$bal_plot, filename = file.path(plot_dir, 'bal_plot_model_2.png'), width = 6, height = 4)
+ggsave(matching_model_2$love_plot, filename = file.path(plot_dir, 'love_plot_model_2.png'), width = 10, height = 20)
+drive_plot1 <- drive_upload(file.path(plot_dir, 'bal_plot_model_2.png'), path = plot_drive, overwrite = T)
+drive_plot2 <- drive_upload(file.path(plot_dir, 'love_plot_model_2.png'), path = plot_drive, overwrite = T)
+
 post_matching_2 <- match.data(matching_model_2$matching_model)
 ```
 
-```{r step_13_summarize_outcomes}
-post_matching_1_long <- post_matching_1 %>% select(cohort_name, n_pre_voc_ip, n_post_voc_ip) %>%
-  pivot_longer(cols = c("n_pre_voc_ip", "n_post_voc_ip"), names_to = "variable", values_to = "count")
-ggplot(post_matching_1_long) + geom_histogram(aes(x = count, fill = variable), position = "dodge") + facet_grid(~cohort_name)
+```{r matching_design_2_investigation}
+pre_matching_2 %>% group_by(cohort, voc_treatment) %>%
+  summarize(n = n(), mean(n_pre_voc_ip), mean(n_post_voc_ip))
 
-sheet_write(outcome_summ, ss = output_ss, sheet = 'outcome_summary')
+post_matching_2 %>% group_by(cohort, voc_treatment) %>%
+  summarize(n = n(), mean(n_pre_voc_ip), mean(n_post_voc_ip))
+```
+
+```{r matching_design_2_summary}
+post_matching_2_long <- post_matching_2 %>% 
+  select(cohort_name, n_pre_voc_ip, n_post_voc_ip, n_pre_voc_er, n_post_voc_er) %>%
+  pivot_longer(cols = c("n_pre_voc_ip", "n_post_voc_ip", "n_pre_voc_er", "n_post_voc_er"), 
+               names_to = "variable", values_to = "count") %>%
+  mutate(treat = as.numeric(cohort_name == 'oxbryta'), 
+         post = as.numeric(variable %in% c('n_post_voc_ip', 'n_post_voc_er')),
+         outcome = stringr::str_extract(variable, '[a-z]*$'))
+hist2 <- ggplot(post_matching_2_long) + 
+  geom_histogram(aes(x = count, fill = cohort_name), position = "dodge", binwidth = 1) + facet_grid(outcome~post) + 
+  coord_cartesian(xlim=c(0, 20))
+print(hist2)
+ggsave(hist2, filename = file.path(plot_dir, 'histogram_model_2.png'), width = 6, height = 5)
+drive_plot3 <- drive_upload(file.path(plot_dir, 'histogram_model_2.png'), path = plot_drive, overwrite = T)
+
+summ <- post_matching_2_long %>% group_by(outcome, treat, post) %>%
+  summarize(n = n(), mean = mean(count), voc1p = sum(count >= 1), voc2p = sum(count >= 2), voc3p = sum(count >= 3))
+print(summ)
+sheet_write(summ, ss = output_ss, sheet = 'outcome_summary2')
+
+```
+
+```{r matching_design_2_modeling}
+ip_model <- glm(count ~ treat*post, family = poisson(link = 'identity'), data = post_matching_2_long %>% filter(outcome == 'ip'))
+er_model <- glm(count ~ treat*post, family = poisson(link = 'identity'), data = post_matching_2_long %>% filter(outcome == 'er'))
+ip_model_1p <- lm(I(count>=1) ~ treat*post, data = post_matching_2_long %>% filter(outcome == 'ip'))
+er_model_1p <- lm(I(count>=1) ~ treat*post, data = post_matching_2_long %>% filter(outcome == 'er'))
+ip_model_2p <- lm(I(count>=2) ~ treat*post, data = post_matching_2_long %>% filter(outcome == 'ip'))
+er_model_2p <- lm(I(count>=2) ~ treat*post, data = post_matching_2_long %>% filter(outcome == 'er'))
+ip_model_3p <- lm(I(count>=3) ~ treat*post, data = post_matching_2_long %>% filter(outcome == 'ip'))
+er_model_3p <- lm(I(count>=3) ~ treat*post, data = post_matching_2_long %>% filter(outcome == 'er'))
+
+```
+
+```{r matching_design_2_boot_ci}
+fit_did <- function(data_wide, ind) {
+  data_long <- 
+    data_wide[ind,] %>% 
+    select(cohort_name, n_pre_voc_ip, n_post_voc_ip, n_pre_voc_er, n_post_voc_er) %>%
+    pivot_longer(cols = c("n_pre_voc_ip", "n_post_voc_ip", "n_pre_voc_er", "n_post_voc_er"), 
+                 names_to = "variable", values_to = "count") %>%
+    mutate(treat = as.numeric(cohort_name == 'oxbryta'), 
+           post = as.numeric(variable %in% c('n_post_voc_ip', 'n_post_voc_er')),
+           outcome = stringr::str_extract(variable, '[a-z]*$'))
+  
+  ip_model <- glm(count ~ treat*post, family = poisson(link = 'identity'), data = data_long %>% filter(outcome == 'ip'))
+  er_model <- glm(count ~ treat*post, family = poisson(link = 'identity'), data = data_long %>% filter(outcome == 'er'))
+  ip_model_1p <- lm(I(count>=1) ~ treat*post, data = data_long %>% filter(outcome == 'ip'))
+  er_model_1p <- lm(I(count>=1) ~ treat*post, data = data_long %>% filter(outcome == 'er'))
+  ip_model_2p <- lm(I(count>=2) ~ treat*post, data = data_long %>% filter(outcome == 'ip'))
+  er_model_2p <- lm(I(count>=2) ~ treat*post, data = data_long %>% filter(outcome == 'er'))
+  ip_model_3p <- lm(I(count>=3) ~ treat*post, data = data_long %>% filter(outcome == 'ip'))
+  er_model_3p <- lm(I(count>=3) ~ treat*post, data = data_long %>% filter(outcome == 'er'))
+
+  c(coef(ip_model)['treat:post'], coef(er_model)['treat:post'],
+    coef(ip_model_1p)['treat:post'], coef(er_model_1p)['treat:post'],
+    coef(ip_model_2p)['treat:post'], coef(er_model_2p)['treat:post'],
+    coef(ip_model_3p)['treat:post'], coef(er_model_3p)['treat:post'])
+}
+fit_did(post_matching_2)
+cl <- makeCluster(detectCores())
+res <- boot(post_matching_2, fit_did, R = 1000, parallel = "snow", cl = cl)
+stopCluster(cl)
+ci <- t(sapply(1:8, function(i) boot.ci(res, type = c('basic'), index = i)$basic[c(4,5)]))
+
+model_df <- data.frame(
+  model = rep(c('counts', 'voc>=1', 'voc>=2', 'voc>=3'), each = 2),
+  outcome = rep(c('ip', 'er'), 4), 
+  rbind(coef(ip_model), coef(er_model), coef(ip_model_1p), coef(er_model_1p), 
+        coef(ip_model_2p), coef(er_model_2p), coef(ip_model_3p), coef(er_model_3p)),
+  lower = ci[,1],
+  upper = ci[,2]
+  )
+
+sheet_write(model_df, ss = output_ss, sheet = 'did_model2')
 ```

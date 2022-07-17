@@ -268,7 +268,7 @@ run_matching <- function(
   t_end <- proc.time()
   print(t_end - t_start)
   bal_tbl <- bal.tab(matching_model, addl = fml_summary, m.threshold = 0.1, un = T, disp = "means", 
-                     s.d.denom = "pooled", binary = "std", continuous = "std")
+                     s.d.denom = "pooled", binary = "std", continuous = "std", int = T)
   bal_plot <- bal.plot(matching_model, "distance", which = 'both')
   love_plot <- love.plot(bal_tbl)
   
