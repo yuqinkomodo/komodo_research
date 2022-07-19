@@ -910,6 +910,15 @@ pre_matching_2 %>% group_by(cohort, voc_treatment) %>%
 
 post_matching_2 %>% group_by(cohort, voc_treatment) %>%
   summarize(n = n(), mean(n_pre_voc_ip), mean(n_post_voc_ip))
+
+pre_matching_2 %>% group_by(cohort, ) %>%
+  summarize(n = n(), mean(n_pre_voc_ip), mean(n_post_voc_ip))
+
+post_matching_2 %>% group_by(year_quarter, cohort) %>%
+  summarize(n = n(), mean(n_pre_voc_ip), mean(n_post_voc_ip))
+
+post_matching_2 %>% group_by(year_quarter, cohort) %>%
+  summarize(n = n(), mean(n_pre_voc_er), mean(n_post_voc_er))
 ```
 
 ```{r matching_design_2_summary}

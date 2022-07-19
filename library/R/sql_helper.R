@@ -76,6 +76,15 @@ query_event_rx <- function(
   sql_query
 }
 
+get_adherence <- function(
+  rx_table, 
+  cohort_table, 
+  days_at_risk = 365
+) {
+  sql_query = glue(read_sql("get_adherence"))
+  sql_query
+}
+
 get_code <- function(
   input_list,
   method = c('pattern', 'name'),
