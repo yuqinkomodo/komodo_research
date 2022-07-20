@@ -59,7 +59,7 @@ gs4_auth(
   scopes = "https://www.googleapis.com/auth/spreadsheets",
   cache = gargle::gargle_oauth_cache(),
   use_oob = gargle::gargle_oob_default(),
-  token = gargle::token_fetch("https://www.googleapis.com/auth/spreadsheets")
+  token = gs4_token()
 )
 code_list_ss = "1lwGATVIUxa1RMtcfUmpZRoJLEcDadBboyTmTthN2U20"
 output_ss = "1Vs8wMBUndpKMF1jx_PVWZskhREAGYaJUudteNMNvviM"
@@ -75,7 +75,7 @@ plot_drive = drive_ls(proj_drive, 'plot')
 rx_version = '20220613'
 mx_version = '20220605'
 code_version = '20220606'
-query_start_date = '2018-12-01'
+query_start_date = '2016-01-01'
 query_end_date = '2022-12-31'
 ## Output table names
 prefix = 'SCD'
