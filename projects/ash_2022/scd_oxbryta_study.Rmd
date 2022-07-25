@@ -124,6 +124,11 @@ print(cci2)
 print(transfusion)
 ```
 
+```{r code_list00}
+print(adakveo_proc <- read_query(get_code("crizanlizumab", method = "name", type = 'proc')))
+sheet_write(adakveo_proc, ss = code_list_ss, sheet = 'adakveo_proc')
+```
+
 ```{r code_list4}
 # create code lists:
 # code_list will be queried from the whole DB
@@ -132,6 +137,7 @@ code_list <-
   bind_rows(
     voc_diag %>% select(code, code_description) %>% mutate(codetype = "ICD10CM", event = "voc"),
     scd_diag %>% select(code, code_description) %>% mutate(codetype = "ICD10CM", event = "scd"),
+    adakveo_proc %>% select(code, code_description) %>% mutate(codetype = "HCPCS", event = "adakveo"),
     oxbryta_ndc %>% select(ndc, cui_l1_name) 
       %>% rename(code = ndc, code_description = cui_l1_name) 
       %>% mutate(codetype = "NDC", event = "oxbryta"),
@@ -269,7 +275,7 @@ seed = 1234
 sql = glue("
   create or replace table {prefix}_control_cohort as
   select upk_key2, start_date, end_date, 
-    greatest(start_date + 365, to_date('2019-12-01')) as first_index_date,
+    greatest(start_date + 365, to_date('2017-01-01')) as first_index_date,
     e.end_date - 365 as last_index_date,
     last_index_date - first_index_date as length,
     uniform(0::float, 1::float, random({seed})) as rng,
@@ -278,7 +284,6 @@ sql = glue("
   where e.end_date - e.start_date >= 730 
     and e.upk_key2 in (select upk_key2 from {prefix}_mx_encounter where event = 'scd')
     and e.upk_key2 not in (select upk_key2 from {prefix}_oxbryta_cohort)
-    and e.end_date >= to_date('2018-12-01') + 730
     and length > 0
   ;
 ")
@@ -599,6 +604,7 @@ sql = glue("
       coalesce(n_adakveo, 0) as n_adakveo,
       coalesce(n_endari, 0) as n_endari,
       coalesce(n_voc_treatment, 0) as n_voc_treatment,
+      coalesce(n_transfusion, 0) as n_transfusion,
       
       coalesce(n_pre_voc, 0) as n_pre_voc,
       coalesce(n_pre_voc_ip, 0) as n_pre_voc_ip,
@@ -750,6 +756,73 @@ sheet_write(covariates_pre_matching$tbl_bal, ss = output_ss, sheet = 'pre_matchi
 # cohort %>% group_by(cohort) %>% summarize(max(n_pre_voc_ip))
 # cohort %>% filter(n_pre_voc_ip == 26)
 
+```
+
+```{r step_11_check}
+mean_voc_df <- cohort %>% 
+  group_by(cohort, year_quarter) %>% 
+  summarize(
+    n = n(),
+    mean_ip_pre = mean(n_pre_voc_ip, na.rm = T), 
+    mean_ip_post = mean(n_post_voc_ip, na.rm = T), 
+    diff_ip = mean(n_post_voc_ip-n_pre_voc_ip, na.rm = T),
+    mean_er_pre = mean(n_pre_voc_er, na.rm = T), 
+    mean_er_post = mean(n_post_voc_er, na.rm = T),
+    diff_er = mean(n_post_voc_er-n_pre_voc_er, na.rm = T)
+    ) %>% 
+  print.data.frame()
+sheet_write(mean_voc_df, ss = output_ss, sheet = 'average_voc')
+mean_voc_plot_df <-
+  mean_voc_df %>% 
+  select(cohort, year_quarter, mean_ip_pre, mean_ip_post, mean_er_pre, mean_er_post) %>%
+  pivot_longer(cols = c("mean_ip_pre", "mean_ip_post", "mean_er_pre", "mean_er_post"), 
+               names_to = "variable", values_to = "mean") %>%
+  mutate(panel = ifelse(variable %in% c('mean_ip_post', 'mean_er_post'), 'post', 'pre'),
+         outcome = ifelse(variable %in% c('mean_ip_post', 'mean_ip_pre'), 'ip', 'er')) %>%
+  arrange(outcome, panel, cohort, year_quarter)
+
+mean_voc_plot <- ggplot(mean_voc_plot_df) + 
+  geom_line(aes(x = year_quarter, y = mean, color = panel, group = panel)) +
+  facet_grid(cohort ~ outcome, scales = "free_y") +
+  theme(axis.text.x = element_text(angle = 90))
+print(mean_voc_plot)
+ggsave(mean_voc_plot, filename = file.path(plot_dir, 'average_voc_by_quarter.png'), width = 6, height = 5)
+drive_plot4 <- drive_upload(file.path(plot_dir, 'average_voc_by_quarter.png'), path = plot_drive, overwrite = T)
+```
+
+```{r step_11_check2}
+mean_voc_df_trans <- cohort %>% 
+  filter(n_transfusion >= 1) %>%
+  group_by(cohort, year_quarter) %>% 
+  summarize(
+    n = n(),
+    mean_ip_pre = mean(n_pre_voc_ip, na.rm = T), 
+    mean_ip_post = mean(n_post_voc_ip, na.rm = T), 
+    diff_ip = mean(n_post_voc_ip-n_pre_voc_ip, na.rm = T),
+    mean_er_pre = mean(n_pre_voc_er, na.rm = T), 
+    mean_er_post = mean(n_post_voc_er, na.rm = T),
+    diff_er = mean(n_post_voc_er-n_pre_voc_er, na.rm = T)
+    ) %>% 
+  print.data.frame()
+sheet_write(mean_voc_df_trans, ss = output_ss, sheet = 'average_voc_trans')
+
+mean_voc_plot_df_trans <-
+  mean_voc_df_trans %>% 
+  select(cohort, year_quarter, mean_ip_pre, mean_ip_post, mean_er_pre, mean_er_post) %>%
+  pivot_longer(cols = c("mean_ip_pre", "mean_ip_post", "mean_er_pre", "mean_er_post"), 
+               names_to = "variable", values_to = "mean") %>%
+  mutate(panel = ifelse(variable %in% c('mean_ip_post', 'mean_er_post'), 'post', 'pre'),
+         outcome = ifelse(variable %in% c('mean_ip_post', 'mean_ip_pre'), 'ip', 'er')) %>%
+  arrange(outcome, panel, cohort, year_quarter)
+
+mean_voc_plot_trans <- ggplot(mean_voc_plot_df_trans) + 
+  geom_line(aes(x = year_quarter, y = mean, color = panel, group = panel)) +
+  facet_grid(cohort ~ outcome, scales = "free_y") +
+  theme(axis.text.x = element_text(angle = 90))
+
+print(mean_voc_plot_trans)
+ggsave(mean_voc_plot_trans, filename = file.path(plot_dir, 'average_voc_trans_by_quarter.png'), width = 6, height = 5)
+drive_plot5 <- drive_upload(file.path(plot_dir, 'average_voc_trans_by_quarter.png'), path = plot_drive, overwrite = T)
 ```
 
 ```{r matching_design_1}

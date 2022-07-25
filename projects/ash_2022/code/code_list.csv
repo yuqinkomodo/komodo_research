@@ -80,73 +80,75 @@ D57812,Other sickle-cell disorders with splenic sequestration,ICD10CM,scd
 D57813,Other sickle-cell disorders with cerebral vascular involvement,ICD10CM,scd
 D57818,Other sickle-cell disorders with crisis with other specified complication,ICD10CM,scd
 D57819,"Other sickle-cell disorders with crisis, unspecified",ICD10CM,scd
+J0791,"Injection, crizanlizumab-tmca, 5 mg",HCPCS,adakveo
+C9053,"Injection, crizanlizumab-tmca, 1 mg",HCPCS,adakveo
 72786010101,voxelotor 500 mg oral tablet [oxbryta],NDC,oxbryta
 72786011102,voxelotor 300 mg tablet for oral suspension [oxbryta],NDC,oxbryta
 72786011103,voxelotor 300 mg tablet for oral suspension [oxbryta],NDC,oxbryta
-10135070201,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-54569037800,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
-54569037801,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
-54569037802,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
-51129436801,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-51129436802,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00904693961,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00179181670,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00179181671,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00179181672,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-54868136700,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
-51285054802,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00003083050,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
-69315016401,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-49884072401,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-57866443601,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00440761310,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00440761320,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00440761330,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00440761360,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-60491030230,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
-60491030233,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
-68084028401,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-68084028411,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-51129379601,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-51129379602,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00054224725,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00054824725,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-71770010060,hydroxyurea 100 mg oral tablet [siklos],NDC,hydroxyurea
-71770010560,hydroxyurea 100 mg oral tablet [siklos],NDC,hydroxyurea
-71770012030,hydroxyurea 1000 mg oral tablet [siklos],NDC,hydroxyurea
-23629002801,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-55154714300,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-54738054701,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
 00555088202,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
 00555097903,hydroxyurea 1000 mg oral tablet,NDC,hydroxyurea
 00555097909,hydroxyurea 1000 mg oral tablet,NDC,hydroxyurea
 00555097965,hydroxyurea 1000 mg oral tablet,NDC,hydroxyurea
-00904539460,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-55045301301,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00093088202,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00440761310,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00440761320,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00440761330,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00440761360,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+71770010060,hydroxyurea 100 mg oral tablet [siklos],NDC,hydroxyurea
+71770010560,hydroxyurea 100 mg oral tablet [siklos],NDC,hydroxyurea
+71770012030,hydroxyurea 1000 mg oral tablet [siklos],NDC,hydroxyurea
+57866443601,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+51129379601,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+51129379602,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+58063097909,hydroxyurea 1000 mg oral tablet [mylocel],NDC,hydroxyurea
 00677168001,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-51129166101,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+54868136700,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+68084028401,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+68084028411,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+70518091600,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+70518091601,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+70518091602,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00904539460,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00003633517,hydroxyurea 200 mg oral capsule [droxia],NDC,hydroxyurea
+00003633617,hydroxyurea 300 mg oral capsule [droxia],NDC,hydroxyurea
+00003633717,hydroxyurea 400 mg oral capsule [droxia],NDC,hydroxyurea
+17101083005,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+17101633507,hydroxyurea 200 mg oral capsule [droxia],NDC,hydroxyurea
+17101633607,hydroxyurea 300 mg oral capsule [droxia],NDC,hydroxyurea
+17101633707,hydroxyurea 400 mg oral capsule [droxia],NDC,hydroxyurea
+49884072401,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
 42291032101,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00054224725,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00054824725,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+69315016401,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00603394621,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+58406050101,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+60429026501,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+54738054701,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00904693961,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
 54868477300,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
 54868477301,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
 54868477302,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
 54868477303,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
 54868477304,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-60429026501,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00003633517,hydroxyurea 200 mg oral capsule [droxia],NDC,hydroxyurea
-00003633617,hydroxyurea 300 mg oral capsule [droxia],NDC,hydroxyurea
-00003633717,hydroxyurea 400 mg oral capsule [droxia],NDC,hydroxyurea
-58406050101,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
-58063097909,hydroxyurea 1000 mg oral tablet [mylocel],NDC,hydroxyurea
-17101083005,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
-17101633507,hydroxyurea 200 mg oral capsule [droxia],NDC,hydroxyurea
-17101633607,hydroxyurea 300 mg oral capsule [droxia],NDC,hydroxyurea
-17101633707,hydroxyurea 400 mg oral capsule [droxia],NDC,hydroxyurea
+23629002801,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00179181670,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00179181671,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00179181672,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+00003083050,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+51285054802,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+55045301301,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+10135070201,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
 54569571500,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-70518091600,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-70518091601,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-70518091602,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00603394621,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
-00093088202,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+54569037800,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+54569037801,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+54569037802,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+51129436801,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+51129436802,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+55154714300,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+51129166101,hydroxyurea 500 mg oral capsule,NDC,hydroxyurea
+60491030230,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
+60491030233,hydroxyurea 500 mg oral capsule [hydrea],NDC,hydroxyurea
 00078088361,10 ml crizanlizumab-tmca 10 mg/ml injection [adakveo],NDC,adakveo
 42457042001,glutamine 5000 mg powder for oral solution [endari],NDC,endari
 42457042060,glutamine 5000 mg powder for oral solution [endari],NDC,endari

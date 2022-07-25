@@ -35,6 +35,8 @@ library(table1)
 library(cobalt)
 library(boot)
 library(parallel)
+library(betareg)
+
 source(file.path(lib_dir, "R/utils.R"))
 source(file.path(lib_dir, "R/sql_helper.R"))
 source(file.path(lib_dir, "R/sql_utils.R"))
@@ -134,6 +136,9 @@ sql = glue("
     with query as (
       select upk_key2, claim_date, code, codetype, event as cohort
       from scd_rx_encounter where event in ('oxbryta','hydroxyurea', 'adakveo', 'endari')
+      union
+      select upk_key2, claim_date, code, codetype, event as cohort
+      from scd_mx_encounter where event in ('oxbryta','hydroxyurea', 'adakveo', 'endari')
     ),
     first_claim as(
     select upk_key2, claim_date as index_date, code, codetype, cohort
@@ -255,10 +260,16 @@ cohort_funnel <- function() {
       where elig_b_1y > 0 and elig_f_1y > 0 and n_scd_before > 0
       group by cohort
   
+      -- union all
+      -- select 'd. age >= 12 on index date' as criteria, {select_str}
+      -- from {prefix}_cohort_w_flags
+      -- where elig_b_1y > 0 and elig_f_1y > 0 and n_scd_before > 0 and age >= 12
+      -- group by cohort
+      
       union all
-      select 'd. age >= 12 on index date' as criteria, {select_str}
+      select 'd. index date after 2019/12' as criteria, {select_str}
       from {prefix}_cohort_w_flags
-      where elig_b_1y > 0 and elig_f_1y > 0 and n_scd_before > 0 and age >= 12
+      where elig_b_1y > 0 and elig_f_1y > 0 and n_scd_before > 0 and index_date >= '2019-12-01'
       group by cohort
       
       order by cohort, criteria
@@ -274,7 +285,8 @@ sql = glue("
   create or replace table {prefix}_final_cohort as
   select *
   from {prefix}_cohort_w_flags
-  where elig_b_1y > 0 and elig_f_1y > 0 and n_scd_before > 0 and age >= 12
+  where elig_b_1y > 0 and elig_f_1y > 0 and n_scd_before > 0
+  -- and age >= 12
   ;
 ")
 execute_sql(sql)
@@ -286,10 +298,45 @@ rx_table1 <- glue("(select *, event as cohort from scd_rx_encounter where event 
 cohort_table1 <- glue("(select * from {prefix}_final_cohort where cohort = 'oxbryta')")
 rx_table2 <- glue("(select *, event as cohort from scd_rx_encounter where event = 'hydroxyurea')")
 cohort_table2 <- glue("(select * from {prefix}_final_cohort where cohort = 'hydroxyurea')")
-rx_table3 <- glue("(select *, event as cohort from scd_rx_encounter where event = 'adakveo')")
-cohort_table3 <- glue("(select * from {prefix}_final_cohort where cohort = 'adakveo')")
 rx_table4 <- glue("(select *, event as cohort from scd_rx_encounter where event = 'endari')")
 cohort_table4 <- glue("(select * from {prefix}_final_cohort where cohort = 'endari')")
+
+sql <- glue("
+  create or replace table {prefix}_adakveo_rx as
+  with claims as(
+    select upk_key2, claim_date, 
+      case when days_supply <= 3 then null else days_supply end as days_supply, 
+      code, codetype, event as cohort 
+    from scd_rx_encounter where event = 'adakveo'
+    union all
+    select upk_key2, claim_date, 
+      null as days_supply, code, 
+      codetype, event as cohort 
+    from scd_mx_encounter where event = 'adakveo'
+    order by upk_key2, claim_date
+  ),
+  dedup as (
+    select upk_key2, claim_date, cohort, max(days_supply) as days_supply
+    from claims
+    group by upk_key2, claim_date, cohort
+  ),
+  add_row as (
+    select *, row_number() over(partition by upk_key2, cohort order by claim_date) as n
+    from dedup
+  )
+  select upk_key2, cohort, claim_date,
+    case 
+      when days_supply is null and n <= 2 then 14
+      when days_supply is null and n > 2 then 28
+      else days_supply
+    end as days_supply
+  from add_row
+  ;
+  ")
+execute_sql(sql)
+
+rx_table3 <- glue("(select * from {prefix}_adakveo_rx)")
+cohort_table3 <- glue("(select * from {prefix}_final_cohort where cohort = 'adakveo')")
 
 sql <- glue("
   create or replace table {prefix}_adherence as
@@ -477,6 +524,7 @@ sql = glue("
     )
     select c.*,
       coalesce(n_transfusion, 0) as n_transfusion,
+      coalesce(charlson_score, 0) as charlson_score,
       
       coalesce(n_pre_voc, 0) as n_pre_voc,
       coalesce(n_pre_voc_ip, 0) as n_pre_voc_ip,
@@ -489,12 +537,11 @@ sql = glue("
       coalesce(n_post_voc_iper, 0) as n_post_voc_iper,      
       
       case
+        when age < 12 then '0. 0-11'
         when age < 20 then '1. 12-19'
         when age < 30 then '2. 20-29'
-        when age < 40 then '3. 30-39'
-        when age < 50 then '4. 40-49'
-        when age < 70 then '5. 50-69'
-        when age >= 70 then '9. 70+'
+        when age < 50 then '3. 30-49'
+        when age >= 50 then '9. 50+'
         else 'Missing'
       end as age_cat,
       case
@@ -585,6 +632,44 @@ cohort <-
   tbl(con_odbc, Id(database = "SANDBOX_KOMODO", schema = "AYWEI", table = "OXBRYTA2_FINAL_COHORT_W_COV")
 ) %>% collect()
 colnames(cohort) <- tolower(colnames(cohort))
+cohort <- cohort %>% 
+  mutate(
+    year_quarter = factor(paste0(year, quarters(index_date))), 
+    age_cat = factor(age_cat),
+    cohort = factor(cohort, levels = c("oxbryta", "hydroxyurea", "adakveo", "endari")),
+    region = factor(region))
+cohort <- cohort %>%
+  mutate(pdc_augmented = pmin(pdc_at_risk, 1-1e-3),
+         w_transfusion = n_transfusion > 0,
+         pre_voc_ip3 = case_when(
+           n_pre_voc_ip == 0 ~ '0',
+           n_pre_voc_ip == 1 ~ '1',
+           n_pre_voc_ip == 2 ~ '2',
+           TRUE ~ '3+'
+         ),
+         pre_voc_er3 = case_when(
+           n_pre_voc_er == 0 ~ '0',
+           n_pre_voc_er == 1 ~ '1',
+           n_pre_voc_er == 2 ~ '2',
+           TRUE ~ '3+'
+         ),
+         cci_score = case_when(
+           charlson_score == 0 ~ '0',
+           charlson_score <= 3 ~ '1-3',
+           TRUE ~ '4+'
+         )
+      )
+region_labs <- levels(cohort$region)[1:4]
+
+cohort2 <-
+  cohort %>% filter(index_date >= '2019-12-01', 
+                    index_date <= '2021-06-30', 
+                    !is.na(gender), !is.na(age)) %>%
+  mutate(region = factor(ifelse(region == 'Missing', 3, region), labels = region_labs),
+         year_quarter = factor(year_quarter),
+         age_cat = factor(age_cat))
+
+# sheet_write(cohort, ss = output2_ss, sheet = 'patient_cohort')
 ```
 
 ```{r upload_cohort_funnal}
@@ -597,20 +682,26 @@ sheet_write(cohort_funnel_reshape, ss = output2_ss, sheet = 'cohort_funnel')
 ```
 
 ```{r cohort_summary}
-cohort <- cohort %>% 
-  mutate(
-    year_quarter = factor(paste0(year, quarters(index_date))), 
-    cohort = factor(cohort, levels = c("oxbryta", "hydroxyurea", "adakveo", "endari")),
-    region = factor(region))
 covariates <- get_covariates(
   cohort, 
   covariates = 
-    c('age_cat', 'gender', 'region', 'patient_state', 'year_quarter', 'cci', 'transfusion', 'patient_race_omb', 'patient_ethnicity_omb',
+    c('age_cat', 'gender', 'region', 'patient_state', 'year_quarter', 'cci_score', 'w_transfusion', 'patient_race_omb', 'patient_ethnicity_omb',
       'pre_voc', 'pre_voc_ip', 'pre_voc_er', 'pre_voc_iper', 
       'post_voc', 'post_voc_ip', 'post_voc_er', 'post_voc_iper',
       'n_claims', 'pdc_at_risk'))
 print(covariates$tbl_bal)
 sheet_write(covariates$tbl_bal, ss = output2_ss, sheet = 'covariates')
+```
+
+```{r cohort_summary2}
+covariates2 <- get_covariates(
+  cohort2, 
+  covariates = 
+    c('age_cat', 'gender', 'region', 'year_quarter', 'cci_score', 'w_transfusion', 'patient_race_omb', 'patient_ethnicity_omb',
+      'pre_voc_ip3', 'pre_voc_er3', 
+      'n_claims', 'pdc_at_risk'))
+print(covariates2$tbl_bal)
+sheet_write(covariates2$tbl_bal, ss = output2_ss, sheet = 'covariates2')
 ```
 
 ```{r adherence_summary_univariate}
@@ -651,21 +742,109 @@ summary_cts_uni <- function(df, summ_var, group_var_list = NULL) {
 }
 for (drug in c("oxbryta", "hydroxyurea", "adakveo", "endari")) {
   print(summ_by_group <- 
-          summary_cts_uni(cohort %>% filter(cohort == drug), 
+          summary_cts_uni(cohort2 %>% filter(cohort == drug), 
                           'pdc_at_risk', 
-                        c('age_cat', 'region', 'year_quarter', 'cci', 'transfusion', 'pre_voc_ip', 'pre_voc_er')))
+                        c('age_cat', 'region', 'year_quarter', 'cci_score', 'w_transfusion', 'pre_voc_ip3', 'pre_voc_er3', 'patient_race_omb')))
   
-  sheet_write(summ_by_group, ss = output2_ss, sheet = paste0('adherence_summary_', drug))
+  sheet_write(summ_by_group, ss = output2_ss, sheet = paste0('adherence_', drug))
 }
 ```
 
 ```{r adherence_summary_multivariate}
-# library(betareg)
-# cohort$pdc_augmented <- pmin(cohort$pdc_at_risk, 1-1e-3)
-# model <- betareg(pdc_augmented ~ age_cat + gender + region + year_quarter + voc_treatment_pre + voc_treatment_post + cci + transfusion + pre_voc_ip + pre_voc_er, data = cohort) # + race
-# print(summary(model))
-# 
-# coef_df <- data.frame(coef(summary(model))$mean)
-# coef_df <- data.frame(var = rownames(coef_df), coef_df)
-# sheet_write(coef_df, ss = output_ss, sheet = 'adherence_model')
+run_model <- function(data, method = c('beta', 'lm')) {
+  if (method == 'beta') {
+    reg_fun = betareg
+  } else if (method == 'lm') {
+    reg_fun = lm
+  }
+  model <- reg_fun(pdc_augmented ~ age_cat + gender + region + cci_score + w_transfusion + pre_voc_ip3 + pre_voc_er3, data = data)
+  # print(summary(model))
+  # print(stats::AIC(model))
+  # print(stats::BIC(model))
+  
+  if (method == 'beta') {
+    coef_df <- data.frame(coef(summary(model))$mean)
+    conf_df <- confint(model)
+    conf_df <- conf_df[1:(nrow(conf_df)-1),]
+  } else if (method == 'lm') {
+    coef_df <- data.frame(coef(summary(model)))
+    conf_df <- confint(model)
+  }  
+  res_df <- data.frame(var = rownames(coef_df), coef_df, conf_df)
+  res_df
+}
+
+settings = c("all", "oxbryta", "hydroxyurea", "adakveo", "endari")
+model_list <- lapply(settings, function(s) {
+  data = cohort2
+  if (s != "all") {
+    data = data %>% filter(cohort == s)
+  }
+  if (s == 'adakveo') {
+    data = data %>% filter(age >= 12)
+  }
+    
+  coef_df_lm = run_model(data, "lm")
+  sheet_write(coef_df_lm, ss = output2_ss, sheet = paste0('model_', s, '_', 'lm'))
+  coef_df_beta = run_model(data, "beta")
+  sheet_write(coef_df_beta, ss = output2_ss, sheet = paste0('model_', s, '_', 'beta'))
+  return(list(beta = coef_df_beta, lm = coef_df_lm))
+})
+```
+
+```{r abstract_table1}
+table1 <- get_covariates(
+  cohort2, 
+  covariates = 
+    c('age_cat', 'gender', 'region', 'cci_score', 'w_transfusion', 'pre_voc_ip3', 'pre_voc_er3', 'n_claims', 'pdc_at_risk'))
+colnames(table1$tbl_bal) <- paste0(stringr::str_to_title(colnames(table1$tbl_bal)), "\n", table1$tbl_bal[1,])
+table1$tbl_bal[,1] <- 
+  c('N=', 'Age', '  0-11', '  12-19', '  20-29', '  30-49', '  50+',
+    'Gender', '  Female', '  Male',
+    'Region', '  Northeast', '  Midwest', '  South', '  West',
+    'Charlson Comorbidity Index', '  0', '  1-3', '  4+',
+    'Transfusion', '  Yes', '  No',
+    'VOC(Inpatient)', '  0', '  1', '  2', '  3+',
+    'VOC(Emergency Room)', '  0', '  1', '  2', '  3+',
+    'Number of Prescriptions', '  Mean (SD)', '  Median [Min, Max]',
+    'PDC', '  Mean (SD)', '  Median [Min, Max]'
+    )
+table1$tbl_bal <-
+  table1$tbl_bal %>%
+  as_tibble() %>%
+  filter(!row_number() %in% c(1, 35, 38)) %>%
+  select(-7)
+
+sheet_write(table1$tbl_bal, ss = output2_ss, sheet = 'abstract_table1')
+```
+
+```{r abstract_table2}
+final_model_tbl <- model_list[[1]]$lm
+final_model_tbl$est <- paste0(
+  formatC(final_model_tbl[,2], format = 'f', digits = 3),
+  ' (',
+  formatC(final_model_tbl[,6], format = 'f', digits = 3), 
+  ', ', 
+  formatC(final_model_tbl[,7], format = 'f', digits = 3),
+  ')')
+final_model_tbl <- final_model_tbl[, c(1, 8, 5)]
+final_model_tbl[,3] <- 
+  ifelse(final_model_tbl[,3] < 0.001, '<0.001', formatC(final_model_tbl[,3], format = 'f', digits = 3))
+colnames(final_model_tbl) <- c('Covariate', 'Estimate (95% CI)', 'p-Value')
+final_model_tbl$Covariate <- 
+  c("Intercept",
+    "Age 12-19", "Age 20-29", "Age 30-49", "Age 50+",
+    "Gender Male",
+    "Region Midwest", "Region South", "Region West",
+    "CCI 1-3", "CCI 4+",
+    "Transfusion",
+    "VOC (Inpatient) 1",
+    "VOC (Inpatient) 2",
+    "VOC (Inpatient) 3+",
+    "VOC (Emergency Room) 1",
+    "VOC (Emergency Room) 2",
+    "VOC (Emergency Room) 3+"
+    )
+  
+sheet_write(final_model_tbl, ss = output2_ss, sheet = 'abstract_table2')
 ```

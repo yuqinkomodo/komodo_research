@@ -653,13 +653,27 @@ sheet_write(summ_by_group, ss = output_ss, sheet = 'adherence_summary')
 
 ```{r adherence_summary_multivariate}
 library(betareg)
-cohort$pdc_augmented <- pmin(cohort$pdc_at_risk, 1-1e-3)
-model <- betareg(pdc_augmented ~ age_cat + gender + region + year_quarter + voc_treatment_pre + voc_treatment_post + cci + transfusion + pre_voc_ip + pre_voc_er, data = cohort) # + race
+cohort <- cohort %>%
+  mutate(pdc_augmented = pmin(pdc_at_risk, 1-1e-3),
+         pre_voc_ip3 = case_when(
+           n_pre_voc_ip == 0 ~ '0',
+           n_pre_voc_ip == 1 ~ '1',
+           n_pre_voc_ip == 2 ~ '2',
+           TRUE ~ '3+'
+         ),
+         pre_voc_er3 = case_when(
+           n_pre_voc_er == 0 ~ '0',
+           n_pre_voc_er == 1 ~ '1',
+           n_pre_voc_er == 2 ~ '2',
+           TRUE ~ '3+'
+         ))
+
+model <- betareg(pdc_augmented ~ age_cat + gender + region + year_quarter + voc_treatment_pre + voc_treatment_post + cci + transfusion + pre_voc_ip3 + pre_voc_er3, data = cohort) # + race
 print(summary(model))
 
 coef_df <- data.frame(coef(summary(model))$mean)
 coef_df <- data.frame(var = rownames(coef_df), coef_df)
-sheet_write(coef_df, ss = output_ss, sheet = 'adherence_model')
+sheet_write(coef_df, ss = output_ss, sheet = 'adherence_model2')
 ```
 
 ```{r adherence_vs_voc_diff}
