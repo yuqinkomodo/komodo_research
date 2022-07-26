@@ -790,6 +790,7 @@ model_list <- lapply(settings, function(s) {
   sheet_write(coef_df_beta, ss = output2_ss, sheet = paste0('model_', s, '_', 'beta'))
   return(list(beta = coef_df_beta, lm = coef_df_lm))
 })
+saveRDS(model_list, file = file.path(model_dir, "final_models.rds"))
 ```
 
 ```{r abstract_table1}
@@ -797,15 +798,17 @@ table1 <- get_covariates(
   cohort2, 
   covariates = 
     c('age_cat', 'gender', 'region', 'cci_score', 'w_transfusion', 'pre_voc_ip3', 'pre_voc_er3', 'n_claims', 'pdc_at_risk'))
-colnames(table1$tbl_bal) <- paste0(stringr::str_to_title(colnames(table1$tbl_bal)), "\n", table1$tbl_bal[1,])
+
+generic_names <- c('voxelotor', 'hydroxyurea', 'crizanlizumab-tmca', 'L-glutamine')
+colnames(table1$tbl_bal) <- paste0(c("", generic_names, "Total", "SMD"), "\n", table1$tbl_bal[1,])
 table1$tbl_bal[,1] <- 
   c('N=', 'Age', '  0-11', '  12-19', '  20-29', '  30-49', '  50+',
     'Gender', '  Female', '  Male',
     'Region', '  Northeast', '  Midwest', '  South', '  West',
     'CCI', '  0', '  1-3', '  4+',
     'Transfusion', '  Yes', '  No',
-    'VOC(Inpatient)', '  0', '  1', '  2', '  3+',
-    'VOC(Emergency Room)', '  0', '  1', '  2', '  3+',
+    'VOC (Inpatient)', '  0', '  1', '  2', '  3+',
+    'VOC (Emergency Room)', '  0', '  1', '  2', '  3+',
     'Number of Prescriptions', '  Mean (SD)', '  Median [Min, Max]',
     'PDC', '  Mean (SD)', '  Median [Min, Max]'
     )
