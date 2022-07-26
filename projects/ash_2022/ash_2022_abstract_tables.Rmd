@@ -1,0 +1,65 @@
+---
+output: pdf_document
+tables: true
+latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+repo_dir <- "~/komodo_research"
+proj_dir <- file.path(repo_dir, 'projects', 'ash_2022')
+lib_dir <- file.path(repo_dir, 'library')
+code_dir <- file.path(proj_dir, 'code')
+model_dir <- file.path(proj_dir, 'model')
+plot_dir <- file.path(proj_dir, 'plot')
+dir.create(code_dir, showWarnings = F)
+dir.create(model_dir, showWarnings = F)
+dir.create(plot_dir, showWarnings = F)
+
+library(flextable)
+library(magrittr)
+table1 <- readr::read_csv(file.path(model_dir, 'table1.csv'), trim_ws = FALSE)
+table2 <- readr::read_csv(file.path(model_dir, 'table2.csv'), trim_ws = FALSE)
+set_flextable_defaults(fonts_ignore=TRUE)
+
+```
+
+```{r table1, echo = FALSE, ft.align="left", ft.arraystretch = 1}
+ft <- flextable(table1, cwidth = 1) %>%
+  # set_caption(caption = c('Cohort characteristics, numbers in count (%) unless specified')) %>%
+  add_header_lines(values = 'Table 1. Cohort characteristics, numbers in count (%) unless specified') %>%
+  add_footer_lines(values = 'CCI - Charlson Comorbidity Index; VOC - Vaso-Occlusive Crisis; PDC - Proportion of Days Covered') %>%
+  bold(part = "header", i = 1) %>%
+  align(part = "header", i = 1, align = "left") %>%
+  border(part = "head", i = 1, border = list("width" = 0, color = "black", style = "solid")) %>%
+  font(fontname = 'Times New Romans', part = 'all') %>%
+  fontsize(size = 10, part = 'all') %>%
+  padding(padding = 0, part = 'all') %>%
+  hline(i = c(6, 9, 14, 18, 21, 26, 31, 33))
+# save_as_image(ft, file.path(plot_dir, 'table1.png'), webshot = "webshot2")
+ft
+```
+
+\newpage
+
+```{r table2, echo = FALSE, ft.align="left", ft.arraystretch = 1}
+ft <- flextable(table2, cwidth = 1) %>%
+  add_header_lines(values = 'Table 2. Linear regression analysis results for all-medication bundle effects') %>%
+  # set_table_properties(width = 0.6, layout = "autofit") %>%
+  width(j = 1, width = 2) %>%
+  width(j = 2, width = 3) %>%
+  width(j = 3, width = 1) %>%
+  # autofit(add_w = 0.0) %>%
+  add_footer_lines(values = 'CCI - Charlson Comorbidity Index; VOC - Vaso-Occlusive Crisis') %>%
+  bold(part = "header", i = 1) %>%
+  align(part = "header", i = 1, align = "left") %>%
+  border(part = "head", i = 1, border = list("width" = 0, color = "black", style = "solid")) %>%
+  font(fontname = 'Times New Romans', part = 'all') %>%
+  fontsize(size = 10, part = 'all') %>%
+  padding(padding = 0, part = 'all') %>%
+  hline(i = c(1, 7, 10, 15, 19, 22, 27))
+  # set_caption(caption = 'Linear regression analysis results for all-medication bundle effects')  
+
+# save_as_image(ft, file.path(plot_dir, 'table2.png'), webshot = "webshot2")
+ft
+```
