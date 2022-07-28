@@ -3,17 +3,14 @@ title: "Oxbryta Adherence Study vs More Drugs"
 output: html_notebook
 ---
 
-Code List: Same list as SCD study  
-https://docs.google.com/spreadsheets/d/1lwGATVIUxa1RMtcfUmpZRoJLEcDadBboyTmTthN2U20/edit#gid=0
+Code List: Same list as SCD study <https://docs.google.com/spreadsheets/d/1lwGATVIUxa1RMtcfUmpZRoJLEcDadBboyTmTthN2U20/edit#gid=0>
 
-Oxbryta Results:
-https://docs.google.com/spreadsheets/d/1RhK4YaLlQ1EHFdyD6QESekOvmVWlnzzftf9aZbb5cPQ/edit#gid=0
+Oxbryta Results: <https://docs.google.com/spreadsheets/d/1RhK4YaLlQ1EHFdyD6QESekOvmVWlnzzftf9aZbb5cPQ/edit#gid=0>
 
-Oxbryta and Others(hydroxyurea, adakveo, endari):
-https://docs.google.com/spreadsheets/d/1IVhtmWuXChkAv3Z5xrDoUxkCtqfIj_l6ebAVaRB4BlU/edit#gid=0
+Oxbryta and Others(hydroxyurea, adakveo, endari): <https://docs.google.com/spreadsheets/d/1IVhtmWuXChkAv3Z5xrDoUxkCtqfIj_l6ebAVaRB4BlU/edit#gid=0>
 
 ```{r config}
-repo_dir <- "~/komodo_research"
+repo_dir <- "~/komodo/code/komodo_research"
 proj_dir <- file.path(repo_dir, 'projects', 'ash_2022')
 lib_dir <- file.path(repo_dir, 'library')
 code_dir <- file.path(proj_dir, 'code')
@@ -90,16 +87,29 @@ cci_def = glue("MAP_VOCABULARY.RXNORM_{code_version}.CHARLSON_CODE")
 cci_score = glue("MAP_VOCABULARY.RXNORM_{code_version}.CHARLSON_SCORE")
 ```
 
-## Code definition   
-Use the same code list as the SCD study.    
+## Code definition
+
+Use the same code list as the SCD study.
 
 ## Create Study Eligible Cohort
-Use same files for SCD study.  
+
+Use same files for SCD study.
 
 ```{r get_query}
 code_list_table = glue('scd_code_list')
 code_list_sub_table = glue('scd_code_list_sub')
 tic("Mx Encounter")
+# EY: for readibility, preferred if this is written as:
+# sql_mx = glue("
+#     create or replace table scd_mx_encounter as",
+#     query_event_mx(
+#       code_list_table = code_list_table,
+#       mx_version = mx_version,
+#       start_date = query_start_date, end_date = query_end_date
+#       ),
+#     ";"
+#     )
+
 sql_mx = glue("
     create or replace table scd_mx_encounter as
     {query_event_mx(
@@ -128,8 +138,8 @@ execute_sql(sql_rx)
 toc()
 ```
 
-
 ```{r build_cohort}
+# EY: this gets patients whose first claim falls after 2017-01-01.
 cohort_start_date = '2017-01-01'
 sql = glue("  
     create or replace table {prefix}_cohort as
@@ -150,7 +160,6 @@ sql = glue("
 ")
 execute_sql(sql)
 ```
-
 
 ```{r add_flag}
 demo_table = glue("CDO_PROD.CDO_PATIENT.PATIENT_DEMOGRAPHICS_UPK2_SUMMARY")
@@ -229,6 +238,7 @@ execute_sql(sql)
 ```
 
 ```{r cohort_funnel}
+# EY: possibly want to write this logic as a loop
 cohort_funnel <- function() {
   select_str = "cohort, count(distinct upk_key2) as n_bene"
   sql = glue("
@@ -292,7 +302,6 @@ sql = glue("
 execute_sql(sql)
 ```
 
-
 ```{r get_adherence}
 rx_table1 <- glue("(select *, event as cohort from scd_rx_encounter where event = 'oxbryta')")
 cohort_table1 <- glue("(select * from {prefix}_final_cohort where cohort = 'oxbryta')")
@@ -338,6 +347,23 @@ execute_sql(sql)
 rx_table3 <- glue("(select * from {prefix}_adakveo_rx)")
 cohort_table3 <- glue("(select * from {prefix}_final_cohort where cohort = 'adakveo')")
 
+# EY: more usage of glue() with named arguments would help with readability.
+
+# EY: this seems overly complicated how you switch between R functions and SQL code. 
+# Writing it this way is a way to minimize the switching back and forth:
+
+# sql <- glue("create or replace table {prefix}_adherence as ",
+#             glue(read_sql("get_adherence"), rx_table=rx_table1,
+#                  cohort_table=cohort_table1, days_at_risk=365),
+#             "union all",
+#             glue(read_sql("get_adherence"), rx_table=rx_table1,
+#                  cohort_table=cohort_table2, days_at_risk=365),
+#             "union all",
+#             ...)
+
+# Or preferably written as a for loop that does the above.
+
+
 sql <- glue("
   create or replace table {prefix}_adherence as
   ({get_adherence(rx_table1, cohort_table1, days_at_risk = 365)})
@@ -353,26 +379,30 @@ execute_sql(sql)
 
 ```{r step_7_more_encounters}
 # create encounter table for covariates and outcome
-code_list_table = glue('scd_code_list')
-code_list_sub_table = glue('scd_code_list_sub')
-patient_table = glue("(select upk_key2 from scd_mx_encounter union select upk_key2 from scd_rx_encounter)")
+
+# EY: glue wrapping these strings is unnecessary
+code_list_table = 'scd_code_list'
+code_list_sub_table = 'scd_code_list_sub'
+patient_table = "(select upk_key2 from scd_mx_encounter union select upk_key2 from scd_rx_encounter)"
 tic("Mx Encounter")
+
+# EY: preferred formatting:
 sql_mx = glue("
-    create or replace table scd_mx_encounter_sub as
-    {query_event_mx(
+    create or replace table scd_mx_encounter_sub as ",
+    query_event_mx(
       code_list_table = code_list_sub_table,
       patient_table = patient_table,
       mx_version = mx_version,
       start_date = query_start_date, end_date = query_end_date
-      )
-    }
-    ;
-")
+      ),
+    ";")
+
 execute_sql(sql_mx)
 toc()
 ```
 
 ```{r clean_voc_inpatient_stays}
+# EY: this allowable gap logic for determining duration of inpatient visits seems very useful, it's probably worthwhile to pull out as its own function for the future.
 ip_allowable_gap = 2
 # 0 means allow consecutive stays not merge, so 9/1-9/15 and 9/16-9/30
 # 1 means gap should be at least one full day, so 9/1-9/15 and 9/17-9/30
@@ -412,6 +442,9 @@ execute_sql(sql)
 ```
 
 ```{r get_covariates}
+# EY: this is hard to follow for how long the query is. Recommended to break this up into multiple queries for each covariate using create temp table statements, then merging them together in the end.
+# EY: you can consider moving the repeated logic in the below query into Snowflake user-defined functions
+
 sql = glue("
     create or replace table {prefix}_final_cohort_w_cov as
     with 

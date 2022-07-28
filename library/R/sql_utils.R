@@ -17,7 +17,8 @@ execute_sql <- function(sql, conn = con_odbc, print = FALSE) {
   return(invisible(NULL))
 }
 
-read_sql <- function(file, path = "~/komodo_research/library/SQL") {
+# EY: original script code doesn't work if this path changes
+read_sql <- function(file, path = "~/komodo/code/komodo_research/library/SQL") {
   if (!stringr::str_ends(file, fixed(".sql", TRUE))) file <- paste0(file, ".sql")
   readr::read_file(file.path(path, file))
 }
